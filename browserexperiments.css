@@ -154,6 +154,7 @@ footer
     background-color: #F5F7F6;
     border: 1px solid #CCCCCC;
     height: 46px;
+    display:block;
 }
 
 .h5-logo
@@ -188,6 +189,7 @@ header
     width: 100%;
     margin: 0px auto 35px auto;
     height: 75px;
+    display:block;
 }
 
 .legend
@@ -213,7 +215,9 @@ header
 
 .supported
 {
-    background: transparent url('images/supported.png') no-repeat center;
+    background-image: url('images/supported.png');
+    background-repeat:no-repeat;
+    background-position:center;
 }
 
 .legend-row .supported
@@ -226,7 +230,9 @@ header
 
 .shim
 {
-    background: transparent url('images/shim.png') no-repeat center;
+    background-image: url('images/shim.png');
+    background-repeat:no-repeat;
+    background-position:center;
 }
 
 .legend-row .shim
