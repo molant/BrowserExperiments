@@ -1,7 +1,13 @@
-﻿html
+﻿*
+{
+    margin:0px;
+    padding:0px;
+}
+
+
+html
 {
     background-color: #4E5160;
-    
 }
 
 body
@@ -15,35 +21,6 @@ body
     font-size:12px;
 }
 
-h1
-{
-    padding: 20px 50px;
-    margin: 0;
-    background-color: #1b1b1b;
-    color: white;
-}
-
-h2
-{
-    font-size: 1.5em;
-    color: #1b1b1b;
-}
-h3
-{
-    font-size: 1em;
-}
-h4
-{
-    font-size: 0.9em;
-}
-pre
-{
-    color: green;
-    background-color: #f4f4f4;
-    border: 1px solid #e4e4e4;
-    border-left-width: 10px;
-    white-space: pre-wrap;
-}
 table
 {
     border-top: 4px solid #4F535F;
@@ -55,23 +32,24 @@ table
 }
 td, th
 {
-    border: 1px solid #CCCCCC;
-    padding: 4px 10px 4px 6px;
+    border: 1px solid #CCCCCC;    
     vertical-align: top;
-    border-left: 0px solid;
+    border-left: 0px solid;    
 }
 
 th
 {
     padding-top:45px;
     padding-bottom:10px;
+    font-weight:normal;
 }
 
 th.title
 {
     padding-left:0px;   
     margin:0px;
-    text-align:left;    
+    text-align:left;
+    width:550px;    
 }
 
 .title img
@@ -85,6 +63,7 @@ th.title
     float:left; 
     margin-top:14px;
     text-transform:uppercase;
+    font-weight:bold;
 }
 
 th img
@@ -94,7 +73,7 @@ th img
 
 td
 {
-    height:40px;
+    height:42px;
     vertical-align:middle;
 }
 
@@ -106,33 +85,48 @@ tbody th
 {
     text-align: left;
 }
-table tr td:first-child
-{
-    padding-left: 20px;
-}
 
 th.current
 {
     background-color: #4E5160;
     color: #FFFFFF;
+    font-weight:bold;
 }
 
-tr.shim-row
+.shim-row
 {
     background-color: #F5F7F6; 
 }
 
-tr.shim-row td
+.shim-row td
 {
     height:auto !important;
-    padding: 15px 0px 0px 0px;    
+    padding: 15px 0px 0px 10px;    
     border-top:0px solid #F5F7F6 !important;
     border-bottom:0px solid #F5F7F6 !important;
 }
 
-tr.feature-description
+.shim-row td.shim
 {
-    padding: 15px 0px 15px 0px;
+    background-position:bottom;    
+}
+
+.shim-row td.supported
+{
+    background-position:bottom;    
+}
+
+.shim-row td a
+{
+    color: #4E5260;
+    font-weight: bold;
+}
+
+.feature-description td
+{
+    padding: 15px 30px 25px 10px;
+    font-size: 0.9em;
+    line-height: 1.7em;
 }
 
 td .title
@@ -145,6 +139,7 @@ td.feature
 {
     background:transparent url('images/arrow.png') no-repeat left;
     text-transform:uppercase;
+    padding-left:10px;
 }
 
 td.selected
@@ -200,13 +195,13 @@ header
     border-left: 1px solid #CCCCCC;
     padding-left: 11px;
     float: right;
-    font-size: 0.8em;
+    font-size: 1em;
     width: 155px;
 }
 
 .legend-row
 {
-    margin: 7px 0px 5px 0px;
+    margin: 10px 0px 5px 0px;
 }
 .status
 {
@@ -225,6 +220,7 @@ header
 {
     width: 20px;
     height: 20px;
+    margin-top:-5px;
 }
 
 
@@ -237,16 +233,29 @@ header
 {
     width: 20px;
     height: 20px;
+    margin-top:-5px;
 }
 
 .description
-{
+{    
 }
 
 .browser
 {
-    width: 40px;
+    width: 42px;
+    margin:auto;
+    padding-top:41px;    
 }
+
+.browser img
+{    
+    padding:0px;
+    display:block;
+    margin:auto auto 4px auto;
+    width:25px;
+    height:25px;
+}
+
 
 .logo
 {
