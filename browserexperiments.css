@@ -95,7 +95,8 @@ th.current
 
 .shim-row
 {
-    background-color: #F5F7F6; 
+    background-color: #F5F7F6;
+    display:none;
 }
 
 .shim-row td
@@ -140,6 +141,7 @@ td.feature
     background:transparent url('images/arrow.png') no-repeat left;
     text-transform:uppercase;
     padding-left:10px;
+    cursor:pointer;
 }
 
 td.selected
