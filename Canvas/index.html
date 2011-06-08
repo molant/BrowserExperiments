@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas</title>
+    <link rel="stylesheet" href="../browserexperiments.css" />
+    
+    <script src="excanvas.js"></script>
+    <script src="slcanvas.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <h1>Canvas</h1>
+	<blockquote>
+		<p>HTML Canvas is a great drawing board for animations and creating images in the browser.</p>
+	</blockquote>
+
+    <div id="demo">
+
+    	<span>Native</span>
+		<div id="native"></div>
+    
+    	<span>Silverlight</span>
+		<canvas id="silverlight" width="200" height="200" renderMethod="silverlight" onload="buildTest(this);">[This browser does not<br />support &lt;canvas&gt;.]</canvas>
+
+    	<span>ExCanvas</span>
+		<div id="excanvas"></div>
+    </div>
+<script>
+	
+
+	// Build a normal canvas
+	var c = document.createElement('canvas');
+	c.height=200;
+	c.width=200;
+	document.getElementById('native').appendChild(c);
+	buildTest(c);
+	
+	// Build an excanvas, IE only
+	var c = document.createElement('canvas');
+	c.height= 200;
+	c.width=200;
+	if("G_vmlCanvasManager" in window){
+		G_vmlCanvasManager.initElement(c);
+	}
+	document.getElementById('excanvas').appendChild(c);
+	buildTest(c);
+		
+    	
+	function buildTest(el){
+
+		if(!el.getContext){
+			return;
+		}
+		console.log(el);
+		var c = el.getContext('2d');
+
+		c.save();
+		c.fillStyle = "red";
+		c.fillRect(50, 50, 100, 100); 
+		c.restore(); 
+	
+		var i = 1,
+			j = 1,
+			x = 0,
+			y = 0,
+			Bd = 30,
+			rgb = "rgb("+(parseInt(Math.random()*255))+", "+(parseInt(Math.random()*255))+", "+(parseInt(Math.random()*255))+")"; // Ball Diameter
+
+				
+		function animate(){
+			i++;
+	
+			h = el.height-Bd;
+	
+			x = ( 0.5 * el.width);
+	
+			y = ( (4*j++) + (1 * 1 * Math.pow(i,2)));
+	
+			if( y>h && i>0 ){
+				i=-i;
+			}
+			if( y > h ){
+				y = h;
+			}
+	
+			var gradient = c.createRadialGradient(x, y, 0, x, y, Bd ); 
+			gradient.addColorStop(0, rgb);  
+			gradient.addColorStop(1, "rgb(0, 0, 0)"); 
+			gradient.addColorStop(1, "transparent"); 
+			c.save(); 
+			c.fillStyle = gradient;
+			c.fillRect(0, 0, el.width, el.height); 
+			c.restore(); 
+	
+			// set timeout
+			setTimeout(animate,33);
+		};
+		
+		/*
+		function resize(){
+			c.canvas.height=window.innerHeight;
+			c.canvas.width=window.innerWidth;
+		}
+		resize();
+		window.addEventListener('resize', resize,false);
+		*/
+		
+		animate();
+	}
+</script>
+
+</body>
+</html>
