@@ -101,11 +101,11 @@ th.current
 
 .shim-row td
 {
-    height:auto !important;
     padding: 15px 0px 0px 10px;    
-    border-top:0px solid #F5F7F6 !important;
-    border-bottom:0px solid #F5F7F6 !important;
+    border-top:0px solid;
+    border-bottom:0px solid;
 }
+
 
 .shim-row td.shim
 {
@@ -125,7 +125,7 @@ th.current
 
 .feature-description td
 {
-    padding: 15px 30px 25px 10px;
+    padding-bottom: 25px;
     font-size: 0.9em;
     line-height: 1.7em;
 }
