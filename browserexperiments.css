@@ -73,8 +73,12 @@ th img
 
 td
 {
-    height:42px;
     vertical-align:middle;
+}
+
+.feature-row td
+{
+    height:42px;    
 }
 
 thead th
@@ -106,6 +110,10 @@ th.current
     border-bottom:0px solid;
 }
 
+tr td:first-of-type
+{
+    padding-right:28px !important;
+}
 
 .shim-row td.shim
 {
