@@ -3,24 +3,9 @@
 <head>
     <title>Support HTML5 tags in your old browser</title>
     <link rel="stylesheet" href="../browserexperiments.css" />
-    <style>
-        header
-        {
-            font-size: 2em;
-            display:block;
-        }
-        article
-        {
-            font-weight:bold;
-            display:block;
-        }
-        footer
-        {
-            display:block;
-        }
-    </style>
-    <!--<script src="html5.js" type="text/javascript"></script>-->
-    
+   <!--[if lt IE 9]>
+		<script src="html5.js"></script>
+	<![endif]-->   
     <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-2472425-10']);
@@ -34,14 +19,22 @@
 </script>
 </head>
 <body>
-    <h1>
-        HTML5 Tags</h1>
+    <header>
+        <div class="logo">
+        </div>
+        <div class="legend">
+            <h1>HTML5 Semantic Tags</h1>
+        </div>
+    </header>
     <div id="content">
-        If the following text has different styles then you are ready to rock!
-        <br />
-        <header>This is the header</header>
-        <article>This is an article</article>
-        <footer>This is the footer</footer>        
-    </div>	
+        <p>If you can see the HTML5 logo in the top and the bottom of the website then you are ok!</p>
+        <p>While using this shim you you should specify if they are inline or block level. If not all the new elements will be of type inline. If you plan to support Firefox 3.6 you should also add this CSS styles!</p>        
+    </div>
+    <footer>
+        <div class="h5-logo">
+        </div>
+        <div class="h5-logos">
+        </div>
+    </footer>	
 </body>
 </html>
