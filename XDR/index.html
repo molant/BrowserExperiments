@@ -15,12 +15,14 @@
 <body>
     <h1>XDomainRequest support (from <a href="https://github.com/jaubourg/ajaxHooks/">jQuery.ajax hooks</a>)</h1>
 	<blockquote>
-		<p>The XDomainRequest object (XDR) allows Internet Explorer 8 and higher to make a limited set of cross-domain AJAX requests to sites. This shim (specifically, a jQuery <em>transport</em>) allows jQuery's <code>$.ajax()</code> method to make XDR requests in IE8 and IE9. There is no shim for older versions of IE.
-		(<a href="http://msdn.microsoft.com/en-us/library/cc288060%28v=vs.85%29.aspx">XDR Documentation</a>)
-		(<a href="http://blogs.msdn.com/b/ieinternals/archive/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds">XDR Limitations and Workarounds</a>)
+		<p>The XDomainRequest object (XDR) allows Internet Explorer 8 and higher to make a limited set of cross-domain AJAX requests, per the <a href="http://www.w3.org/TR/cors/">W3C Cross Origin Resource Sharing (CORS) specification</a>. This shim (specifically, a jQuery <em>transport</em>) allows jQuery's <code>$.ajax()</code> method to make XDR requests in IE8 and IE9. There is no shim for older versions of IE.
+		(<a href="http://msdn.microsoft.com/en-us/library/cc288060%28v=vs.85%29.aspx">Microsoft XDomainRequest documentation</a>)
+		(<a href="http://blogs.msdn.com/b/ieinternals/archive/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds">Microsoft XDR limitations and workarounds</a>)
 		</p>
 	</blockquote>
- 	<div id="noxdr">NOTE: This browser does not support XDomainRequest; it may support CORS through XMLHTTPRequest.</div>
+ 	<div id="noxdr">
+		NOTE: This browser does not support XDomainRequest; it may support CORS through XMLHTTPRequest. The demo will try using both via <code>$.ajax()</code>.
+	</div>
 	<div id="demo">
 		<button id="start">Make cross-domain request</button> <span id="working">Working...</span><br />
     </div>
@@ -28,7 +30,7 @@
 
     <script>
 	$(function(){
-		$("#noxdr").toggle(window.XDomainRequest? false : true);
+		$("#noxdr").toggle(!window.XDomainRequest);
 		$("#results, #working").hide();
 		$("#start").click(function(){
 			$("#working").show();
@@ -37,7 +39,7 @@
 				cache: false
 				})
 				.done(function(data) {
-					$("#results").text(data).show();
+					$("#results").html(data.replace(/\n/g,"<br />")).show();
 					$("#working").hide();
 				})
 				.fail(function(){
