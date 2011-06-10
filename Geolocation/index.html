@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Geolocation</title>
+    <link rel="stylesheet" href="../browserexperiments.css" />
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.js"></script>
+	<!-- https://github.com/aFarkas/webshim  -->
+    <script src="../Common/modernizr-2.0.js"></script>
+    <script src="../Common/polyfiller.js"></script>
+    <script src="geolocation.js"></script>
+    <style type="text/css">
+		#working {
+			color: red;
+		}
+    </style>
+</head>
+<body>
+    <h1>Geolocation (from the <a href="https://github.com/aFarkas/webshim">Webshim project</a>)</h1>
+	<blockquote>
+		<p>Geolocation allows the browser to obtain the user's current latitude and longitude. Locations can be obtained from dedicated GPS receivers in the device or by using approximating methods such as cell tower triangulation, Wi-Fi access point location, or IP address. <a href="http://dev.w3.org/geo/api/spec-source.html">W3C Geolocation Specification</a></p>
+	</blockquote>
+    <div id="demo">
+		<button id="start">Get location</button> <span id="working">Working...</span><br />
+		<input type="checkbox" id="highAccuracy" /> Enable high accuracy <br />
+		<input type="text" id="timeout" size="8" value="30000"/> Timeout (milliseconds) <br />
+ 		<input type="text" id="maximumAge" size="8" value="0"/> Maximum age of reading (milliseconds) <br />
+    </div>
+	<table id="results">
+		<tbody>
+			<tr><td>Latitude</td><td class="latitude"></td></tr>
+			<tr><td>Longitude</td><td class="longitude"></td></tr>
+			<tr><td>Altitude (meters)</td><td class="altitude"></td></tr>
+			<tr><td>Accuracy (meters)</td><td class="accuracy"></td></tr>
+			<tr><td>Timestamp</td><td class="timestamp"></td></tr>
+			<tr><td>Request time (ms)</td><td class="elapsed"></td></tr>
+		</tbody>
+	</table>
+
+    <script>
+	$(function(){
+		var geo = window.navigator && navigator.geolocation;
+		var errorList = [ "", "Permission Denied", "Position Unavailable", "Timeout" ];
+		if ( !geo ) {
+			alert("No geolocation supported");
+			return;
+		}
+		$("#results, #working").hide();
+		$("#start").click(function(){
+			$("#working").show();
+			var start = (new Date()).getTime();
+			var options = {
+				enableHighAccuracy: $("#highAccuracy").prop("checked"),
+				timeout: parseInt($("#timeout").val(), 10) || 30000,
+				maximumAge: parseInt($("#maximumAge").val(), 10) || 1
+			};
+			geo.getCurrentPosition(
+				function(loc){
+					var coords = loc.coords;
+					$("#results .latitude").text(coords.latitude);
+					$("#results .longitude").text(coords.longitude);
+					$("#results .altitude").text(coords.altitude);
+					$("#results .accuracy").text(coords.accuracy);
+					$("#results .timestamp").text(loc.timestamp);
+					$("#results .elapsed").text((+new Date) - start);
+					$("#results").show();
+					$("#working").hide();
+				},
+				function(error){ 
+					alert("geolocation error code "+error.code+": "+(error.message || errorList[error.code] || "?"));
+					$("#working").hide();
+				},
+				options
+			);
+		});
+	});
+    </script>
+</body>
+</html>
