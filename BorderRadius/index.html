@@ -6,6 +6,7 @@
 	<!-- documentation at http://css3pie.com/  -->
     <style type="text/css">
 		#round1 {
+			float: right;
 			height: 100px;
 			width: 200px;
 			margin: 10px;
@@ -22,7 +23,7 @@
 			margin: 10px;
 			padding: 10px;
 			background: #cfd;
-			border: 1px solid #6b9;
+			border: 4px solid #6b9;
 			-webkit-border-radius: 18px;
 			-moz-border-radius: 18px;
 			border-radius: 18px;
@@ -30,7 +31,7 @@
     </style>
     <!--[if lt IE 9]>
 	<style>
-		.round-ie-too {
+		.rounded {
 			/* Enables border-radius support for IE6/7/8 */
 			position: relative;
 			behavior: url(../Common/css3pie/PIE.htc);
@@ -41,11 +42,11 @@
 <body>
     <h1>CSS3 border-radius support (from <a href="http://css3pie.com/">CSS3Pie</a>)</h1>
 	<blockquote>
-		<p>The border-radius CSS3 property allows elements to have rounded corners. Of commonly encountered browsers, only IE6/7/8 do not support this property. The shim allows them to display rounded corners. <a href="http://www.w3.org/TR/css3-background/#the-border-radius">W3C CSS3 <code>border-radius</code> Specification</a></p>
+		<p>The border-radius CSS3 property allows elements to have rounded corners. Of commonly encountered browsers, only IE6/7/8 do not support this property. The shim allows them to display rounded corners. On IE6/7/8, the elements being rounded need to be <code>position</code>ed or <code>float</code>ed in order for the background to show correctly.  <a href="http://www.w3.org/TR/css3-background/#the-border-radius">W3C CSS3 <code>border-radius</code> Specification</a></p>
 	</blockquote>
 	
-	<div id="round1" class="round-ie-too">Round1</div>
-	<div id="round2" class="round-ie-too">Round2</div>
+	<div id="round1" class="rounded">Round1</div>
+	<div id="round2" class="rounded">Round2</div>
 
     <script>
 
