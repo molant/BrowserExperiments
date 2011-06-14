@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Text-Shadow in Internet Explorer</title>
+    <link rel="stylesheet" href="../browserexperiments.css" />
+    <style>
+        
+    </style>
+    <!--[if lt IE 9]>
+		<script src="html5.js"></script>
+	<![endif]-->
+    <link href="jquery-textshadow.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-2472425-10']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+        </div>
+        <div class="legend">
+            <h1>
+                CSS3
+                <br />
+                Text-Shadow</h1>
+        </div>
+    </header>
+    <div id="content">
+        <h2 class="ui-text-shadow">
+            A title with shadow</h2>
+    </div>
+    <footer>
+        <div class="h5-logo">
+        </div>
+        <div class="h5-logos">
+        </div>
+    </footer>
+    <script src="../Common/jquery-1.6.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="jquery.textshadow.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('h2').textshadow('2px 2px 2px rgba(0, 0, 0, 0.5)');
+        });
+    </script>
+</body>
+</html>
