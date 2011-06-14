@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>localStorage</title>
+    <link rel="stylesheet" href="../browserexperiments.css" />
+    <script src="storage.js"></script>
+</head>
+<body>
+    <h1>localStorage</h1>
+	<blockquote>
+		<p>LocalStorage permanently stores key value data in the client. This fix reverts to persistant cookies if this is not supported by the browser.</p>
+	</blockquote>
+	
+    <div id="demo">
+    	<input type="text" value="text to store" id="input" onkeyup="localStorage.setItem('mykey', this.value);">
+    	<button onclick="window.location.reload();">reload page</button>
+    </div>
+
+    <script>
+    	document.getElementById('input').value=localStorage.getItem('mykey');
+    </script>
+</body>
+</html>
