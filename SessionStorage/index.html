@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>sessionStorage</title>
+    <link rel="stylesheet" href="../browserexperiments.css" />
+    <script src="sessionStorage.js"></script>
+</head>
+<body>
+    <h1>sessionStorage</h1>
+	<blockquote>
+		<p>SessionStorage is for temporarily storing key value data in the client. This fix reverts to session cookies if this is not supported by the browser.</p>
+	</blockquote>
+	
+    <div id="demo">
+    	<input type="text" value="text to store" id="input" onkeyup="sessionStorage.setItem('mykey', this.value);">
+    	<button onclick="window.location.reload();">reload page</button>
+    </div>
+
+    <script>
+    	document.getElementById('input').value=sessionStorage.getItem('mykey');
+    </script>
+</body>
+</html>
