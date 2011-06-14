@@ -1,15 +1,21 @@
-﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html>
 <head>
-    <title>Text-Shadow in Internet Explorer</title>
-    <link rel="stylesheet" href="../browserexperiments.css" />
-    <style>
-        
-    </style>
+    <meta charset="utf-8">
+    <title>Text Shadow in IE</title>
+    <link href="../browserexperiments.css" rel="stylesheet" type="text/css" />
     <!--[if lt IE 9]>
 		<script src="html5.js"></script>
 	<![endif]-->
-    <link href="jquery-textshadow.css" rel="stylesheet" type="text/css" />
+    <link href="jquery.textshadow.css" rel="stylesheet" type="text/css" />
+    <style>
+        .shadow-text
+        {
+            text-shadow: 2px 2px 2px #ff0000;
+        }
+    </style>
+    <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
+    <script src="../Common/modernizr-2.0.js" type="text/javascript"></script>
     <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-2472425-10']);
@@ -28,15 +34,25 @@
         </div>
         <div class="legend">
             <h1>
-                CSS3
+                CSS
                 <br />
                 Text-Shadow</h1>
         </div>
     </header>
+    <p>
+        The following text should have a red shadow.</p>
     <div id="content">
-        <h2 class="ui-text-shadow">
-            A title with shadow</h2>
+        <span class="shadow-text">Some text that has a <b>s<i>h<b>a</b>d</i>ow.</b></span>
     </div>
+    <br />
+
+    <p>Comments:</p>
+    <ul>
+        <li>Polyfill doesn't do feature detection, you have to use Modernizr or conditional comments</li>
+        <li>You have to äctivate" the shadows element by element.</li>
+        <li>Performance will be better if you use filters directly in your CSS file</li>
+    </ul>
+    <p>For more information about how to use this jQuery plugin visit <a href="http://heygrady.com/text-shadow-for-internet-explorer">heygrady's blog</a>.</p>
     <footer>
         <div class="h5-logo">
         </div>
@@ -44,11 +60,11 @@
         </div>
     </footer>
     <script src="../Common/jquery-1.6.1.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="jquery.textshadow.js"></script>
+    <script src="jquery.textshadow.js" type="text/javascript"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('h2').textshadow('2px 2px 2px rgba(0, 0, 0, 0.5)');
-        });
+        if (!Modernizr.textshadow) {
+            $('.shadow-text').textshadow({ useStyle: true });
+        }
     </script>
 </body>
 </html>
