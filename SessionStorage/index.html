@@ -8,7 +8,7 @@
 <body>
     <h1>sessionStorage</h1>
 	<blockquote>
-		<p>SessionStorage is for temporarily storing key value data in the client. This fix reverts to session cookies if this is not supported by the browser.</p>
+		<p>SessionStorage temporarily stores key value data in the client for as long as the tab is open. This fix uses window.name to shim unsupported browser.</p>
 	</blockquote>
 	
     <div id="demo">
