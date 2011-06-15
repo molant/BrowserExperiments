@@ -285,3 +285,43 @@ h2
 {
     text-shadow: 2px 2px 2px #ff0000;
 }
+
+.table-header
+{
+    display: none;   
+    background-color: #FFFFFF;
+    width: 1056px;
+    box-shadow: 0px 3px 10px #CCCCCC;
+    height: 100px;
+    border-top: 4px solid #4F535F;
+}
+
+.table-header-outer
+{
+    width: 1056px;
+    overflow: hidden !important;
+    position: fixed;
+    top: 0px;
+    height:120px;
+}
+
+.table-header div
+{
+    float:left;
+    border-right: 1px solid #CCCCCC;
+    padding-top:45px;
+    height:100%;    
+}
+
+div.browser
+{
+    width:41px;    
+}
+
+div.title
+{
+    padding-left: 0px;
+    margin: 0px;
+    text-align: left;
+    width: 514px;
+}
