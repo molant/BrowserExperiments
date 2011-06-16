@@ -1,6 +1,9 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <!--[if gt IE 7]>
+    <link rel="stylesheet" type="text/css" href="ie.css" />
+    <![endif]-->
     <link rel="stylesheet" href="browserexperiments.css" />
     <title>Browser Experiments</title>
     <!--[if lt IE 9]>
@@ -44,52 +47,52 @@
                     Features</span>
             </div>
             <div class="browser">
-                <img src="images/icon_ie_6.png" alt="IE" />6.0
+                <img src="images/icon_ie_6.png" alt="IE" /><span class="center">6.0</span>
             </div>
             <div class="browser">
-                <img src="images/icon_ie_7_8.png" alt="IE" />7.0
+                <img src="images/icon_ie_7_8.png" alt="IE" /><span class="center">7.0</span>
             </div>
             <div class="browser">
-                <img src="images/icon_ie_7_8.png" alt="IE" />8.0
+                <img src="images/icon_ie_7_8.png" alt="IE" /><span class="center">8.0</span>
             </div>
             <div class="browser">
-                <img src="images/icon_ie_9_pp.png" alt="IE" />9.0
+                <img src="images/icon_ie_9_pp.png" alt="IE" /><span class="center">9.0</span>
             </div>
             <div class="browser">
-                <img src="images/icon_ie_9_pp.png" alt="IE" />
-                PP
+                <img src="images/icon_ie_9_pp.png" alt="IE" /><span class="center">
+                PP</span>
             </div>
             <div class="browser">
-                <img src="images/icon_chrome.png" alt="Chrome" />
-                10
+                <img src="images/icon_chrome.png" alt="Chrome" /><span class="center">
+                10</span>
             </div>
             <div class="browser">
-                <img src="images/icon_chrome.png" alt="Chrome" />
-                11
+                <img src="images/icon_chrome.png" alt="Chrome" /><span class="center">
+                11</span>
             </div>
             <div class="browser">
-                <img src="images/icon_safari.png" alt="Safari" />
+                <img src="images/icon_safari.png" alt="Safari" /><span class="center">
                 4.x
             </div>
             <div class="browser">
-                <img src="images/icon_safari.png" alt="Safari" />
-                5.x
+                <img src="images/icon_safari.png" alt="Safari" /><span class="center">
+                5.x</span>
             </div>
             <div class="browser">
-                <img src="images/icon_firefox.png" alt="Firefox" />
-                3.6
+                <img src="images/icon_firefox.png" alt="Firefox" /><span class="center">
+                3.6</span>
             </div>
             <div class="browser">
-                <img src="images/icon_firefox.png" alt="Firefox" />
-                4.x
+                <img src="images/icon_firefox.png" alt="Firefox" /><span class="center">
+                4.x</span>
             </div>
             <div class="browser">
-                <img src="images/icon_firefox.png" alt="Firefox" />
-                5.x
+                <img src="images/icon_firefox.png" alt="Firefox" /><span class="center">
+                5.x</span>
             </div>
             <div class="browser">
-                <img src="images/icon_opera.png" alt="Opera" />
-                11
+                <img src="images/icon_opera.png" alt="Opera" /><span class="center">
+                11</span>
             </div>
         </div>
     </div>
@@ -1914,19 +1917,21 @@
                 element.parent().nextUntil(".feature-row").toggle();
             });
 
-            $(window).bind('scroll', function () {
-                var elem = $('#table-header');
-                var docViewTop = $(window).scrollTop();
-                var docViewBottom = docViewTop + $(window).height();
+            if (($.browser.msie && $.browser.version >= 9) || !$.browser.msie) {
+                $(window).bind('scroll', function () {
+                    var elem = $('#table-header');
+                    var docViewTop = $(window).scrollTop();
+                    var docViewBottom = docViewTop + $(window).height();
 
-                var elemTop = $(elem).offset().top;
-                var elemBottom = elemTop + $(elem).height();
-                if (!((elemBottom >= docViewTop) && (elemTop <= docViewBottom) && (elemBottom <= docViewBottom) && (elemTop >= docViewTop))) {
-                    $('.table-header').show();
-                } else {
-                    $('.table-header').hide();
-                }
-            });
+                    var elemTop = $(elem).offset().top;
+                    var elemBottom = elemTop + $(elem).height();
+                    if (!((elemBottom >= docViewTop) && (elemTop <= docViewBottom) && (elemBottom <= docViewBottom) && (elemTop >= docViewTop))) {
+                        $('.table-header').show();
+                    } else {
+                        $('.table-header').hide();
+                    }
+                });
+            }
         });
     </script>
 </body>
