@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS Transitions</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <link rel="stylesheet" href="../browserexperiments.css" />
+
+<script src="transitions.js"></script>
+<style>
+
+            .transition {
+
+                width: 100px;
+
+                height: 50px;
+
+                background-color: #00c;
+
+                font-size: 16pt;
+
+                text-align: center;
+
+                opacity: 0.5;
+
+                margin: 10px;
+
+                position: relative;
+
+                left: 0px;
+
+                
+
+                /* The CSS Transitions standard syntax (used by transitions.js) */
+
+                transition-property : opacity, width, left;
+
+                transition-duration : 1s;
+
+                
+
+                /* The Firefox syntax */
+
+                -moz-transition-property : opacity, width, left;
+
+                -moz-transition-duration : 1s;
+
+                
+
+                /* The Webkit syntax */
+
+                -webkit-transition-property : opacity, width, left;
+
+                -webkit-transition-duration : 1s;
+
+            }
+
+            
+
+            /* Change styles on hover */
+
+            .hover {
+
+                cursor: default;
+
+            }
+
+            .hover:hover {
+
+                opacity: 1.00;
+
+                width: 500px;
+
+                left: 50px;
+
+            }
+
+            
+
+            /* Change styles on focus */
+
+            .focus{
+
+                cursor: pointer;
+
+            }
+
+            .focus:focus {
+
+                left: 500px;
+
+                opacity: 1.00;
+
+            }
+
+            
+
+            /* Timing Functions */
+
+            .ease {
+
+                transition-timing-function : ease;
+
+                -moz-transition-timing-function : ease;
+
+                -webkit-transition-timing-function : ease;
+
+            }
+
+            .linear {
+
+                transition-timing-function : linear;
+
+                -moz-transition-timing-function : linear;
+
+                -webkit-transition-timing-function : linear;
+
+            }
+
+            .ease-in {
+
+                transition-timing-function : ease-in;
+
+                -moz-transition-timing-function : ease-in;
+
+                -webkit-transition-timing-function : ease-in;
+
+            }
+
+            .ease-out {
+
+                transition-timing-function : ease-out;
+
+                -moz-transition-timing-function : ease-out;
+
+                -webkit-transition-timing-function : ease-out;
+
+            }
+
+            .ease-in-out {
+
+                transition-timing-function : ease-in-out;
+
+                -moz-transition-timing-function : ease-in-out;
+
+                -webkit-transition-timing-function : ease-in-out;
+
+            }
+
+            
+
+            /* Delays */
+
+            .delay-500ms {
+
+                transition-delay: 0.5s;
+
+                -moz-transition-delay: 0.5s;
+
+                -webkit-transition-delay: 0.5s;
+
+            }
+
+            .delay-1s {
+
+                transition-delay: 1s;
+
+                -moz-transition-delay: 1s;
+
+                -webkit-transition-delay: 1s;
+
+            }
+
+            .delay-2s {
+
+                transition-delay: 2s;
+
+                -moz-transition-delay: 2s;
+
+                -webkit-transition-delay: 2s;
+
+            }
+</style>
+    
+
+</head>
+<body>
+    <h1>CSS Transitions</h1>
+	<blockquote>
+		<p>CSS transitions for smooth annimation</p>
+	</blockquote>
+    
+	<div id="demo">
+        <span>Timing functions (triggered by :hover)</span>
+		  <div class="transition hover ease">
+
+            ease
+
+        </div>
+
+        <div class="transition hover linear">
+
+            linear
+
+        </div>
+
+        <div class="transition hover ease-in">
+
+            ease-in
+
+        </div>
+
+        <div class="transition hover ease-out">
+
+            ease-out
+
+        </div>
+
+        <div class="transition hover ease-in-out">
+
+            ease-in-out
+
+        </div>
+
+        <span>Delays (triggered by :focus)</span>
+
+        <div class="transition focus delay-500ms" tabindex="0">
+
+            0.5s
+
+        </div>
+
+        <div class="transition focus delay-1s" tabindex="0">
+
+            1s
+
+        </div>
+
+        <div class="transition focus delay-2s" tabindex="0">
+
+            2s
+
+        </div>
+	</div>
+</body>
+</html>
