@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Audio</title>
+    <link rel="stylesheet" href="../browserexperiments.css" />
+    <script src="audio.min.js"></script>
+    <script>
+      audiojs.events.ready(function() {
+        audiojs.createAll();
+      });   	
+    </script>
+</head>
+<body>
+    <h1>Audio</h1>
+	<blockquote>
+		<p>Audio API plays video files in the browser... yes this isn't new, but this is native in HTML5 spec.</p>
+	</blockquote>
+	
+    <div id="demo">
+    	<audio src="http://s3.amazonaws.com/audiojs/02-juicy-r.mp3" preload="auto"></audio> 
+    </div>
+</body>
+</html>
