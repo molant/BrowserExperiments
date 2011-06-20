@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>sessionStorage</title>
+    <link rel="stylesheet" href="../browserexperiments.css" />
+    <script src="../Common/jquery-1.6.1.min.js"></script>
+    <script src="jquery.webcam.js"></script>
+    
+    <style>
+   		#camera, #demo button, #demo canvas{
+			display:inline-block;
+		}
+    </style>
+    
+    <script>
+    
+    $(function(){
+    
+    	var canvas = $("#demo canvas").get(0),
+    		ctx = canvas.getContext("2d"),
+    		pos = 0;
+		ctx.clearRect(0, 0, 320, 240);
+
+		var img = new Image();
+		img.onload = function() {
+			ctx.drawImage(img, 129, 89);
+		}
+
+		var image = ctx.getImageData(0, 0, 320, 240);
+
+
+		$("#camera").webcam({
+		        width: 320,
+		        height: 240,
+		        mode: "callback",
+		        swffile: "jscam_canvas_only.swf",
+		        onTick: function() {},
+		        onSave: function(data) {
+
+				    var col = data.split(";"),
+				    	img = image;
+
+				    for(var i = 0; i < 320; i++) {
+				        var tmp = parseInt(col[i]);
+				        img.data[pos + 0] = (tmp >> 16) & 0xff;
+				        img.data[pos + 1] = (tmp >> 8) & 0xff;
+				        img.data[pos + 2] = tmp & 0xff;
+				        img.data[pos + 3] = 0xff;
+				        pos+= 4;
+				    }
+					
+				    if (pos >= 4 * 320 * 240) {
+				        ctx.putImageData(img, 0, 0);
+				        pos = 0;
+				    }
+
+		        },
+		        onCapture: function(){
+		        	webcam.save();
+		        },
+		        debug: function() {},
+		        onLoad: function() {}
+		});
+    })
+    
+    </script>
+    
+</head>
+<body>
+    <h1>Device API</h1>
+	<blockquote>
+		<p>Device API can access webcams and microphones and through a native 
+		javascript API. Although this hasn&#39;t been implemented in any current 
+		browsers the spec has been around for a while.</p>
+	</blockquote>
+	
+    <div id="demo">
+    	<div id="camera"></div>
+    	<button onclick="webcam.capture();">capture</button>
+    	<canvas height="240" width="320"></canvas>
+	</div>
+
+	<span>Thanks to 
+	<a href="http://www.xarg.org/project/jquery-webcam-plugin/">
+	http://www.xarg.org/project/jquery-webcam-plugin/</a></span>
+
+    <script>
+    </script>
+</body>
+</html>
