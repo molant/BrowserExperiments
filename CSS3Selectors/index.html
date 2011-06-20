@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>sessionStorage</title>
+    <link rel="stylesheet" href="../browserexperiments.css" />
+    <script src="../Common/jquery-1.6.1.min.js"></script>
+	<!--[if (gte IE 6)&(lte IE 8)]>
+	  <script type="text/javascript" src="selectivizr.js"></script>
+	<![endif]-->
+	
+	<style>
+		.test1 [attr]{background-color:green;}
+		.test2 [attr=test]{background-color:green;}
+		.test3 [attr~=test]{background-color:green;}
+		.test4 [attr!=fail]{background-color:green;}
+		.test5 [attr^=test]{background-color:green;}
+		.test6 [attr$=test]{background-color:green;}
+		.test7 [attr*=test]{background-color:green;}
+		
+		.test8 td:nth-child(1n+0){background-color:green;}	
+		.test9 td:nth-last-child(1n+0){background-color:green;}	
+		.test10 td:nth-of-type(1n+0){background-color:green;}	
+		.test11 td:nth-last-of-type(1n+0){background-color:green;}	
+		
+		.test12 td div:first-child{background-color:green;}
+		.test13 td:last-child{background-color:green;}
+		.test14 td div:only-child{background-color:green;}
+
+		.test15 td:empty{background-color:green;}
+		.test16 input:enabled{background-color:green;}
+		.test17 input:disabled{background-color:green;}
+		.test18 input:checked{outline:10px solid green;}
+
+		.test19 td:hover{background-color:green;}
+		.test20 td:focus{background-color:green;}
+		.test21 td#target:target{background-color:green;}
+		.test22 td:not(.red){background-color:green;}
+		
+		
+		table div{
+			height:20px;
+			width:100%;
+		}
+		
+	</style>
+</head>
+<body>
+    <h1>CSS3 Selectors</h1>
+	<blockquote>
+		<p>CSS3 Selectors enable us to capture every kind of </p>
+	</blockquote>
+	
+    <div id="demo">
+    	<table>
+    		<tr class="test1">
+    			<th>[attr]</th>
+    			<td attr></td>
+    		</tr>
+    		<tr class="test2">
+    			<th>[attr=]</th>
+    			<td attr="test"></td>
+    		</tr>
+    		<tr class="test3">
+    			<th>[attr~=]</th>
+    			<td attr="test"></td>
+    		</tr>
+    		<tr class="test4">
+    			<th>[attr!=]</th>
+    			<td attr="test"></td>
+    		</tr>
+    		<tr class="test5">
+    			<th>[attr^=]</th>
+    			<td attr="test"></td>
+    		</tr>
+    		<tr class="test6">
+    			<th>[attr$=]</th>
+    			<td attr="test"></td>
+    		</tr>
+    		<tr class="test7">
+    			<th>[attr*=]</th>
+    			<td attr="test"></td>
+    		</tr>
+    		
+    		
+    		<tr class="test8">
+    			<th>:nth-child(n)</th>
+    			<td></td>
+    		</tr>
+    		<tr class="test9">
+    			<th>:nth-last-child(n)</th>
+    			<td></td>
+    		</tr>
+    		<tr class="test10">
+    			<th>:nth-of-type(n)</th>
+    			<td></td>
+    		</tr>
+    		<tr class="test11">
+    			<th>:nth-last-of-type(n)</th>
+    			<td></td>
+    		</tr>
+    	
+    		
+    		<tr class="test12">
+    			<th>:first-child</th>
+    			<td><div></div></td>
+    		</tr>
+    		<tr class="test13">
+    			<th>:last-child</th>
+    			<td></td>
+    		</tr>
+    		<tr class="test14">
+    			<th>:only-child</th>
+    			<td><div></div></td>
+    		</tr>
+
+
+     		<tr class="test15">
+    			<th>:empty</th>
+    			<td></td>
+    		</tr>
+     		<tr class="test16">
+    			<th>:enabled</th>
+    			<td><input type="text"></td>
+    		</tr>
+     		<tr class="test17">
+    			<th>:disabled</th>
+    			<td><input type="text" disabled="true"></td>
+    		</tr>
+     		<tr class="test18">
+    			<th>:checked</th>
+    			<td><input type="checkbox" checked="checked"></td>
+    		</tr>
+
+
+
+     		<tr class="test19">
+    			<th>:hover</th>
+    			<td>please hover over me to test</td>
+    		</tr>
+     		<tr class="test20">
+    			<th>:focus</th>
+    			<td contenteditable="true">please focus on me to test</td>
+    		</tr>
+     		<tr class="test21">
+    			<th>:target</th>
+    			<td id="target"><a href="#target">Click to test</a></td>
+    		</tr>
+     		<tr class="test22">
+    			<th>:not</th>
+    			<td></td>
+    		</tr>
+    		
+    	</table>
+    </div>
+
+    <script>
+    </script>
+</body>
+</html>
