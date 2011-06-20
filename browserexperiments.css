@@ -30,131 +30,139 @@ table
     width: 100%;
     margin-bottom: 50px;
 }
-td, th
-{
-    border: 1px solid #CCCCCC;
-    vertical-align: top;
-    border-left: 0px solid;
+	td, th
+	{
+	    border: 1px solid #CCCCCC;
+	    vertical-align: top;
+	    border-left: 0px solid;
+	}
+
+	th
+	{
+	    padding-top: 45px;
+	    padding-bottom: 10px;
+	    font-weight: normal;
+	}
+
+	th.title
+	{
+	    padding-left: 0px;
+	    margin: 0px;
+	    text-align: left;
+	    width: 550px;
+	}
+
+		.title img
+		{
+		    display: block;
+		    float: left;
+		}
+	.title-text
+	{
+	    display: block;
+	    float: left;
+	    margin-top: 14px;
+	    text-transform: uppercase;
+	    font-weight: bold;
+	}
+
+		th img
+		{
+		    margin-right: 5px;
+		}
+
+	td
+	{
+	    vertical-align: middle;
+	}
+
+	.feature-row td
+	{
+	    height: 42px;
+	}
+	
+	thead th
+	{
+	    vertical-align: bottom;
+	}
+	tbody th
+	{
+	    text-align: left;
+	}
+	
+	th.current
+	{
+	    background-color: #4E5160;
+	    color: #FFFFFF;
+	    font-weight: bold;
+	}
+	
+	.shim-row
+	{
+	    background-color: #F5F7F6;
+	    display: none;
+	}
+	
+	.shim-row td
+	{
+	    padding: 15px 0px 0px 10px;
+	    border-top: 0px solid;
+	    border-bottom: 0px solid;
+	}
+	
+	tr td:first-of-type
+	{
+	    padding-right: 28px !important;
+	}
+	
+	.shim-row td.shim
+	{
+	    background-position: bottom;
+	}
+	
+	.shim-row td.supported
+	{
+	    background-position: bottom;
+	}
+
+		.shim-row td a
+		{
+		    color: #4E5260;
+		    font-weight: bold;
+		}
+
+	.feature-description td
+	{
+	    padding-bottom: 25px;
+	    font-size: 0.9em;
+	    line-height: 1.7em;
+	}
+
+		td .title
+		{
+		    margin: 15px 30px 0px 0px;
+		    display: block;
+		}
+
+	td.feature
+	{
+	    background: transparent url('images/arrow.png') no-repeat left;
+	    text-transform: uppercase;
+	    padding-left: 10px;
+	    cursor: pointer;
+	}
+
+	td.selected
+	{
+	    background: transparent url('images/arrow_down.png') no-repeat left;
+	}
+
+tr.selected{
+	display:table-row;
 }
 
-th
-{
-    padding-top: 45px;
-    padding-bottom: 10px;
-    font-weight: normal;
-}
-
-th.title
-{
-    padding-left: 0px;
-    margin: 0px;
-    text-align: left;
-    width: 550px;
-}
-
-.title img
-{
-    display: block;
-    float: left;
-}
-.title-text
-{
-    display: block;
-    float: left;
-    margin-top: 14px;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-th img
-{
-    margin-right: 5px;
-}
-
-td
-{
-    vertical-align: middle;
-}
-
-.feature-row td
-{
-    height: 42px;
-}
-
-thead th
-{
-    vertical-align: bottom;
-}
-tbody th
-{
-    text-align: left;
-}
-
-th.current
-{
-    background-color: #4E5160;
-    color: #FFFFFF;
-    font-weight: bold;
-}
-
-.shim-row
-{
-    background-color: #F5F7F6;
-    display: none;
-}
-
-.shim-row td
-{
-    padding: 15px 0px 0px 10px;
-    border-top: 0px solid;
-    border-bottom: 0px solid;
-}
-
-tr td:first-of-type
-{
-    padding-right: 28px !important;
-}
-
-.shim-row td.shim
-{
-    background-position: bottom;
-}
-
-.shim-row td.supported
-{
-    background-position: bottom;
-}
-
-.shim-row td a
-{
-    color: #4E5260;
-    font-weight: bold;
-}
-
-.feature-description td
-{
-    padding-bottom: 25px;
-    font-size: 0.9em;
-    line-height: 1.7em;
-}
-
-td .title
-{
-    margin: 15px 30px 0px 0px;
-    display: block;
-}
-
-td.feature
-{
-    background: transparent url('images/arrow.png') no-repeat left;
-    text-transform: uppercase;
-    padding-left: 10px;
-    cursor: pointer;
-}
-
-td.selected
-{
-    background: transparent url('images/arrow_down.png') no-repeat left;
+tr.hide{
+	display:none;
 }
 
 footer
@@ -279,9 +287,4 @@ header
     width: 186px;
     height: 71px;
     background: transparent url('images/main_logo.png') no-repeat;
-}
-
-h2
-{
-    text-shadow: 2px 2px 2px #ff0000;
 }
