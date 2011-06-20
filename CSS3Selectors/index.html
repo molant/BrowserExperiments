@@ -29,11 +29,11 @@
 		.test15 td:empty{background-color:green;}
 		.test16 input:enabled{background-color:green;}
 		.test17 input:disabled{background-color:green;}
-		.test18 input:checked{background-color:green;}
+		.test18 input:checked{outline:10px solid green;}
 
 		.test19 td:hover{background-color:green;}
 		.test20 td:focus{background-color:green;}
-		.test21 td:target{background-color:green;}
+		.test21 td#target:target{background-color:green;}
 		.test22 td:not(.red){background-color:green;}
 		
 		
@@ -120,11 +120,11 @@
     		</tr>
      		<tr class="test16">
     			<th>:enabled</th>
-    			<td><input type="checkbox"></td>
+    			<td><input type="text"></td>
     		</tr>
      		<tr class="test17">
     			<th>:disabled</th>
-    			<td><input type="checkbox" disabled="true"></td>
+    			<td><input type="text" disabled="true"></td>
     		</tr>
      		<tr class="test18">
     			<th>:checked</th>
@@ -135,15 +135,15 @@
 
      		<tr class="test19">
     			<th>:hover</th>
-    			<td></td>
+    			<td>please hover over me to test</td>
     		</tr>
      		<tr class="test20">
     			<th>:focus</th>
-    			<td contenteditable="true"></td>
+    			<td contenteditable="true">please focus on me to test</td>
     		</tr>
      		<tr class="test21">
     			<th>:target</th>
-    			<td></td>
+    			<td id="target"><a href="#target">Click to test</a></td>
     		</tr>
      		<tr class="test22">
     			<th>:not</th>
