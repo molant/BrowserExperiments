@@ -67,6 +67,7 @@ window.onload = function(){
 		document.getElementById("disqus_thread").style.display = "block";
 	};
 	h.innerHTML = h.title = "Comments";
+	h.className = "control";
 	f.appendChild(h);
 	
 
@@ -74,6 +75,7 @@ window.onload = function(){
 	var h = document.createElement('a');
 	h.innerHTML = h.title = "View Source";
 	h.href='#view-source';
+	h.className = "control";
 	f.appendChild(h);
 
 

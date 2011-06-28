@@ -170,7 +170,7 @@ footer
     margin: 35px auto auto auto;
     background-color: #F5F7F6;
     border: 1px solid #CCCCCC;
-    height: 46px;
+    min-height: 46px;
     display: block;
 }
 
@@ -200,15 +200,22 @@ footer
 	    margin-top: 13px;
 	    margin-left: 10px;
 	}
-	footer a{
+	footer a.control{
 		display: inline-block;
 		margin: 15px 0 15px 40px;
 		font-size: 15px;
 		text-decoration:underline;
 		color:inherit;
 	}
-	footer a:hover{
+	footer a.control:hover{
 		cursor:pointer;
+	}
+	
+	footer #disqus_thread{
+		margin:40px;
+		padding:40px;
+		background-color:white;
+		border: 1px solid #CCC;
 	}
 
 
