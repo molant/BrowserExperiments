@@ -13,12 +13,13 @@
 			padding: 10px;
 			background: #cdf;
 			border: 1px solid #69b;
-			background: #EEFF99;
-			background: -webkit-gradient(linear, 0 0, 0 bottom, from(#EEFF99), to(#66EE33));
-			background: -moz-linear-gradient(#EEFF99, #66EE33);
-			background: -ms-linear-gradient(#EEFF99, #66EE33);
-			background: linear-gradient(#EEFF99, #66EE33);
-			-pie-background: linear-gradient(#EEFF99, #66EE33);
+			background: #EE99FF;
+			background: -webkit-gradient(linear, 0 0, 0 bottom, from(#EE99FF), to(#6633EE));
+			background: -moz-linear-gradient(#EE99FF, #6633EE);
+			background: -ms-linear-gradient(#EE99FF, #6633EE);
+			background: linear-gradient(#EE99FF, #6633EE);
+			-pie-background: linear-gradient(#EE99FF, #6633EE);
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EE99FF', endColorstr='#6633EE');
 		}
 		#gradient2 {
 			height: 100px;
@@ -33,6 +34,7 @@
 			background: -ms-linear-gradient(#EEFF99, #66EE33);
 			background: linear-gradient(#EEFF99, #66EE33);
 			-pie-background: linear-gradient(#EEFF99, #66EE33);
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEFF99', endColorstr='#66EE33');
 		}
     </style>
     <!--[if lt IE 10]>
@@ -48,11 +50,11 @@
 <body>
     <header><h1>CSS3 linear-gradient support</h1></header>
 	<blockquote>
-		<p>The box-shadow CSS3 property allows elements to have a shadow, giving them the illusion of "floating" over the page. Of commonly encountered browsers, only IE6/7/8/9 do not support this property. The shim by <a href="http://css3pie.com/">CSS3Pie</a> allows them to display a box shadow. On IE6/7/8, the elements need to be <code>position</code>ed or <code>float</code>ed in order for the background to show correctly. Note that rendering of shadows and default values can vary across browsers, so all values should be specified and the result should be visually confirmed in each browser.  <a href="http://www.w3.org/TR/css3-background/#the-box-shadow">W3C CSS3 <code>box-shadow</code> Specification</a></p>
+		<p>The shim by <a href="http://css3pie.com/">CSS3Pie</a> allows IE6/7/8/9 to display a box shadow; other browsers require vendor-specific CSS <code>background</code> properties. On IE6/7/8/9, the elements need to be <code>position</code>ed or <code>float</code>ed in order for the background to show correctly. <a href="http://dev.w3.org/csswg/css3-images/#linear-gradients">W3C CSS3 specification for <code>linear-gradient</code> (draft)</a></p>
 	</blockquote>
 	
-	<div id="gradient1" class="gradient">Shadow1</div>
-	<div id="gradient2" class="gradient">Shadow2</div>
+	<div id="gradient1" class="gradient">Gradient1</div>
+	<div id="gradient2" class="gradient">Gradient2</div>
 
     <script>
 
