@@ -1,8 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Input Types</title>
-    <link rel="stylesheet" href="../browserexperiments.css" />
+    <script src="../browserexperiments.js"></script>
     
     
     <!-- 
@@ -31,41 +31,46 @@
 			line-height:3em;
 			margin-left:30px;
 		}
-		
+    	label.required:after{
+    		content:" *";
+		}
 		
     </style>
     
 </head>
 <body>
-    <h1>Input Types</h1>
+	<header><h1>Input Types</h1></header>
     
 	<blockquote>
 		<p>HTML5 form input types and attributes which are new and still in various browsers.</p>
 	</blockquote>
 	
-    <div id="demo">
-    	<form>
-    		<p>type=*</p>
-    		<label>text</label> 
-	                       	<input list="datalist" name="text" required="required" type="text" id="text" placeholder="Text with look up options"/>
-							<datalist id="datalist">
-								<select>
-									<option value="Hello"></option>
-									<option value="Yo"></option>
-									<option value="To my Dearest"></option>
-									<option value="Oi you, no!"></option>
-								</select>
-							</datalist><br />
-    		<label>search</label> <input type="search" placeholder="Search me" /> <br />
-    		<label>range</label> <input type="range" /><br />
-    		<label>date</label> <input type="date" placeholder="Date" /><br />
-    		<label>time</label> <input type="time" /><br />
-    		<label>color</label> <input type="color" placeholder="this doesn't seem to work in any of the browsers"/><br />
-    		<label>email</label> <input type="email" placeholder="e.g. me@example.com"/><br />
-    		<label>url</label> <input type="url" placeholder="e.g. http://example.com"/><br />
-    		<label>textarea</label> <textarea placeholder="e.g. http://example.com"></textarea><br />
-    		<button type="submit">Submit</button>
-    	</form>
+	<div id="demo">
+		<form>
+			<p>type=*</p>
+			<label class="required">text</label> 
+			<input list="datalist" name="text" required="required" type="text" id="text" placeholder="Text with look up options"/>
+			<datalist id="datalist">
+				<select>
+					<option value="Hello"></option>
+					<option value="Yo"></option>
+					<option value="To my Dearest"></option>
+					<option value="Oi you, no!"></option>
+				</select>
+			</datalist><br />
+			<label>search</label> <input type="search" placeholder="Search me" /> <br />
+			<label>range</label> <input type="range" /><br />
+			<label>date</label> <input type="date" placeholder="Date" /><br />
+			<label>time</label> <input type="time" /><br />
+			<label>color</label> <input type="color" placeholder="this doesn't seem to work in any of the browsers"/><br />
+			<label>email</label> <input type="email" placeholder="e.g. me@example.com"/><br />
+			<label>url</label> <input type="url" placeholder="e.g. http://example.com"/><br />
+			<label>textarea</label> <textarea placeholder="e.g. http://example.com"></textarea><br />
+
+			<label class="required">accept</label> <input type="checkbox" required="required"/><br />
+			
+			<button type="submit">Submit</button>
+		</form>
 	</div>
 
 </body>

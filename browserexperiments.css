@@ -1,7 +1,5 @@
 ﻿*
 {
-    margin: 0px;
-    padding: 0px;
 }
 
 
@@ -85,6 +83,7 @@ table
 	{
 	    vertical-align: bottom;
 	}
+
 	tbody th
 	{
 	    text-align: left;
@@ -157,13 +156,13 @@ table
 	    background: transparent url('images/arrow_down.png') no-repeat left;
 	}
 
-tr.selected{
-	display:table-row;
-}
-
-tr.hide{
-	display:none;
-}
+	tr.selected{
+		display:table-row;
+	}
+	
+	tr.hide{
+		display:none;
+	}
 
 footer
 {
@@ -175,56 +174,146 @@ footer
     display: block;
 }
 
-.h5-logo
-{
-    background-image: url('images/h5-logo.png');
-}
+	.h5-logo
+	{
+	    background-image: url('images/h5-logo.png');
+	}
 
-footer .h5-logo
-{
-    width: 56px;
-    height: 64px;
-    left: 0px;
-    float: left;
-    margin-top: -7px;
-    margin-left: -5px;
-}
+	footer .h5-logo
+	{
+	    width: 56px;
+	    height: 64px;
+	    left: 0px;
+	    float: left;
+	    margin-top: -7px;
+	    margin-left: -5px;
+	}
+	
+	footer .h5-logos
+	{
+	    float: left;
+	    background-image: url('images/h5-logos.png');
+	    background-repeat: no-repeat;
+	    background-color: #F5F7F6;
+	    width: 256px;
+	    height: 20px;
+	    margin-top: 13px;
+	    margin-left: 10px;
+	}
+	footer a{
+		display: inline-block;
+		margin: 15px 0 15px 40px;
+		font-size: 15px;
+		text-decoration:underline;
+		color:inherit;
+	}
+	footer a:hover{
+		cursor:pointer;
+	}
 
-footer .h5-logos
-{
-    float: left;
-    background-image: url('images/h5-logos.png');
-    background-repeat: no-repeat;
-    background-color: #F5F7F6;
-    width: 256px;
-    height: 20px;
-    margin-top: 13px;
-    margin-left: 10px;
-}
 
-header
-{
+
+header{
     width: 100%;
     margin: 0px auto 35px auto;
     height: 75px;
     display: block;
+    background: transparent url('images/main_logo.png') no-repeat;
+}
+	header input{
+		font-size:18px;
+		margin-left:400px;
+		margin-top:30px;
+		width:300px;
+	}
+
+	header h1, 
+	header .legend{
+	    border-left: 1px solid #CCCCCC;
+	    padding-left: 11px;
+	    float: right;
+	    width: 155px;
+	    margin: 0;
+	}
+	header .legend{
+	    font-size: 1em;
+	}
+
+		header .legend .legend-row{
+		    margin: 10px 0px 5px 0px;
+		}
+			.legend-row .supported{
+			    width: 20px;
+			    height: 20px;
+			    margin-top: -5px;
+			}
+			.legend-row .shim{
+			    width: 20px;
+			    height: 20px;
+			    margin-top: -5px;
+			}
+
+
+
+blockquote{
+	background-color: #F5F7F5;
+	border: 1px solid #CCC;
+	padding: 15px;
+	margin: 0 0 35px 0;
+}
+	blockquote p{
+		margin:0;
+		padding:0;
+	}
+
+/**
+ * VIew Source
+ */
+
+#view-source {
+  display: none;
 }
 
-.legend
-{
-    border-left: 1px solid #CCCCCC;
-    padding-left: 11px;
-    float: right;
-    font-size: 1em;
-    width: 155px;
+html.view-source {
+  margin: 0;
+  background: #fff;
+  padding: 20px;
 }
 
-.legend-row
-{
-    margin: 10px 0px 5px 0px;
+html.view-source body > * {
+  display: none;
 }
-.status
-{
+
+html.view-source body #view-source {
+  display: block !important;
+  margin: 0;
+  position:absolute;
+  left:0;
+  top:0;
+  padding:20px;
+}
+
+
+/** Pretty printing styles. Used with prettify.js. */
+pre { font-size: 14px; }
+.str { color: #080; }
+.kwd { color: #008; }
+.com { color: #800; }
+.typ { color: #606; }
+.lit { color: #066; }
+.pun { color: #660; }
+.pln { color: #000; }
+.tag { color: #008; }
+.atn { color: #606; }
+.atv { color: #080; }
+.dec { color: #606; }
+
+
+
+/**
+ * Generic
+ */
+.status{
     float: left;
     width: 20px;
     height: 16px;
@@ -237,15 +326,6 @@ header
     background-repeat: no-repeat;
     background-position: center;
 }
-
-.legend-row .supported
-{
-    width: 20px;
-    height: 20px;
-    margin-top: -5px;
-}
-
-
 .shim
 {
     background-image: url('images/shim.png');
@@ -253,38 +333,21 @@ header
     background-position: center;
 }
 
-.legend-row .shim
-{
-    width: 20px;
-    height: 20px;
-    margin-top: -5px;
+
+
+.description{
 }
 
-.description
-{
-}
 
-.browser
-{
+.browser{
     width: 42px;
     margin: auto;
     padding-top: 41px;
 }
-
-.browser img
-{
-    padding: 0px;
-    display: block;
-    margin: auto auto 4px auto;
-    width: 25px;
-    height: 25px;
-}
-
-
-.logo
-{
-    float: left;
-    width: 186px;
-    height: 71px;
-    background: transparent url('images/main_logo.png') no-repeat;
-}
+	.browser img{
+	    padding: 0px;
+	    display: block;
+	    margin: auto auto 4px auto;
+	    width: 25px;
+	    height: 25px;
+	}

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>Flexie Demo</title>
-		<link href="../browserexperiments.css" rel="stylesheet"/>
+		<script src="../browserexperiments.js"></script>
 		
 		<!-- Flexie -->
 		<style media="screen">
@@ -27,61 +27,63 @@
 			}
 
 			#box-child-1 {
-				background: #111;
+				background: #800;
 			}
 
 			#box-child-2 {
-				background: #222;
+				background: #0000FF;
 			}
+				#nested-child-1 {
+					background:#000080;
+				}
+	
+				#nested-child-2 {
+					background: #0000A0;
+				}
+					#deep-child-1 {
+						background: #0000A0;
+					}
+		
+					#deep-child-2 {
+						background: #0000B8;
+					}
+		
+					#deep-child-3 {
+						background: #0000CF;
+					}
+	
+				#nested-child-3 {
+					background: #0000F0;
+				}
+	
 
 			#box-child-3 {
-				background: #333;
+				background: #080;
 			}
 
-			#nested-child-1 {
-				background: #444;
-			}
-
-			#nested-child-2 {
-				background: #555;
-			}
-
-			#nested-child-3 {
-				background: #666;
-			}
-
-			#deep-child-1 {
-				background: #777;
-			}
-
-			#deep-child-2 {
-				background: #888;
-			}
-
-			#deep-child-3 {
-				background: #999;
-			}
 		</style>
 		<link rel="stylesheet" href="demo.css" />
 	</head>
 	<body>
-		<h1>Flexible Box Model</h1>
+		<header><h1>Flexible Box Model</h1></header>
 		<blockquote>
-			<p>Flexible Box Model gives us better control over the presentation of block elements. The following illustration shows that elements can be rearranged, (see the source) </p>
+			<p>The <a href="http://www.w3.org/TR/css3-flexbox/">
+			(W3C) Flexible Box Model</a> gives us better control over 
+			the presentation of block elements. In the experiment the blue (Box 2.*) are allowed to take up twice the spare space as their neighbours Box 1 &amp; 3. And all box elements are reversed. The flexie shim by doctyper brings support to all the IE &lt; 10 browsers and Opera 11.</p>
 		</blockquote>
 		<div id="demo">
 			<div id="box-parent">
-				<div id="box-child-1"><span>Box Child 1</span></div>
+				<div id="box-child-1"><span>Box 1</span></div>
 				<div id="box-child-2">
-					<div id="nested-child-1"><span>Nested Child 1</span></div>
+					<div id="nested-child-1"><span>Box 2.1</span></div>
 					<div id="nested-child-2">
-						<div id="deep-child-1"><span>Deep Child 1</span></div>
-						<div id="deep-child-2"><span>Deep Child 2</span></div>
-						<div id="deep-child-3"><span>Deep Child 3</span></div>
+						<div id="deep-child-1"><span>Box 2.2.1</span></div>
+						<div id="deep-child-2"><span>Box 2.2.2</span></div>
+						<div id="deep-child-3"><span>Box 2.2.3</span></div>
 					</div>
-					<div id="nested-child-3"><span>Nested Child 3</span></div>
+					<div id="nested-child-3"><span>Box 2.3</span></div>
 				</div>
-				<div id="box-child-3"><span>Box Child 3</span></div>
+				<div id="box-child-3"><span>Box 3</span></div>
 			</div>
 				
 		</div>

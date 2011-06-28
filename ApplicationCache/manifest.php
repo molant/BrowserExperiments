@@ -6,7 +6,7 @@ header("Pragma: no-cache");
 
 ?>
 CACHE MANIFEST
-
+# 12
 CACHE:
 style.css
 html5_offline.js
