@@ -91,6 +91,22 @@ window.onload = function(){
 	    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	})();
+	
+		
+		
+	/************************************************
+	 * Add Google Analytics
+	 ************************************************/
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-18575680-3']);
+	_gaq.push(['_trackPageview']);
+	
+	(function () {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+
 }
 
 
@@ -173,19 +189,4 @@ var addEvent = (function () {
 	  }
 	});
   
-})();
-
-
-
-/************************************************
- * Add Google Analytics
- ************************************************/
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-2472425-10']);
-_gaq.push(['_trackPageview']);
-
-(function () {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();

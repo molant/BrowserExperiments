@@ -25,17 +25,14 @@
     </header>
 
     <blockquote>
-        <p>The following text should have a red shadow.</p>
-	    <ul>
-	        <li>Polyfill doesn't do feature detection, you have to use Modernizr or conditional comments</li>
-	        <li>You have to äctivate" the shadows element by element.</li>
-	        <li>Performance will be better if you use filters directly in your CSS file</li>
-	    </ul>
-	    <p>For more information about how to use this jQuery plugin visit <a href="http://heygrady.com/text-shadow-for-internet-explorer">heygrady's blog</a>.</p>
+        <p>The <a href="http://www.w3.org/TR/css3-text/#text-shadow">
+		(w3c) Text-Shadow</a> property enables us to create shadows similar to the box-shadow but which follows the stroke of the text. The shim by <a href="http://heygrady.com/text-shadow-for-internet-explorer">heygrady</a>, 
+		is a jQuery plugin. Unfortunatly it requires that you target each 
+		element with javascript.</p>
     </blockquote>    
 
     <div id="demo">
-        <span class="shadow-text">Some text that has a shadow.</span>
+        <span class="shadow-text">This demo text should have a red shadow.</span>
     </div>
 
 

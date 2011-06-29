@@ -8,7 +8,10 @@
 <body>
     <header><h1>localStorage</h1></header>
 	<blockquote>
-		<p>LocalStorage permanently stores key value data in the client. This fix reverts to persistant cookies if this is not supported by the browser.</p>
+		<p>The
+		<a href="http://www.w3.org/TR/webstorage/#the-localstorage-attribute">
+		(w3c) LocalStorage</a> stores persistant key value data in the client. The shim 
+		<a href="https://gist.github.com/350433">Storage.js by remy sharp</a> shims by creating persistant cookies.</p>
 	</blockquote>
 	
     <div id="demo">

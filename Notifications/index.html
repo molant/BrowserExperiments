@@ -3,19 +3,23 @@
 <head>
     <title>Notifications</title>
     <script src="../browserexperiments.js"></script>
-    <style type="text/css">
-    </style>
+    <script src="Notification.js"></script>
 </head>
 <body>
     <header><h1>Notifications</h1></header>
 	<blockquote>
-		<p>Desktop Notifications plugs directly into the OS and either overlays messages over all windows (chrome) or makes the taskbar icon flash (Pinned IE9 tab). THis is useful if your user was looking at another window/tab whilst wiating for something to occur, e.g. a download or a chat message.</p>
+		<p>The
+		<a href="http://dev.w3.org/2006/webapi/WebNotifications/publish/Notifications.html">
+		(w3c, draft) Notifications API</a> for drawing attention to your site. 
+		In Chrome this will create a message in the corner of your desktop 
+		screen. Alterntively in a pinned IE9 site the taskbar icon will flash 
+		when the user does not have the page in focus. This is useful if your user was looking at another window/tab whilst waiting for something to occur, e.g. a download or a chat message. 
+		Shim by andrew dodson.</p>
 	</blockquote>
     <div id="demo">
 		<button id="start">Set up</button>
     </div>
 
-    <script src="Notification.js"></script>
     <script>
     	if( "Notification" in window && window.Notification.checkPermission() !== null ){
     		document.getElementById("start").onclick = (function self(){
@@ -23,7 +27,7 @@
     				// Mock up an event which happens in five seconds time
     				setTimeout(function(){
 	    				window.Notification.createNotification("","Hello","This is a test");
-    				},5000);
+    				},3000);
     			}
     			else{
     				window.Notification.requestPermission(self);

@@ -340,6 +340,9 @@ pre { font-size: 14px; }
     background-position: center;
 }
 
+.inline{
+	display:inline-block;
+}
 
 
 .description{

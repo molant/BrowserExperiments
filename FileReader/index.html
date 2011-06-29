@@ -4,7 +4,7 @@
     <title>Drop Files into Browser</title>
     <script src="../browserexperiments.js"></script>
     <style type="text/css">
-	    #holder{
+	    #demo{
 	        border:5px dashed gray;
 	        height:100px;
 	        border-radius:20px;
@@ -15,29 +15,40 @@
 	        text-align:center;
 	        overflow:hidden;
 	    }
-		    #holder ul{
+		    #demo ul{
 		    	width:100%;
 		    	text-align:left;
 		    }
-			    #holder li img{
+			    #demo li img{
 			    	height:20px;
 			    }
    
     </style>
 </head>
 <body>
-    <header><h1>FileReader PolyFill</h1></header>
+    <header><h1>File API - FileReader</h1></header>
 
-    <div id="holder">
+	<blockquote>
+		<p>The <a href="http://www.w3.org/TR/file-upload/#dfn-filereader">
+		(w3c) FileReader API</a> exposes file data. This may be useful for 
+		resizing images before they are uploaded. File data is exposed via 
+		drop <code>event.dataTransfer.files</code> or via the form 
+		<code>&lt;input type=&quot;file&quot;&gt;</code> tag&#39;s 
+		<code>element.files</code>. In the shim below  
+		<a href="http://sandbox.knarly.com/js/dropfiles/">DropFiles by 
+		Andrew Dodson</a> uses Silverlight plugin to attach data to the ondrop event.</p>
+	</blockquote>
+
+    <div id="demo">
         Drop files from desktop here
     </div>
 
-	<script id="onload">
+	<script>
 	    /**
 	    * Add drop functionality to our holder,
 	    * This is standard HTML5 File API
 	    */
-	    var holder = document.getElementById('holder');
+	    var holder = document.getElementById('demo');
 	    holder.ondragover = function () { return false; };
 	    holder.ondragenter = function () { return false; };
 	    holder.ondrop = function (e) {
@@ -63,7 +74,7 @@
     <script src="FileReader.js"></script>
     <script>
     	if( !("FileReader" in window) ){
-    		document.getElementById("holder").innerHTML = "Ouch this browser doesn't support this fix";
+    		document.getElementById("demo").innerHTML = "Ouch this browser doesn't support this shim";
     	}
     </script>
 </body>
