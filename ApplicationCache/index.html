@@ -1,23 +1,34 @@
 <!DOCTYPE html>
 <html manifest="manifest.php">
-  <head>
-    <link rel="stylesheet" href="../browserexperiments.css" />
-    <link rel="stylesheet" href="style.css" />
-    <script type="text/javascript" src="html5_offline.js"></script>
-    <title>HTML 5 Gears Offline Demo</title>
-  </head>
+<head>
+	<script src="../browserexperiments.js"></script>
+	
+	<link rel="stylesheet" href="style.css" />
+	<script type="text/javascript" src="html5_offline.js"></script>
+	<title>Application Cache</title>
+</head>
   
-  <body>
-      <h1>Demo Page for HTML 5 Gears Offline Implementation</h1>
-      
-      <h2>The line below should be yellow from the linked in stylesheet:</h2>
-      <div class="infobox">
-        This is an infobox
-      </div>
-      
-      <h2>You should see an image below:</h2>
-      <div>
-        <img src="balloon.jpg">
-      </div>
-  </body>
+<body>
+	<header><h1>Application Cache</h1></header>
+	
+	<blockquote>
+		<p>The <a href="http://www.w3.org/TR/html5/offline.html">
+		(w3c) Application Cache</a> specifies a mechanism for selecting files to 
+		store and load from the clients computer. Currently this is only supported by a handful of browsers and FF3.6 even broke their implementation so adoption has been thwarted.</p>
+		<p>The shim <a href="http://code.google.com/p/html5-gears/">
+		HTML5-gears by Brad Neuberg</a> attempts to 
+		add support for this in IE browsers (although i have failed to get the shim working on IE 
+		myself, perhaps my computer is special and you'll have better luck)</p>
+		<p>The line below should be yellow from the linked in stylesheet:</p>
+	</blockquote>
+
+	<div id="demo">
+		<div class="infobox">
+			This is an infobox
+		</div>
+		
+		<h2>You should see an image below:</h2>
+		<img src="balloon.jpg" />
+	</div>
+</body>
 </html>
