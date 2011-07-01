@@ -1,12 +1,103 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="browserexperiments.css" />
     <title>Browser Experiments</title>
-    <!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-    <script src="Common/jquery-1.6.1.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="browserexperiments.css" />
+
+	<script src="Common/modernizr-2.0.js"></script>
+    <script src="Common/jquery-1.6.1.min.js"></script>
+<script>
+var _bTestResults;
+
+(function(){
+	m = Modernizr;
+	_bTestResults = {
+	
+	// HTML
+		semantictags	: true,
+		video			: !!m.video,
+		audio			: !!m.audio,
+		inputtypes		: m.inputtypes.search,
+		canvas			: m.canvas,
+		svg				: m.svg,
+		
+	// CSS
+		borderradius	: m.borderradius,
+		boxshadow		: m.boxshadow,
+		flexbox			: m.flexbox,
+		opacity			: m.opacity,
+		textshadow		: m.textshadow,
+		cssgradients	: m.cssgradients,
+		csstransforms	: m.csstransforms,
+		csstransforms3d	: m.csstransforms3d,
+		csstransitions	: m.csstransitions,
+		cssanimations	: m.cssanimations,
+		multiplebgs 	: m.multiplebgs,
+		csscolumns		: m.csscolumns,
+		mediaqueries	: null,
+		
+	// CORS
+		postmessage		: m.postmessage,
+		xdr				: null,
+	
+	
+	// Javascript API's
+		fileapi			: ("FileReader" in window),
+		localstorage	: m.localstorage,
+		sessionstorage	: m.sessionstorage,
+		geolocation		: m.geolocation,
+		webworkers		: m.webworkers,
+		websockets		: m.websockets,
+		device			: null,
+
+	// Misc 
+		draganddrop		: m.draganddrop,
+		sandbox			: null,
+	// Browser Chrome
+		touch			: m.touch,
+		history			: m.history,
+		notifications	: ("Notifications" in window) || ("webkitNotifications" in window),
+		appcache		: m.applicationcache
+	};
+
+	for( var x in _bTestResults ){
+		if(_bTestResults[x]){
+			_bTestResults[x] = '1';
+		}
+		else if(_bTestResults[x]===false){
+			_bTestResults[x] = '0';
+		}
+	}
+	
+})();
+
+function runtests(){
+	// To save data in Browserscope do something like the following.
+	// The syntax is 'test_key': 'value' where test_key is some unique
+	// identifier for a piece of data you want to store (no = or , allowed)
+	// and value is a numeric value from 0 through 1000000000000.
+	// Note: You can only send a maximum of 100 results in a beacon.
+	
+	// Beacon the results to Browserscope.
+	(function() {
+	  var _bTestKey = 'agt1YS1wcm9maWxlcnINCxIEVGVzdBjX7s4GDA';
+	  var _bScript = document.createElement('script');
+	  _bScript.src = 'http://www.browserscope.org/user/beacon/' + _bTestKey;
+	  _bScript.src += '?callback=testSubmitted';
+	  _bScript.setAttribute('async', 'true');
+	  var scripts = document.getElementsByTagName('script');
+	  var lastScript = scripts[scripts.length - 1];
+	  lastScript.parentNode.insertBefore(_bScript, lastScript);
+	})();
+}
+
+function testSubmitted(p){
+	console.log(["Test submitted", p]);
+}
+
+
+</script>
+
 </head>
 <body>
 <a href="http://github.com/molant/BrowserExperiments"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
@@ -91,7 +182,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="feature-row">
+            <tr class="feature-row" id="semantictsgs">
                 <td class="feature">
                     Semantic elements
                 </td>
@@ -148,7 +239,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="borderradius">
                 <td class="feature">
                     Border-radius
                 </td>
@@ -202,7 +293,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="cssgradients">
 				<td class="feature">
                     Gradients
                 </td>
@@ -256,7 +347,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="video">
                 <td class="feature">
                     HTML5 Video
                 </td>
@@ -328,7 +419,7 @@
 				<td class="supported"></td>
 				<td class="supported"></td>
            </tr>
-            <tr class="shim-row">
+            <tr class="shim-row" id="audio">
                 <td>
                     <a href="Audio/">audio.js</a> by kolber
                 </td>
@@ -364,7 +455,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="csscolumns">
                 <td class="feature">
                     Columns
                 </td>
@@ -418,7 +509,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row"id="canvas">
                 <td class="feature">
                     Canvas
                 </td>
@@ -508,7 +599,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="boxshadow">
                 <td class="feature">
                     Box-shadow
                 </td>
@@ -561,7 +652,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="cssanimations">
                 <td class="feature">
                     CSS Animation
                 </td>
@@ -579,7 +670,7 @@
                 <td class="supported"></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="flexbox">
                 <td class="feature">
                     Flexible Box Model
                 </td>
@@ -632,7 +723,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="opacity">
                 <td class="feature">
                     Opacity
                 </td>
@@ -687,7 +778,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="textshadow">
                 <td class="feature">
                     Text-shadow
                 </td>
@@ -739,7 +830,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="appcache">
                 <td class="feature">
                     ApplicationCache
                 </td>
@@ -792,7 +883,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="localstorage">
                 <td class="feature">
                     localStorage
                 </td>
@@ -844,7 +935,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="sessionstorage">
                 <td class="feature">
                     sessionStorage
                 </td>
@@ -898,7 +989,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="csstransforms">
                 <td class="feature">
                     CSS 2D Transforms
                 </td>
@@ -952,7 +1043,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="multiplebgs">
                 <td class="feature">
                     Multiple backgrounds
                 </td>
@@ -1006,7 +1097,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="inputtypes">
                 <td class="feature">
                     HTML5 Form
                 </td>
@@ -1058,7 +1149,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="csstransforms3d">
                 <td class="feature">
                     CSS 3D Transforms
                 </td>
@@ -1076,7 +1167,7 @@
 				<td></td>
 				<td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="csstransitions">
                 <td class="feature">
                     CSS Transitions
                 </td>
@@ -1128,7 +1219,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="geolocation">
                 <td class="feature">
                     Geolocation
                 </td>
@@ -1201,7 +1292,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="svg">
                 <td class="feature">
                     SVG
                 </td>
@@ -1219,10 +1310,27 @@
                 <td class="supported"></td>
                 <td class="supported"></td>
             </tr>
-            <tr class="feature-row">
-                <td class="feature">
-                    Drag & Drop
+            <tr class="shim-row">
+                <td>
+                    <a href="SVG/">svgweb</a> by Brad Nueberg
                 </td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="shim-row feature-description">
+                <td>
+                    Inline SVG allows for rich DOM shapes and events</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -1237,7 +1345,25 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="draganddrop">
+                <td class="feature">
+                    Drag & Drop
+                </td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td></td>
+            </tr>
+            <tr class="feature-row" id="touch">
                 <td class="feature">
                     Touch Events
                 </td>
@@ -1251,11 +1377,11 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="websockets">
                 <td class="feature">
                     Web Sockets
                 </td>
@@ -1263,17 +1389,17 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td></td>
+                <td class="supported"></td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td class="supported"></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="webworkers">
                 <td class="feature">
                     Web Workers
                 </td>
@@ -1282,16 +1408,16 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="selectors">
                 <td class="feature">
                     CSS3 Selectors
                 </td>
@@ -1346,7 +1472,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="mediaqueries">
                 <td class="feature">
                     CSS3 Media Queries
                 </td>
@@ -1400,7 +1526,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="notifications">
                 <td class="feature">
                     Notifications
                 </td>
@@ -1454,7 +1580,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="fileapi">
                 <td class="feature">
                     File API
                 </td>
@@ -1508,7 +1634,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="history">
                 <td class="feature">
                     History API
                 </td>
@@ -1562,7 +1688,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="device">
                 <td class="feature">
                     Device API
                 </td>
@@ -1616,7 +1742,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="postmessage">
                 <td class="feature">
                     postMessage
                 </td>
@@ -1634,7 +1760,7 @@
                 <td class="supported"></td>
                 <td class="supported"></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="xdr">
                 <td class="feature">
                     XDR (XDomainRequest)
                 </td>
@@ -1726,6 +1852,7 @@
 	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 	})();
 </script>
+
 
 </body>
 </html>
