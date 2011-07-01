@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>CSS3 Animations</title>
-    <link rel="stylesheet" href="../browserexperiments.css" />
+    <script src="../browserexperiments.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.js"></script>
 	<script src="../Common/jquery-animate-enhanced.js"></script>
     <style type="text/css">
@@ -30,12 +30,11 @@
     </style>
 </head>
 <body>
-    <h1>jQuery CSS Animation support (from <a href="https://github.com/benbarnett/jQuery-Animate-Enhanced/">jQuery Animate Enhanced</a> by Ben Barnett)</h1>
+    <header><h1>CSS3 Animation</h1></header>
 	<blockquote>
-		<p>On platforms such as the iPhone and iPad, the hardware-enhanced CSS3 Transitions perform much more smoothly than JavaScript animations.
-		This jQuery plugin modifies the standard jQuery <code>.animate()</code> method to use CSS3 Transitions when they are available.
+		<p><a href="http://www.w3.org/TR/css3-animations/">(w3c) CSS3 Animations</a> define a way to annimate an element using keyframes, and attaching that as a CSS property. On platforms such as the iPhone and iPad, the hardware-enhanced CSS3 Transitions perform much more smoothly than JavaScript animations.
+		The shim uses the jQuery plugin (<a href="https://github.com/benbarnett/jQuery-Animate-Enhanced/">jQuery Animate Enhanced</a> by Ben Barnett)&nbsp; the standard jQuery <code>.animate()</code> method to use CSS3 Transitions when they are available.
 		Animations that use the <code>left</code>, <code>top</code>, and/or <code>opacity</code> properties may benefit.
-		(<a href="http://www.w3.org/TR/css3-transitions/">CSS3 Transitions specification</a>)
 		</p>
 	</blockquote>
 	<div id="notransitions">
@@ -53,7 +52,7 @@
 			<option value="10000">10</option>
 		</select>
 		seconds.
-    </div>
+    </p>
 	
 	<div id="results">
 		<div class="demobox" id="box1"><a href="#">Standard animation</a></div>
