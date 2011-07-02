@@ -3,68 +3,6 @@
 <head>
     <title>Websockets</title>
     <script src="../browserexperiments.js"></script>
-	<script type="text/javascript" src="swfobject.js"></script>
-	<script type="text/javascript" src="web_socket.js"></script>
-<script>
-
-    
-    // Set URL of your WebSocketMain.swf here:
-    WEB_SOCKET_SWF_LOCATION = "WebSocketMain.swf";
-    // Set this to dump debug message from Flash to console.log:
-    WEB_SOCKET_DEBUG = true;
-
-
-	var wsUri = 'wss://echo.websocket.org/';
-	var output;
-	
-	function init(){
-		output = document.getElementById('demo');
-		testWebSocket();
-	}
-	
-	function testWebSocket(){
-		websocket = new WebSocket(wsUri);
-		websocket.onopen = function(evt) { onOpen(evt) };
-		websocket.onclose = function(evt) { onClose(evt) };
-		websocket.onmessage = function(evt) { onMessage(evt) };
-		websocket.onerror = function(evt) { onError(evt) };
-	}
-	
-	function onOpen(evt){
-		writeToScreen('CONNECTED');
-		doSend('WebSocket rocks');
-	}
-	
-	function onClose(evt){
-		writeToScreen('DISCONNECTED');
-	}
-	
-	function onMessage(evt){
-		writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data + '</span>');
-		websocket.close();
-	}
-	
-	function onError(evt){
-		writeToScreen('<span style="color: red;">ERROR</span> ' + evt.data);
-	}
-	
-	function doSend(message)
-	{
-		writeToScreen('SENT: ' + message); 
-		websocket.send(message);
-	}
-	
-	function writeToScreen(message)
-	{
-		var pre = document.createElement('p');
-		pre.style.wordWrap = 'break-word';
-		pre.innerHTML = message;
-		output.appendChild(pre);
-	}
-	
-	window.addEventListener('load', init, false);
-
-</script>
 </head>
 <body>
     <header><h1>Websockets</h1></header>
@@ -75,6 +13,47 @@
     
 	<div id="demo">
 	</div>
+
+<script>
+	
+	if(!("WebSocket" in window)){
+		dump("Browser does not support websockets");
+	} else {
+		/**
+		 * Make connection
+		 */
+		dump("Connecting...");
+
+		var websocket = new WebSocket('wss://echo.websocket.org/');
+
+		websocket.onopen = function(evt) { 
+			dump('CONNECTED');
+			dump('SENT: WebSocket rocks'); 
+			websocket.send('WebSocket rocks');
+		};
+
+		websocket.onclose = function(evt) {
+			dump('DISCONNECTED');
+		};
+
+		websocket.onmessage = function(evt) {
+			dump('<span style="color: blue;">RESPONSE: ' + evt.data + '</span>');
+			websocket.close();
+		};
+
+		websocket.onerror = function(evt) {
+			dump('<span style="color: red;">ERROR</span> ' + evt.data);
+		};
+	}
+
+	function dump(s){
+		var pre = document.createElement('p');
+		pre.style.wordWrap = 'break-word';
+		pre.innerHTML = s;
+		document.getElementById('demo').appendChild(pre);
+	}
+	
+</script>
 
 </body>
 </html>

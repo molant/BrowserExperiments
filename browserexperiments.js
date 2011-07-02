@@ -93,6 +93,20 @@ window.onload = function(){
 	})();
 	
 		
+	/************************************************
+	 * BREADCRUMBS BACK TO HOMEPAGE
+	 ************************************************/
+	
+	(function(){
+		var h = document.getElementsByTagName('header')[0];
+		h.title = 'Home';
+		h.style.cursor = "pointer";
+	
+		addEvent( h, 'click', function(){
+			window.location = "../";
+		});
+	
+	})();
 		
 	/************************************************
 	 * Add Google Analytics
@@ -137,8 +151,6 @@ var addEvent = (function () {
     };
   }
 })();
-
-
 
 
 
