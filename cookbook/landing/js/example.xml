@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<example>
+
+  <item id="1">
+    <name>LAZY LOAD</name>
+    <description>Lazy load heavy page conent for snappier load time</description>
+    <url>images/screenshots/lazyLoad.jpg</url>
+    <links>../2_LazyLoad</links>
+    <features>
+      <feature>images/performance.png</feature>
+      <feature>images/semantics.png</feature>
+      <feature>images/css3.png</feature>
+    </features>
+  </item>
+
+	<item id="2">
+	  <name>PARALLAX SCROLLER</name>
+	  <description>Touch-enabled parallax scroller for use with HTML5 canvas</description>
+	  <url>images/screenshots/parallax.jpg</url>
+	  <links>../3_ParallaxScroller</links>
+	  	<features>
+        <feature>images/semantics.png</feature>
+        <feature>images/performance.png</feature>
+		</features>
+	</item>
+
+  <item id="3">
+    <name>TOUCH SAMPLE</name>
+    <description>3 Approaches to touch-enabling HTML elements</description>
+    <url>images/screenshots/touch.jpg</url>
+    <links>../5_TouchSample</links>
+    <features>
+      <feature>images/semantics.png</feature>
+      <feature>images/multimedia.png</feature>
+    </features>
+  </item>
+
+
+  <item id="4">
+	  <name>DOM SCROLLER</name>
+	  <description>Touch-enabled inertial scroller for broad use</description>
+	  <url>images/screenshots/domscroller.jpg</url>
+	  <links>../4_DomScroller</links>
+	  	<features>
+        <feature>images/semantics.png</feature>
+        <feature>images/performance.png</feature>			
+		</features>
+	</item>
+	
+	
+  <item id="5">
+    <name>CANVAS SPRITES</name>
+    <description>Sprite class intended for use on a HTML5 canvas</description>
+    <url>http://employees.claritycon.com/eklimczak/html5Cookbook/landing/images/screenshots/sprite.jpg</url>
+    <links>../1_Sprites/index.html</links>
+    <features>
+      <feature>images/performance.png</feature>
+    </features>
+  </item>
+
+
+  <item id="6">
+	  <name>TRANSITIONS</name>
+	  <description>Animated transition plumbing for navigating between pages</description>
+	  <url>images/screenshots/transitions.jpg</url>
+	  <links>../6_Transitions</links>
+	  	<features>
+			<feature>images/performance.png</feature>
+			<feature>images/semantics.png</feature>						
+		</features>
+	</item>
+	
+		<item id="7">
+	  <name>FIXED POSITION MENU</name>
+	  <description>Full Screen Fixed Header and Footer</description>
+	  <url>images/screenshots/headerFooter.jpg</url>
+	  <links>../7_DockedMenu</links>
+	  	<features>			
+			<feature>images/semantics.png</feature>
+      <feature>images/css3.png</feature>
+		</features>
+	</item>
+	
+	
+		<item id="8">
+	  <name>DRAG AND DROP</name>
+	  <description>File System and native Drag and Drop Sample</description>
+	  <url>images/screenshots/dragDrop.jpg</url>
+	  <links>../8_DragDrop</links>
+	  	<features>
+			<feature>images/performance.png</feature>
+			<feature>images/semantics.png</feature>
+			<feature>images/multimedia.png</feature>
+			
+		</features>
+	</item>
+
+  <item id="9">
+    <name>LOCAL STORAGE</name>
+    <description>Lorem ipsum - local storage</description>
+    <url>images/screenshots/placeholder.jpg</url>
+    <links>../9_LocalStorage</links>
+    <features>
+      <feature>images/offline.png</feature>
+    </features>
+  </item>
+
+</example>

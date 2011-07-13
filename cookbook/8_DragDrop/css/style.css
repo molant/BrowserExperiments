@@ -1,0 +1,202 @@
+/* reset styles
+--------------------------------------------- */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    }
+ol, ul {
+    list-style: none;
+    }
+blockquote, q {
+    quotes: none;
+    }
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    }
+    
+    
+/* end reset
+  ------------------------------------------------------------------------------*/
+
+/**
+ * Primary styles
+ *
+ * Author: 
+ */
+@font-face {
+    font-family: 'eogesSemiLightRegular';
+    src: url('../fonts/eoges-semilight-webfont.eot');
+    src: url('../fonts/eoges-semilight-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/eoges-semilight-webfont.woff') format('woff'),
+         url('../fonts/eoges-semilight-webfont.ttf') format('truetype'),
+         url('../fonts/eoges-semilight-webfont.svg#eogesSemiLightRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'BauerBodoniStd2BlackItalic';
+    src: url('../fonts/bauerbodonistd-blackitalic-webfont.eot');
+    src: url('../fonts/bauerbodonistd-blackitalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/bauerbodonistd-blackitalic-webfont.woff') format('woff'),
+         url('../fonts/bauerbodonistd-blackitalic-webfont.ttf') format('truetype'),
+         url('../fonts/bauerbodonistd-blackitalic-webfont.svg#BauerBodoniStd2BlackItalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+h1 {
+    font-size:42px;
+    color:#ee6402;
+    font-family:'BauerBodoniStd2BlackItalic';  }
+
+
+html { height: 100%; }
+
+body{
+	background: #291a01;
+	width:100%;
+	height:100%;
+}
+#wrap{
+    
+	margin: 40px auto 10px auto;
+  	width: 780px;
+	height: 700px;
+}
+
+#container {
+	
+	height: 500px ;	
+	background:#dcdcdc url(../images/tile.gif) repeat -70% 0;	
+	border: Solid 2px #fff;
+	overflow: hidden;
+	position: relative;
+	padding:55px;
+}
+
+header, #main {	
+	color:#ccc;
+	display:block;
+	font-size:16px;
+	/*letter-spacing: 0.1em;*/
+	font-family:eogesSemiLightRegular;
+	height:105px;	
+}
+#title{
+
+	float:left;
+	margin-top:10px;
+	height:40px;
+}
+
+#subTitle{
+	display:block;
+	float:left;
+	width:600px;
+}
+#icon{
+  float:left;
+  margin-right:20px;
+}
+
+
+
+.dropArea {
+    width: 400px;
+    min-height: 420px;
+    border: dashed 4px #999;
+    background-color:#fff;
+    text-align: center;
+    float: left;
+    
+}
+
+#dropMessage {
+    color:#ccc;
+    margin: 155px auto 10px auto;
+}
+
+.mustacheOptions {
+	float: left;
+	margin-left:85px;
+	
+}
+
+.mustacheOptions ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.mustacheOptions li {
+	list-style-type: none;
+	margin: 5px 0; padding: 5px;
+	height: 91px;
+	width: 160px;
+	border: solid 1px #ebebeb;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-color:#fff;
+	color:#666;
+	font-size:13px;
+	-moz-box-shadow: 0px 0px 4px rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0px 0px 4px rgba(0,0,0,0.3);
+	box-shadow: 0px 0px 4px rgba(0,0,0, 0.3);
+}
+.mustacheOptions li.first { margin-top: 0px; }
+
+.mustacheOptions li.hover { border: solid 1px #ee6402; cursor: pointer; }
+
+.mustache1 {	background: url(../images/mustaches/handlebar.png); }
+.mustache2 {	background: url(../images/mustaches/hulk.png); }
+.mustache3 {	background: url(../images/mustaches/selleck.png); }
+.mustache4 { background:url(../images/mustaches/boulanger.png);}
+
+.dragHolder {
+	width: 160px;
+	height: 91px;
+	position: absolute;
+	text-align: center;
+	background: transparent no-repeat center center;
+	filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand');
+}
+
+.dragHolder img { width: 100%; height: 100%; cursor:move; }
+
+.dragDelete, .dragAlter, .dragRotate { display: none; visibility: hidden; }
+
+.placed.hover div { display: block; visibility: visible; }
+
+.placed .dragDelete, .placed .dragAlter, .placed .dragRotate {	
+	width: 24px;
+	height: 24px;
+	position: absolute;
+	cursor: pointer;	
+	background: #ebebeb;	
+	text-align: center;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	border:solid 1px #dcdcdc;
+	cursor:pointer;
+}
+.placed .dragIcon {
+  width:16px;
+  height:16px;
+  margin:4px 0px 0px 0px;
+  cursor:pointer;
+}
+.placed .dragDelete { top: -5px; right: 0px; }
+.placed .dragAlter  {  bottom: -5px; right: 30px; }
+.placed .dragRotate { bottom: -5px; right: 0px; }
+
+.dragDelete:hover, .dragAlter:hover, .dragRotate:hover{
+  background-color:#dcdcdc;
+}
