@@ -1,0 +1,18 @@
+﻿div#demo{
+	padding:40px;
+	border:1px solid gray;
+	margin:20px;
+	text-align:justify;
+}		
+
+
+div#demo div.columns{
+	-moz-column-count: 3;
+	-moz-column-gap: 40px;
+	-webkit-column-count: 3;
+	-webkit-column-gap: 40px;
+	-ms-column-count: 3;
+	-ms-column-gap: 40px;
+	column-count: 3;
+	column-gap: 40px;
+}

@@ -1,0 +1,12 @@
+﻿		#test{
+			background-color:blue;
+			height:100px;
+			width:100px;
+			color:white;
+			padding:10px;
+		}
+   		@media all and (max-width: 650px){
+			#test{
+				background-color:red;
+			}
+		}

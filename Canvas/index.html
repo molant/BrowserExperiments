@@ -2,32 +2,46 @@
 <html>
 <head>
     <title>Canvas</title>
-    <link rel="stylesheet" href="../browserexperiments.css" />
+    <script src="../browserexperiments.js"></script>
     
     <script src="excanvas.js"></script>
     <script src="slcanvas.js"></script>
-    <style>
-    </style>
 </head>
 <body>
-    <h1>Canvas</h1>
+    <header><h1>Canvas 2D-Context</h1></header>
 	<blockquote>
-		<p>HTML Canvas is a great drawing board for animations and creating images in the browser.</p>
+		<p>The <a href="http://dev.w3.org/html5/2dcontext/">(w3c) HTML5 Canvas API</a> is a great drawing board with some cool functions for drawing shapes and images 
+		dynamically and manipulating images in the client. And with browsers supporting this at a deep level it can be very performant and great for animations and games.</p>
+		<p>There are two excellent shims illustrated below which provide support 
+		in IE 6/7/8. <a href="http://slcanvas.codeplex.com/">SlCanvas by davidans and stimpy77 
+		(Silverlight)</a> 
+		and <a href="http://code.google.com/p/explorercanvas/">
+		ExCanvas by Google (VML)</a></p>
 	</blockquote>
 
-    <div id="demo">
+	<div id="demo">
+		
+		<div class="inline">
+			<span>Native</span>
+			<div id="native"></div>
+	    </div>
+    	
+    	<div class="inline"> 
+			<span>Silverlight</span>
+			<canvas id="silverlight" width="200" height="200" renderMethod="silverlight" onload="buildTest(this);">[This browser does not<br />support &lt;canvas&gt;.]</canvas>
+		</div>
+    	
+    	
+    	<div class="inline"> 
+			<span>ExCanvas</span>
+			<div id="excanvas"></div>
+		</div>
+	</div>
 
-    	<span>Native</span>
-		<div id="native"></div>
-    
-    	<span>Silverlight</span>
-		<canvas id="silverlight" width="200" height="200" renderMethod="silverlight" onload="buildTest(this);">[This browser does not<br />support &lt;canvas&gt;.]</canvas>
-
-    	<span>ExCanvas</span>
-		<div id="excanvas"></div>
-    </div>
 <script>
-	
+
+	// Ball color
+	var rgb = "rgb("+(parseInt(Math.random()*255))+", "+(parseInt(Math.random()*255))+", "+(parseInt(Math.random()*255))+")";
 
 	// Build a normal canvas
 	var c = document.createElement('canvas');
@@ -45,6 +59,8 @@
 	}
 	document.getElementById('excanvas').appendChild(c);
 	buildTest(c);
+
+
 		
     	
 	function buildTest(el){
@@ -64,8 +80,7 @@
 			j = 1,
 			x = 0,
 			y = 0,
-			Bd = 30,
-			rgb = "rgb("+(parseInt(Math.random()*255))+", "+(parseInt(Math.random()*255))+", "+(parseInt(Math.random()*255))+")"; // Ball Diameter
+			Bd = 30;
 
 				
 		function animate(){

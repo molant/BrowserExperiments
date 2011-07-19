@@ -1,0 +1,200 @@
+@charset "utf-8";
+/* reset styles
+--------------------------------------------- */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    /*border:solid 1px blue;*/
+    
+    }
+ol, ul {
+    list-style: none;
+    }
+blockquote, q {
+    quotes: none;
+    }
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    }
+    
+    
+/* end reset*/
+ 
+
+/* Scroll styles
+--------------------------------------------- */
+.ui-scrollview-clip {
+}
+
+.ui-scrollview-view {
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+
+.ui-scrolllistview .ui-li-divider {
+	z-index: 10;
+}
+
+.ui-scrollbar {
+	position: absolute;
+	overflow: hidden;
+
+	opacity: 0;
+	-webkit-transition: opacity 500ms;
+	-moz-transition: opacity 500ms;
+	transition: opacity 500ms;	
+}
+
+.ui-scrollbar-visible {
+	opacity: 1;
+}
+
+.ui-scrollbar-y {
+	top: 5px;
+	right: 5px;
+	bottom: 8px;
+	width: 3px;
+}
+
+.ui-scrollbar-x {
+	right: 8px;
+	bottom: 5px;
+	left: 5px;
+	height: 3px;
+}
+
+.ui-scrollbar-track {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.ui-scrollbar-thumb {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.3);
+	/*-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;*/
+}
+
+.ui-scrollbar-y .ui-scrollbar-thumb {
+	width: 5px;
+	height: 100%;
+}
+
+.ui-scrollbar-x .ui-scrollbar-thumb {
+	width: 100%;
+	height: 5px;
+}
+ 
+/* End Scroll styles
+--------------------------------------------- */
+
+
+
+
+/* Page styles
+--------------------------------------------- */
+
+
+body{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;    
+    background: #dcdcdc url(../images/tile.gif) repeat -70% 0;
+
+}
+
+h2{
+    font-size:24px;
+    font-weight:100;
+    display:inline;
+ }
+
+#wrap{
+       margin: 25px;        
+       padding:30px 30px 30px 30px;
+}
+
+#dataList {
+        border: solid 1px #ccc;
+        background-color: rgba(128,128,128,0.15);
+        overflow: hidden;
+        width: 600px;
+        height: 300px;
+        margin: 10px 0 0 0;
+        -webkit-box-shadow: 0 0 5px rgba(0,0,0,.15) inset;
+        -moz-box-shadow: 0 0 5px rgba(0,0,0,.15) inset;
+        box-shadow: 0 0 5px rgba(0,0,0,.15) inset;
+}
+
+
+#dataList > .ui-scrollview-view {
+        width: 2400px;
+        background-color:transparent;        
+}
+
+
+div.listItem
+{
+    width: 220px;
+    height: 230px;
+    float:left;    
+    margin:35px 10px 30px 10px;      
+    overflow: hidden;
+    background-color:#fff;
+    background: url(../images/back.png) no-repeat top left;        
+}
+
+div.listItem .imgContainer{
+  
+    width: 220px;
+    height: 165px;
+    position: relative;
+    clear: left;
+    padding: 0 0 10px 0;          
+    overflow: hidden;
+}
+
+
+div.listItem .listImage{
+    
+    /*padding: 10px;*/
+    margin:10px;
+    width: 200px;
+    height: 150px;
+    border:solid 1px #ebebeb;
+}
+
+
+div.listItem h2{
+    text-transform:lowercase;
+    margin: 0 0 0 10px;
+    padding: 0px;
+    font-size: 14px;
+    font-weight:500;
+    line-height:1.4em;
+    color: #666;    
+}
+
+
+div.listItem h3{
+    text-transform:uppercase;
+    margin: 0 0 0 10px;
+    padding: 0px;
+    font-size: 11px;
+    font-weight:normal;
+    font-style:oblique;
+    color: #ccc;    
+}
+
+

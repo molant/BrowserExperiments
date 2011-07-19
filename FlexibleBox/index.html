@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Flexie Demo</title>
+		<script src="../browserexperiments.js"></script>
+		
+		<!-- Flexie -->
+		<style media="screen">
+		
+		
+			#demo * {
+				margin: 0;
+				padding: 0;
+				border: 0;
+			}
+			
+			#demo {
+				width: 100%;
+				height: 100%;
+				color:white;
+				text-align: center;
+			}
+			
+			#demo div{
+				height:100px;
+				color:white;
+			}
+
+			#box-child-1 {
+				background: #800;
+			}
+
+			#box-child-2 {
+				background: #0000FF;
+			}
+				#nested-child-1 {
+					background:#000080;
+				}
+	
+				#nested-child-2 {
+					background: #0000A0;
+				}
+					#deep-child-1 {
+						background: #0000A0;
+					}
+		
+					#deep-child-2 {
+						background: #0000B8;
+					}
+		
+					#deep-child-3 {
+						background: #0000CF;
+					}
+	
+				#nested-child-3 {
+					background: #0000F0;
+				}
+	
+
+			#box-child-3 {
+				background: #080;
+			}
+
+		</style>
+		<link rel="stylesheet" href="demo.css" />
+	</head>
+	<body>
+		<header><h1>Flexible Box Model</h1></header>
+		<blockquote>
+			<p>The <a href="http://www.w3.org/TR/css3-flexbox/">
+			(W3C) Flexible Box Model</a> gives us better control over 
+			the presentation of block elements. In the experiment the blue (Box 2.*) are allowed to take up twice the spare space as their neighbours Box 1 &amp; 3. And all box elements are reversed. The 
+			<a href="https://github.com/doctyper/flexie">flexie shim by doctyper</a> shims IE 6/7/8/9 and Opera 11.</p>
+		</blockquote>
+		<div id="demo">
+			<div id="box-parent">
+				<div id="box-child-1"><span>Box 1</span></div>
+				<div id="box-child-2">
+					<div id="nested-child-1"><span>Box 2.1</span></div>
+					<div id="nested-child-2">
+						<div id="deep-child-1"><span>Box 2.2.1</span></div>
+						<div id="deep-child-2"><span>Box 2.2.2</span></div>
+						<div id="deep-child-3"><span>Box 2.2.3</span></div>
+					</div>
+					<div id="nested-child-3"><span>Box 2.3</span></div>
+				</div>
+				<div id="box-child-3"><span>Box 3</span></div>
+			</div>
+				
+		</div>
+	    <script src="../Common/jquery-1.6.1.min.js"></script>
+		<!-- Flexie -->
+		<script src="flexie.js" type="text/javascript"></script>
+	</body>
+</html>
