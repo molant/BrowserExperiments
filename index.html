@@ -1,6 +1,10 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <!--[if gt IE 7]>
+    <link rel="stylesheet" type="text/css" href="ie.css" />
+    <![endif]-->
+    <link rel="stylesheet" href="browserexperiments.css" />
     <title>Browser Experiments</title>
     <link rel="stylesheet" href="browserexperiments.css" />
 
@@ -124,8 +128,64 @@ function testSubmitted(p){
             </div>
         </div>
     </header>
+    <div class="table-header-outer">
+        <div class="table-header">
+            <div class="title">
+                <img src="images/h5_logo_top.png" alt="HTML5 Logo" /><span class="title-text">HTML5
+                    Features</span>
+            </div>
+            <div class="browser">
+                <img src="images/icon_ie_6.png" alt="IE" /><span class="center">6.0</span>
+            </div>
+            <div class="browser even">
+                <img src="images/icon_ie_7_8.png" alt="IE" /><span class="center">7.0</span>
+            </div>
+            <div class="browser">
+                <img src="images/icon_ie_7_8.png" alt="IE" /><span class="center">8.0</span>
+            </div>
+            <div class="browser even">
+                <img src="images/icon_ie_9_pp.png" alt="IE" /><span class="center">9.0</span>
+            </div>
+            <div class="browser">
+                <img src="images/icon_ie_9_pp.png" alt="IE" /><span class="center">
+                PP</span>
+            </div>
+            <div class="browser even">
+                <img src="images/icon_chrome.png" alt="Chrome" /><span class="center">
+                10</span>
+            </div>
+            <div class="browser">
+                <img src="images/icon_chrome.png" alt="Chrome" /><span class="center">
+                11</span>
+            </div>
+            <div class="browser even">
+                <img src="images/icon_safari.png" alt="Safari" /><span class="center">
+                4.x
+            </div>
+            <div class="browser">
+                <img src="images/icon_safari.png" alt="Safari" /><span class="center">
+                5.x</span>
+            </div>
+            <div class="browser even">
+                <img src="images/icon_firefox.png" alt="Firefox" /><span class="center">
+                3.6</span>
+            </div>
+            <div class="browser">
+                <img src="images/icon_firefox.png" alt="Firefox" /><span class="center">
+                4.x</span>
+            </div>
+            <div class="browser even">
+                <img src="images/icon_firefox.png" alt="Firefox" /><span class="center">
+                5.x</span>
+            </div>
+            <div class="browser">
+                <img src="images/icon_opera.png" alt="Opera" /><span class="center">
+                11</span>
+            </div>
+        </div>
+    </div>
     <table>
-        <thead>
+        <thead id="table-header">
             <tr>
                 <th class="title">
                     <img src="images/h5_logo_top.png" alt="HTML5 Logo" /><span class="title-text">HTML5
@@ -459,20 +519,20 @@ function testSubmitted(p){
                 <td class="feature">
                     Columns
                 </td>
-				<td class="shim"></td>
-				<td class="shim"></td>
-				<td class="shim"></td>
-				<td class="shim"></td>
-				<td class="supported"></td>
-				<td class="supported"></td>
-				<td class="supported"></td>
-				<td class="supported"></td>
-				<td class="supported"></td>
-				<td class="supported"></td>
-				<td class="supported"></td>
-				<td class="supported"></td>
-				<td class="supported"></td>
-           </tr>
+                <td class="shim"></td>
+                <td class="shim"></td>
+                <td class="shim"></td>
+                <td class="shim"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+            </tr>                
             <tr class="shim-row">
                 <td>
                     <a href="CSS3Columns/">CSS3 - Multi Column</a> by Cdric Savarese
@@ -821,23 +881,6 @@ function testSubmitted(p){
                 <td class="supported"></td>
                 <td></td>
             </tr>
-            <tr class="shim-row">
-                <td>
-                    <a href="TextShadow/">textshadow</a> by <a href="http://heygrady.com/text-shadow-for-internet-explorer">Haygray</a></td>
-				<td>??</td>
-				<td class="supported"></td>
-				<td class="supported"></td>
-				<td class="supported"></td>
-				<td class="supported"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-           </tr>
             <tr class="shim-row feature-description">
                 <td>
                     Adds effect (shadows, blur, etc.) to your text. Requires jQuery</td>
@@ -1695,7 +1738,7 @@ function testSubmitted(p){
                 <td class="supported"></td>
                 <td class="supported"></td>
                 <td></td>
-           </tr>
+            </tr>
             <tr class="shim-row">
                 <td>
                     <a href="FileReader/">FileReader</a> by andrew dodson &amp; community
@@ -1961,6 +2004,22 @@ function testSubmitted(p){
             	var l = $s.add($s.nextUntil("tr.feature-row")).removeClass("hide").length;
             	$("#noresults")[(l===0?'show':'hide')]();
             });
+
+            if (($.browser.msie && $.browser.version >= 9) || !$.browser.msie) {
+                $(window).bind('scroll', function () {
+                    var elem = $('#table-header');
+                    var docViewTop = $(window).scrollTop();
+                    var docViewBottom = docViewTop + $(window).height();
+
+                    var elemTop = $(elem).offset().top;
+                    var elemBottom = elemTop + $(elem).height();
+                    if (!((elemBottom >= docViewTop) && (elemTop <= docViewBottom) && (elemBottom <= docViewBottom) && (elemTop >= docViewTop))) {
+                        $('.table-header').show();
+                    } else {
+                        $('.table-header').hide();
+                    }
+                });
+            }
         });
     </script>
 
@@ -1975,7 +2034,5 @@ function testSubmitted(p){
 	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 	})();
 </script>
-
-
 </body>
 </html>
