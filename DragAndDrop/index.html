@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drag and Drop</title>
+    <script src="../browserexperiments.js"></script>
+    <script src="../Common/jquery-1.6.1.min.js"></script>
+    <script src="operaDragAndDrop.js"></script>
+    <script>
+    	$(function(){
+    		$('#dropzone')
+    		.bind("drop", function(e){
+    			if (e.stopPropagation) e.stopPropagation();
+    			this.style.backgroundColor = e.originalEvent.dataTransfer.getData('Text');
+    			this.className='';
+    		})
+    		.bind('dragenter dragover', function(e){
+    			this.className = 'over';
+    			if (e.preventDefault) 
+    				e.preventDefault();
+    			if(e.dataTransfer)
+	    			e.dataTransfer.dropEffect = 'copy';
+	    		return false;
+    		})
+    		.bind('dragleave', function(){
+    			this.className = '';
+    		});
+
+    		$("#demo ul li a").attr('draggable', true).bind('dragstart', function(e){
+				e.originalEvent.dataTransfer.effectAllowed = 'copy'; // only dropEffect='copy' will be dropable
+				e.originalEvent.dataTransfer.setData('Text', $(this).css('backgroundColor')); // required otherwise doesn't work
+    		})
+    		.bind('selecttext', function(e){
+    			e.preventDefault();
+    		});
+    	});
+    </script>
+    <style>
+    	#dropzone, ul{
+			display : table-cell;
+			vertical-align : middle; 
+    		margin:5px;
+    		padding:0;
+		}
+    	#dropzone{
+    		text-align:center;
+    		width:150px;
+    		outline: 2px dashed gray;
+    		height:150px;
+    		font-size:2em;
+    		padding:5px;
+    		color:#999;
+    	}
+    	#dropzone.over{
+    		outline: 2px solid gray;
+    	}
+
+		#demo ul li{
+			margin-left:20px;
+			list-style:none;
+		}
+		#demo a[draggable=true] {
+    		text-align:center;
+    		padding:9px 10px;
+    		text-decoration:none;
+    		color:#444444;
+    		color:rgba(0,0,0,0.2);
+    		font-size:1.5em;
+			width:150px;
+			display:inline-block;
+			-moz-user-select:none;
+			-khtml-user-drag: element;
+			cursor: move;
+		}
+		
+		#demo a:-khtml-drag {
+			background-color: rgba(238,238,238, 0.5);
+		}
+		
+		#demo li a:hover:after {
+			content: ' (drag me)';
+		}
+
+    </style>
+</head>
+<body>
+    <header><h1>Drag and Drop</h1></header>
+	<blockquote>
+		<p>The
+		<a href="http://dev.w3.org/html5/spec/dnd.html">
+		(w3c) Drag and Drop</a> specifies the markup and events involved in 
+		making elements &quot;drag&quot; and the action to take when &quot;dropped&quot;. 
+		This has been widely supported in all browsers for a while, however the implementation has varied HTML5 defines a competent method of transfering data, in the dataTransfer obect which is passed from the dragged element to the drop event.</p>
+		<p>The shim by
+		<a href="https://github.com/Yaffle/polyfills/tree/master/dragAndDrop">
+		Yaffle</a> adds support for Opera browsers</p>
+	</blockquote>
+
+    <div id="demo">
+    	<div dropzone="true" id="dropzone">
+    		Drag colors on to me
+    	</div>
+    	<ul>
+    		<li><a href="#" style="background-color:red;" draggable="true">red</a></li>
+    		<li><a href="#" style="background-color:blue;" draggable="true">blue</a></li>
+    		<li><a href="#" style="background-color:yellow;" draggable="true">yellow</a></li>
+    		<li><a href="#" style="background-color:green;" draggable="true">green</a></li>
+    	</ul>
+    </div>
+</body>
+</html>

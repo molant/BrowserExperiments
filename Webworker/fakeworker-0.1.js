@@ -1,4 +1,4 @@
-;
+
 var fakeworker = (function(global){
     function extend(dest, src){
         for (var i in src) {
