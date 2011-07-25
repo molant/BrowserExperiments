@@ -1,0 +1,123 @@
+/* reset styles
+--------------------------------------------- */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    border: 0;
+    outline: 0;
+    background: transparent;
+   
+    }
+ol, ul {
+    list-style: none;
+    }
+blockquote, q {
+    quotes: none;
+    }
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    }
+    
+    
+/* end reset
+  ------------------------------------------------------------------------------*/
+
+
+/* PAGE STYLES
+  ------------------------------------------------------------------------------*/
+
+body{
+    font-family: 'Verdana', sans-serif;
+    color: #3a3a3a;    
+    background:#fff url(../images/body-bg.jpg);    
+ }
+ 
+ 
+ h1{
+    font-size: 24px;    
+    font-weight: normal;
+    color: #333;
+    margin:10px;
+ }
+ h2
+ {
+     font-size:21px;
+     font-weight:400;
+     
+ }
+ 
+p{
+ font-size:13px;
+ margin:10px;
+    }
+#wrap
+{   
+    margin: 95px 55px 55px 55px;         
+}
+
+
+/*---------------------------DOCKED ELEMENT STYLES ----------------------------*/
+
+.ui-header{
+    position: absolute;    
+    width: 100%;    
+    color:#333;
+    background:  url(../images/body-bg.jpg);
+    height:50px;
+     border-bottom:solid 1px #dcdcdc;    
+}
+
+.ui-header h2{
+    margin: 15px auto 10px 50px;
+}
+
+.ui-footer  {
+    position: absolute;    
+    width: 100%;    
+    background:#333;
+    height:50px;
+    color:#fff;
+    border-top:solid 1px #000;
+}
+.ui-footer h2{
+    margin: 15px auto 10px 50px;
+}
+  
+.ui-header-fixed, .ui-footer-fixed {
+	z-index: 1000;
+	-webkit-transform: translateZ(0);
+}
+
+.ui-fixed-inline  {
+    display: none; 
+}
+
+
+/*---------------------------CSS ANIMATIONS ----------------------------*/
+
+.in  {
+    -webkit-animation-timing-function: ease-out;
+    -webkit-animation-duration: 350ms;
+}
+.out{
+    -webkit-animation-timing-function: ease-in;
+    -webkit-animation-duration: 350ms;
+}
+
+.fade.in {
+    opacity: 1;
+    z-index: 10;
+    -webkit-animation-name: fadein;
+}
+.fade.out {
+    z-index: 0;
+    -webkit-animation-name: fadeout;
+}
+
+@-webkit-keyframes fadein {  to { opacity: 1; } }
+
+@-webkit-keyframes fadeout {  to { opacity: 0;} }

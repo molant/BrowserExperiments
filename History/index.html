@@ -1,8 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Drop Files into Browser</title>
-    <link rel="stylesheet" href="../browserexperiments.css" />
+    <script src="../browserexperiments.js"></script>
 	<script>if ( typeof window.JSON === 'undefined' ) { document.write('<script src="js/json2.js"><\/script>'); }</script> 
 	<script src="js/jquery.js"></script> 
 	<script src="js/amplify.store.js"></script> 
@@ -19,9 +19,17 @@
 	</script>
 </head>
 <body>
-    <h1>History</h1>
+    <header><h1>History</h1></header>
     <blockquote>
-    	The History API allows sites to change the url in the clients browser and adds paths and titles to the browser history within the scope of the current domain. So with the History API we can enable the browsers forward and back buttons. And also allow users to copy the URL and share deep links to the page.
+    	<p>
+    	The <a href="http://www.w3.org/TR/html5/history.html">
+		(w3c) History API </a> allows sites to change the url in the clients browser and adds paths and titles to the browser history within the scope of the current domain. So with the History API we can enable the browsers forward and back buttons. And also 
+		make for a more page URL which can be shared.</p>
+		<p>
+    	The shim <a href="https://github.com/balupton/history.js">
+		history.js by balupton</a> shims IE 6/7/8/9, FF3.6, Opera 11 and fixes 
+		issues with Safari.</p>
+    	
     </blockquote>
     <div class="demo">
     	<div id="page_title"></div>

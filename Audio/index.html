@@ -2,7 +2,8 @@
 <html>
 <head>
     <title>Audio</title>
-    <link rel="stylesheet" href="../browserexperiments.css" />
+    <script src="../browserexperiments.js"></script>
+
     <script src="audio.min.js"></script>
     <script>
       audiojs.events.ready(function() {
@@ -11,13 +12,19 @@
     </script>
 </head>
 <body>
-    <h1>Audio</h1>
+    <header><h1>Audio</h1></header>
 	<blockquote>
-		<p>Audio API plays video files in the browser... yes this isn't new, but this is native in HTML5 spec.</p>
+		<p>The <a href="http://www.w3.org/wiki/HTML/Elements/audio">
+		(w3c) Audio API</a> provides native support for playback of .mp3 or .ogg files. 
+		And a Javascript API for adding bespoke playback controls. 
+		The shim <a href="http://kolber.github.com/audiojs/">
+		audio.js by Anthony Kolber</a> is used for IE 6/7/8 
+		and uses Flash plugin to recreate the Audio API</p>
 	</blockquote>
 	
     <div id="demo">
     	<audio src="http://s3.amazonaws.com/audiojs/02-juicy-r.mp3" preload="auto"></audio> 
     </div>
-</body>
+
+    </body>
 </html>

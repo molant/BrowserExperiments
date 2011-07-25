@@ -1,19 +1,112 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <!--[if gt IE 7]>
+    <link rel="stylesheet" type="text/css" href="ie.css" />
+    <![endif]-->
     <link rel="stylesheet" href="browserexperiments.css" />
     <title>Browser Experiments</title>
-    <!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-    <script src="Common/jquery-1.6.1.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="browserexperiments.css" />
+
+	<script src="Common/modernizr-2.0.js"></script>
+    <script src="Common/jquery-1.6.1.min.js"></script>
+<script>
+var _bTestResults;
+
+(function(){
+	m = Modernizr;
+	_bTestResults = {
+	
+	// HTML
+		semantictags	: true,
+		video			: !!m.video,
+		audio			: !!m.audio,
+		inputtypes		: m.inputtypes.search,
+		canvas			: m.canvas,
+		svg				: m.svg,
+		
+	// CSS
+		borderradius	: m.borderradius,
+		boxshadow		: m.boxshadow,
+		flexbox			: m.flexbox,
+		opacity			: m.opacity,
+		textshadow		: m.textshadow,
+		cssgradients	: m.cssgradients,
+		csstransforms	: m.csstransforms,
+		csstransforms3d	: m.csstransforms3d,
+		csstransitions	: m.csstransitions,
+		cssanimations	: m.cssanimations,
+		multiplebgs 	: m.multiplebgs,
+		csscolumns		: m.csscolumns,
+		mediaqueries	: null,
+		
+	// CORS
+		postmessage		: m.postmessage,
+		xdr				: null,
+	
+	
+	// Javascript API's
+		fileapi			: ("FileReader" in window),
+		localstorage	: m.localstorage,
+		sessionstorage	: m.sessionstorage,
+		geolocation		: m.geolocation,
+		webworkers		: m.webworkers,
+		websockets		: m.websockets,
+		device			: null,
+
+	// Misc 
+		draganddrop		: m.draganddrop,
+		sandbox			: null,
+	// Browser Chrome
+		touch			: m.touch,
+		history			: m.history,
+		notifications	: ("Notifications" in window) || ("webkitNotifications" in window),
+		appcache		: m.applicationcache
+	};
+
+	for( var x in _bTestResults ){
+		if(_bTestResults[x]){
+			_bTestResults[x] = '1';
+		}
+		else if(_bTestResults[x]===false){
+			_bTestResults[x] = '0';
+		}
+	}
+	
+})();
+
+function runtests(){
+	// To save data in Browserscope do something like the following.
+	// The syntax is 'test_key': 'value' where test_key is some unique
+	// identifier for a piece of data you want to store (no = or , allowed)
+	// and value is a numeric value from 0 through 1000000000000.
+	// Note: You can only send a maximum of 100 results in a beacon.
+	
+	// Beacon the results to Browserscope.
+	(function() {
+	  var _bTestKey = 'agt1YS1wcm9maWxlcnINCxIEVGVzdBjX7s4GDA';
+	  var _bScript = document.createElement('script');
+	  _bScript.src = 'http://www.browserscope.org/user/beacon/' + _bTestKey;
+	  _bScript.src += '?callback=testSubmitted';
+	  _bScript.setAttribute('async', 'true');
+	  var scripts = document.getElementsByTagName('script');
+	  var lastScript = scripts[scripts.length - 1];
+	  lastScript.parentNode.insertBefore(_bScript, lastScript);
+	})();
+}
+
+function testSubmitted(p){
+	console.log(["Test submitted", p]);
+}
+
+
+</script>
+
 </head>
 <body>
 <a href="http://github.com/molant/BrowserExperiments"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
     <header>
-        <div class="logo">
-        </div>
-        <input type="search" placeholder="e.g. Box Shadow, Canvas, SVG" style="font-size:18px;margin-left:200px;margin-top:30px;width:300px;">
+        <input type="search" placeholder="e.g. Box Shadow, Canvas, SVG">
         <div class="legend">
             <div class="legend-row">
                 <div class="status supported">
@@ -35,8 +128,64 @@
             </div>
         </div>
     </header>
+    <div class="table-header-outer">
+        <div class="table-header">
+            <div class="title">
+                <img src="images/h5_logo_top.png" alt="HTML5 Logo" /><span class="title-text">HTML5
+                    Features</span>
+            </div>
+            <div class="browser">
+                <img src="images/icon_ie_6.png" alt="IE" /><span class="center">6.0</span>
+            </div>
+            <div class="browser even">
+                <img src="images/icon_ie_7_8.png" alt="IE" /><span class="center">7.0</span>
+            </div>
+            <div class="browser">
+                <img src="images/icon_ie_7_8.png" alt="IE" /><span class="center">8.0</span>
+            </div>
+            <div class="browser even">
+                <img src="images/icon_ie_9_pp.png" alt="IE" /><span class="center">9.0</span>
+            </div>
+            <div class="browser">
+                <img src="images/icon_ie_9_pp.png" alt="IE" /><span class="center">
+                PP</span>
+            </div>
+            <div class="browser even">
+                <img src="images/icon_chrome.png" alt="Chrome" /><span class="center">
+                10</span>
+            </div>
+            <div class="browser">
+                <img src="images/icon_chrome.png" alt="Chrome" /><span class="center">
+                11</span>
+            </div>
+            <div class="browser even">
+                <img src="images/icon_safari.png" alt="Safari" /><span class="center">
+                4.x
+            </div>
+            <div class="browser">
+                <img src="images/icon_safari.png" alt="Safari" /><span class="center">
+                5.x</span>
+            </div>
+            <div class="browser even">
+                <img src="images/icon_firefox.png" alt="Firefox" /><span class="center">
+                3.6</span>
+            </div>
+            <div class="browser">
+                <img src="images/icon_firefox.png" alt="Firefox" /><span class="center">
+                4.x</span>
+            </div>
+            <div class="browser even">
+                <img src="images/icon_firefox.png" alt="Firefox" /><span class="center">
+                5.x</span>
+            </div>
+            <div class="browser">
+                <img src="images/icon_opera.png" alt="Opera" /><span class="center">
+                11</span>
+            </div>
+        </div>
+    </div>
     <table>
-        <thead>
+        <thead id="table-header">
             <tr>
                 <th class="title">
                     <img src="images/h5_logo_top.png" alt="HTML5 Logo" /><span class="title-text">HTML5
@@ -93,7 +242,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="feature-row">
+            <tr class="feature-row" id="semantictsgs">
                 <td class="feature">
                     Semantic elements
                 </td>
@@ -150,7 +299,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="borderradius">
                 <td class="feature">
                     Border-radius
                 </td>
@@ -204,7 +353,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="cssgradients">
 				<td class="feature">
                     Gradients
                 </td>
@@ -258,7 +407,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="video">
                 <td class="feature">
                     HTML5 Video
                 </td>
@@ -330,7 +479,7 @@
 				<td class="supported"></td>
 				<td class="supported"></td>
            </tr>
-            <tr class="shim-row">
+            <tr class="shim-row" id="audio">
                 <td>
                     <a href="Audio/">audio.js</a> by kolber
                 </td>
@@ -366,24 +515,24 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="csscolumns">
                 <td class="feature">
                     Columns
                 </td>
-				<td class="shim"></td>
-				<td class="shim"></td>
-				<td class="shim"></td>
-				<td class="shim"></td>
-				<td class="supported"></td>
-				<td class="supported"></td>
-				<td class="supported"></td>
-				<td class="supported"></td>
-				<td class="supported"></td>
-				<td class="supported"></td>
-				<td class="supported"></td>
-				<td class="supported"></td>
-				<td class="supported"></td>
-           </tr>
+                <td class="shim"></td>
+                <td class="shim"></td>
+                <td class="shim"></td>
+                <td class="shim"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+            </tr>                
             <tr class="shim-row">
                 <td>
                     <a href="CSS3Columns/">CSS3 - Multi Column</a> by Cdric Savarese
@@ -420,7 +569,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row"id="canvas">
                 <td class="feature">
                     Canvas
                 </td>
@@ -510,7 +659,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="boxshadow">
                 <td class="feature">
                     Box-shadow
                 </td>
@@ -563,7 +712,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="cssanimations">
                 <td class="feature">
                     CSS3 Animation
                 </td>
@@ -606,7 +755,7 @@
 				<td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
 				<td></td> <td></td> <td></td> <td></td> <td></td>
             </tr>
-			<tr class="feature-row">
+            <tr class="feature-row" id="flexbox">
                 <td class="feature">
                     Flexible Box Model
                 </td>
@@ -659,7 +808,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="opacity">
                 <td class="feature">
                     Opacity
                 </td>
@@ -714,7 +863,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="textshadow">
                 <td class="feature">
                     Text-shadow
                 </td>
@@ -732,23 +881,6 @@
                 <td class="supported"></td>
                 <td></td>
             </tr>
-            <tr class="shim-row">
-                <td>
-                    <a href="TextShadow/">textshadow</a> by <a href="http://heygrady.com/text-shadow-for-internet-explorer">Haygray</a></td>
-				<td>??</td>
-				<td class="supported"></td>
-				<td class="supported"></td>
-				<td class="supported"></td>
-				<td class="supported"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-           </tr>
             <tr class="shim-row feature-description">
                 <td>
                     Adds effect (shadows, blur, etc.) to your text. Requires jQuery</td>
@@ -766,7 +898,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="appcache">
                 <td class="feature">
                     ApplicationCache
                 </td>
@@ -819,7 +951,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="localstorage">
                 <td class="feature">
                     localStorage
                 </td>
@@ -839,7 +971,7 @@
             </tr>
             <tr class="shim-row">
                 <td>
-                    <a href="SessionStorage/">Storage</a> by remy sharp</td>
+                    <a href="LocalStorage/">Storage</a> by remy sharp</td>
 				<td class="supported"></td>
 				<td class="supported"></td>
 				<td></td>
@@ -871,7 +1003,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="sessionstorage">
                 <td class="feature">
                     sessionStorage
                 </td>
@@ -925,7 +1057,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="csstransforms">
                 <td class="feature">
                     CSS 2D Transforms
                 </td>
@@ -979,7 +1111,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="multiplebgs">
                 <td class="feature">
                     Multiple backgrounds
                 </td>
@@ -1033,7 +1165,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="inputtypes">
                 <td class="feature">
                     HTML5 Form
                 </td>
@@ -1041,7 +1173,7 @@
 				<td class="shim"></td>
 				<td class="shim"></td>
 				<td class="shim"></td>
-				<td class="shim"></td>
+				<td class="supported"></td>
                 <td class="supported"></td>
                 <td class="supported"></td>
                 <td class="supported"></td>
@@ -1058,7 +1190,7 @@
 				<td class="supported"></td>
 				<td class="supported"></td>
 				<td class="supported"></td>
-				<td class="supported"></td>
+				<td class="shim"></td>
 				<td class="shim"></td>
 				<td class="shim"></td>
 				<td class="shim"></td>
@@ -1085,7 +1217,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="csstransforms3d">
                 <td class="feature">
                     CSS 3D Transforms
                 </td>
@@ -1103,7 +1235,7 @@
 				<td></td>
 				<td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="csstransitions">
                 <td class="feature">
                     CSS Transitions
                 </td>
@@ -1155,7 +1287,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="geolocation">
                 <td class="feature">
                     Geolocation
                 </td>
@@ -1228,13 +1360,13 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="svg">
                 <td class="feature">
                     SVG
                 </td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td class="shim"></td>
+				<td class="shim"></td>
+				<td class="shim"></td>
                 <td class="supported"></td>
                 <td class="supported"></td>
                 <td class="supported"></td>
@@ -1246,25 +1378,60 @@
                 <td class="supported"></td>
                 <td class="supported"></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="shim-row">
+                <td>
+                    <a href="SVG/">svgweb</a> by Brad Nueberg
+                </td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="shim-row feature-description">
+                <td>
+                    Inline SVG allows for rich DOM shapes and events</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="feature-row" id="draganddrop">
                 <td class="feature">
                     Drag & Drop
                 </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="touch">
                 <td class="feature">
                     Touch Events
                 </td>
@@ -1278,11 +1445,11 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="websockets">
                 <td class="feature">
                     Web Sockets
                 </td>
@@ -1290,7 +1457,25 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
                 <td></td>
+                <td class="supported"></td>
+                <td></td>
+                <td></td>
+                <td class="supported"></td>
+                <td></td>
+            </tr>
+            <tr class="shim-row">
+                <td>
+                    <a href="Websockets/">demo</a>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+				<td></td>
+				<td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -1300,9 +1485,9 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
-                <td class="feature">
-                    Web Workers
+            <tr class="shim-row feature-description">
+                <td>
+                    Persistant channel messaging
                 </td>
                 <td></td>
                 <td></td>
@@ -1318,7 +1503,62 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="webworkers">
+                <td class="feature">
+                    Web Workers
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="shim"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+                <td class="supported"></td>
+            </tr>
+            <tr class="shim-row">
+                <td>
+                    <a href="Webworker/">fakeworker-js</a>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+				<td class="supported"></td>
+				<td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="shim-row feature-description">
+                <td>
+                    Executes script in another thread
+
+</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="feature-row" id="selectors">
                 <td class="feature">
                     CSS3 Selectors
                 </td>
@@ -1373,7 +1613,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="mediaqueries">
                 <td class="feature">
                     CSS3 Media Queries
                 </td>
@@ -1427,14 +1667,14 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="notifications">
                 <td class="feature">
                     Notifications
                 </td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td></td>
+				<td class="shim"></td>
 				<td class="shim"></td>
                 <td class="supported"></td>
                 <td class="supported"></td>
@@ -1452,7 +1692,7 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td></td>
+				<td class="shim"></td>
 				<td class="shim"></td>
 				<td class="shim"></td>
 				<td class="shim"></td>
@@ -1481,7 +1721,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="fileapi">
                 <td class="feature">
                     File API
                 </td>
@@ -1498,7 +1738,7 @@
                 <td class="supported"></td>
                 <td class="supported"></td>
                 <td></td>
-           </tr>
+            </tr>
             <tr class="shim-row">
                 <td>
                     <a href="FileReader/">FileReader</a> by andrew dodson &amp; community
@@ -1507,7 +1747,7 @@
 				<td class="shim"></td>
 				<td class="shim"></td>
 				<td class="shim"></td>
-				<td class="shim"></td>
+				<td class="supported"></td>
                 <td class="supported"></td>
                 <td class="supported"></td>
                 <td></td>
@@ -1535,7 +1775,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="history">
                 <td class="feature">
                     History API
                 </td>
@@ -1589,7 +1829,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="device">
                 <td class="feature">
                     Device API
                 </td>
@@ -1643,7 +1883,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="postmessage">
                 <td class="feature">
                     postMessage
                 </td>
@@ -1686,7 +1926,7 @@
 				<td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
 				<td></td> <td></td> <td></td> <td></td> <td></td>
             </tr>
-            <tr class="feature-row">
+            <tr class="feature-row" id="xdr">
                 <td class="feature">
                     XDR (XDomainRequest)
                 </td>
@@ -1764,7 +2004,35 @@
             	var l = $s.add($s.nextUntil("tr.feature-row")).removeClass("hide").length;
             	$("#noresults")[(l===0?'show':'hide')]();
             });
+
+            if (($.browser.msie && $.browser.version >= 9) || !$.browser.msie) {
+                $(window).bind('scroll', function () {
+                    var elem = $('#table-header');
+                    var docViewTop = $(window).scrollTop();
+                    var docViewBottom = docViewTop + $(window).height();
+
+                    var elemTop = $(elem).offset().top;
+                    var elemBottom = elemTop + $(elem).height();
+                    if (!((elemBottom >= docViewTop) && (elemTop <= docViewBottom) && (elemBottom <= docViewBottom) && (elemTop >= docViewTop))) {
+                        $('.table-header').show();
+                    } else {
+                        $('.table-header').hide();
+                    }
+                });
+            }
         });
     </script>
+
+<script>
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-18575680-3']);
+	_gaq.push(['_trackPageview']);
+	
+	(function () {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
 </body>
 </html>

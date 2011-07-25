@@ -1,0 +1,502 @@
+@charset "UTF-8";
+/* CSS Document */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/* END RESET */
+
+
+body, html{
+	background-color:#5F5F5F;
+	margin-top:30px;
+	font-family:eogesRegular, arial, helvetica, sans-serif;
+}
+
+/*//////////FONTS//////*/
+@font-face {
+    font-family: 'eogesblackRegular';
+    src: url('fonts/eoges_black-webfont.eot');
+    src: url('fonts/eoges_black-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/eoges_black-webfont.woff') format('woff'),
+         url('fonts/eoges_black-webfont.ttf') format('truetype'),
+         url('fonts/eoges_black-webfont.svg#eogesblackRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+	  font-family: 'eogesRegular';
+	  src: url('fonts/eoges-webfont.eot');
+	  src: url('fonts/eoges-webfont.eot?#iefix') format('embedded-opentype'),
+		   url('fonts/eoges-webfont.woff') format('woff'),
+		   url('fonts/eoges-webfont.ttf') format('truetype'),
+		   url('fonts/eoges-webfont.svg#eogesRegular') format('svg');
+	  font-weight: normal;
+	  font-style: normal;
+}
+
+@font-face {
+    font-family: 'eogesboldBold';
+    src: url('fonts/eoges_bold-webfont.eot');
+    src: url('fonts/eoges_bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/eoges_bold-webfont.woff') format('woff'),
+         url('fonts/eoges_bold-webfont.ttf') format('truetype'),
+         url('fonts/eoges_bold-webfont.svg#eogesboldBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+#container{
+	width:100%;
+	float:left;
+}
+
+.borderdraw {
+line-height: 0px;
+width: 0px;
+height: 0px;
+border-style: solid;
+margin:0 auto;
+border-width:0px 25px 42px;width:940px;border-color:#fff #5F5F5F #fff #5F5F5F;
+
+}
+
+#contentx{
+	width:990px;
+	background-color:#000;
+	margin:0 auto;
+
+}
+
+
+#content{
+	width:930px;
+	background-color:#fff;
+	padding:0 30px 30px 30px;
+	margin:0 auto;
+	float:left;
+	/*box-shadow: 0 0 20px #000;
+	-webkit-box-shadow: 0 0 20px #000;*/
+	
+}
+
+#header{
+	width:100%;
+	border-top:3px solid #C8C8C1;
+}
+
+#header ul{
+	margin-left:45px;
+	margin-top:30px;
+}
+
+#header li{
+	list-style:none;
+	display:inline;
+	float:left;
+	margin-right:45px;
+}
+
+
+
+#icon1{
+	width:38px;
+	height:40px;
+	background-image:url(images/icons.png);
+	background-position:-14px -10px;
+}
+
+#icon2{
+	width:38px;
+	height:40px;
+	background-image:url(images/icons.png);
+	background-position:-77px -10px;
+}
+
+#icon3{
+	width:38px;
+	height:40px;
+	background-image:url(images/icons.png);
+	background-position:-144px -10px;
+}
+
+#icon4{
+	width:38px;
+	height:40px;
+	background-image:url(images/icons.png);
+	background-position:-211px -10px;
+}
+
+#icon5{
+	width:38px;
+	height:40px;
+	background-image:url(images/icons.png);
+	background-position:-276px -10px;
+}
+
+#icon6{
+	width:38px;
+	height:40px;
+	background-image:url(images/icons.png);
+	background-position:-342px -10px;
+}
+
+#icon8{
+	width:38px;
+	height:40px;
+	background-image:url(images/icons.png);
+	background-position:-472px -10px;
+}
+
+#icon7{
+	width:38px;
+	height:40px;
+	background-image:url(images/icons.png);
+	background-position:-408px -10px;
+}
+
+#icon1:hover, #icon2:hover, #icon3:hover, #icon4:hover, #icon5:hover, #icon6:hover, #icon7:hover, #icon8:hover{
+	background-position-y:-76px;
+	
+}
+
+#icon_middle{
+	width:140px;
+	height:120px;
+	float:left;
+	margin:0 auto;
+	margin-top:-105px;
+	padding-left:20px;
+}
+
+#titlebar{
+	float:left;
+	margin-top:20px;
+	width:100%;
+	height:52px;
+	background-image:url(images/dots.png);
+	border-top:3px solid #C8C8C1;
+	border-bottom:1px solid #C8C8C1;
+	margin-bottom:30px;
+
+}
+
+.title{
+	width:420px;
+	height:37px;
+	background-color:#fff;
+	font-family:eogesblackRegular, Arial, Helvetica, sans-serif;
+	font-size:20px;
+	color:#000;
+	margin:0 auto;
+	padding-top:15px;
+	text-align:center;
+	color:#4B4A46;
+	
+}
+
+#examplebox{
+	margin:0 auto;
+	width:110%;
+	float:left;
+	margin-left:-10px;
+}
+
+.example{
+	width:456px;
+	margin:10px 10px 10px 10px;
+	float:left;
+}
+
+.example_id{
+	width:100%;
+	float:left;
+	margin-bottom:10px;
+	font-size:12px;
+	color:#5F5F5F;
+	text-decoration:none;
+	font-family:eogesboldBold, arial, helvetica, sans-serif;
+}
+
+
+a:hover .example_id{
+	color:#000;
+	text-decoration:none;
+}
+
+.example_img{
+	width:100%;
+	height:210px;
+	background-color:#ccc;
+	float:left;
+	margin-bottom:10px;
+}
+
+.example_desc{
+	float:left;
+	width:70%;
+	font-size:12px;
+	color:#999999;
+	vertical-align:text-top;
+
+	
+}
+	
+#footer{
+	width:100%;
+	height:40px;
+	float:left;
+	margin-top:20px;
+	border-top:1px solid #C8C8C1;
+	font-size:11px;
+	padding-top:15px;
+	vertical-align:text-top;
+	color:#4B4A46;
+	background-color:#fff;
+	
+}
+
+#footer li{
+	display:inline;
+	margin-right:20px;
+	vertical-align:top;
+	width:400px;
+	float:left;
+	
+}
+
+
+
+
+
+.html5badge{
+	width:45px;
+	height:40px;
+	background-image:url(images/html5badge.png);
+	background-position:-29px -141px;
+	float:right;
+	
+}
+
+
+
+
+
+div.listItem .imgFeature {
+	float:right;
+	margin-left:10px;
+	display:inline;
+	width:25%;
+	margin-bottom:5px;
+}
+
+
+
+div.listItem .imgFeature img{
+	width:17px;
+	height:17px;
+
+}
+
+
+
+
+
+
+
+
+
+
+/*///////////////////////*/
+
+
+
+div.listItem{
+	width:456px;
+	margin:10px 10px 10px 10px;
+	float:left;
+}
+
+
+
+div.listItem .imgContainer{
+	width:100%;
+	height:210px;
+	background-color:#ccc;
+	float:left;
+	margin-bottom:10px;
+}
+
+div.listItem .imgContainer img{
+	border:1px solid #C8C8C1;
+/*	height:211px;
+	width:442px;	*/
+}
+
+
+
+xxxxdiv.listItem
+{
+    width: 220px;
+    height: 230px;
+    float:left;
+    margin: 0;
+    margin: 0 20px 30px 0;      
+    overflow: hidden;
+    background-color:#fff;
+        
+}
+
+xxxdiv.listItem .imgContainer{
+  
+    width: 220px;
+    height: 165px;
+    position: relative;
+    clear: left;
+    padding: 0 0 10px 0;          
+    overflow: hidden;   
+	background-color:#000;       
+}
+
+
+div.listItem .listImage{
+    
+    padding: 10px;
+    width: 200px;
+    height: 150px;        
+}
+
+div.listItem .placeholder{
+  position:relative;
+  height:32px;
+  width:32px;
+  margin:45px 0px 0px 88px
+  
+}
+
+div.listItem h2{
+    text-transform:lowercase;
+    margin: 0 0 0 10px;
+    padding: 0px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height:1.4em;
+    color: #333;    
+}
+
+
+div.listItem h3{
+    text-transform:uppercase;
+    margin: 0 0 0 10px;
+    padding: 0px;
+    font-size: 11px;
+    font-weight:normal;
+    font-style:oblique;
+    color: #999;    
+}
+
+
+
+/*////////// HOVER ////////////*/
+.hover{
+	width:200px;
+	min-height:50px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius:2px;
+	position:absolute;
+	top:180px;
+	background-color:#F2F2F2;
+	z-index:9999;
+	box-shadow: 0 0 5px #666;
+	-webkit-box-shadow: 0 0 5px #666;
+	background-position:20px -5px;
+	background-repeat:no-repeat;
+	padding-left:10px;
+	padding-right:10px;
+	padding-bottom:10px;
+	font-size:10px;
+	line-height:14px;
+	color:#666;
+	
+
+	
+}
+
+.pointer{
+	background-image:url(images/tooltop.png);
+	position:relative;
+	background-repeat:none;
+	width:12px;
+	height:6px;
+	top:-7px;
+	margin:0 auto;
+	background-color:#F2F2F2;
+}
+
+.hovertitle{
+	font-size:12px;
+	width:100%;
+	font-family: 'eogesboldBold';
+	margin-bottom:5px;
+}
+
+#hovertest{
+	float:left;
+	
+}
+	
