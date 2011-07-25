@@ -411,7 +411,12 @@ h2
 
 div.browser
 {
-    width:41px;    
+    width:41px;   
+}
+
+div.browser.even
+{
+    width:40px;
 }
 
 div.title
@@ -419,5 +424,5 @@ div.title
     padding-left: 0px;
     margin: 0px;
     text-align: center;
-    width: 509px;
+    width: 515px;
 }
