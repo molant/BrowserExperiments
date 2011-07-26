@@ -38,8 +38,11 @@ table
 	
 	thead.float{
 		box-shadow:0 10px 10px -10px black;
+		-webkit-box-shadow: 0 10px 10px -10px black;
+		-moz-box-shadow: 0 10px 10px -10px black; 
 		top:0;
 		position:fixed;
+		filter: progid:DXImageTransform.Microsoft.dropShadow(color=#11000000, offX=0, offY=3px, positive=true);
 	}
 
 	thead{
@@ -414,6 +417,17 @@ a.button.orange{
 	background-color:orange;
 	color:black;	
 }
+a.button.red{
+	background-color:red;
+}
+
+a.box{
+	width:150px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:2.3em;
+	height:120px;
+	padding-top:30px;
+}
 
 article{
 	display:none;
@@ -443,77 +457,3 @@ article.show{
 		width:50%;
 		text-align:justify;
 	}
-
-
-/**
- * Adding Antons code for the homepage
- */
-.browser img
-{
-    padding: 0px;
-    display: block;
-    margin: auto auto 4px auto;
-    width: 25px;
-    height: 25px;
-}
-
-
-.logo
-{
-    float: left;
-    width: 186px;
-    height: 71px;
-    background: transparent url('images/main_logo.png') no-repeat;
-}
-
-h2
-{
-    text-shadow: 2px 2px 2px #ff0000;
-}
-
-.table-header
-{
-    display: none;   
-    background-color: #FFFFFF;
-    width: 1056px;
-    box-shadow: 0px 3px 10px #CCCCCC;
-    height: 100px;
-    border-top: 4px solid #4F535F;
-    border-bottom: 1px solid #CCCCCC !important; 
-}
-
-.table-header-outer
-{
-    width: 1056px;
-    overflow: hidden !important;
-    position: fixed;
-    top: 0px;
-    height:120px;
-}
-
-.table-header div
-{
-    float:left;
-    border-right: 1px solid #CCCCCC;
-    padding-top:45px;
-    height:100%;
-    text-align:center;        
-}
-
-div.browser
-{
-    width:41px;   
-}
-
-div.browser.even
-{
-    width:40px;
-}
-
-div.title
-{
-    padding-left: 0px;
-    margin: 0px;
-    text-align: center;
-    width: 515px;
-}

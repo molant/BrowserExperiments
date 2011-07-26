@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas</title>
+    <script src="../../browserexperiments.js"></script>
+    
+    <script src="excanvas.js"></script>
+    <script src="slcanvas.js"></script>
+</head>
+<body>
+    <header><h1>Canvas 2D-Context</h1></header>
+	<blockquote>
+		<p>The <a href="http://dev.w3.org/html5/2dcontext/">(w3c) HTML5 Canvas API</a> is a great drawing board with some cool functions for drawing shapes and images 
+		dynamically and manipulating images in the client. And with browsers supporting this at a deep level it can be very performant and great for animations and games.</p>
+		<p>There are two excellent shims illustrated below which provide support 
+		in IE 6/7/8. <a href="http://slcanvas.codeplex.com/">SlCanvas by davidans and stimpy77 
+		(Silverlight)</a> 
+		and <a href="http://code.google.com/p/explorercanvas/">
+		ExCanvas by Google (VML)</a></p>
+	</blockquote>
+
+	<div id="demo">
+		
+		<div class="inline">
+			<span>Native</span>
+			<div id="native"></div>
+	    </div>
+    	
+    	<div class="inline"> 
+			<span>Silverlight</span>
+			<canvas id="silverlight" width="200" height="200" renderMethod="silverlight" onload="buildTest(this);">[This browser does not<br />support &lt;canvas&gt;.]</canvas>
+		</div>
+    	
+    	
+    	<div class="inline"> 
+			<span>ExCanvas</span>
+			<div id="excanvas"></div>
+		</div>
+	</div>
+
+<script>
+
+	// Ball color
+	var rgb = "rgb("+(parseInt(Math.random()*255))+", "+(parseInt(Math.random()*255))+", "+(parseInt(Math.random()*255))+")";
+
+	// Build a normal canvas
+	var c = document.createElement('canvas');
+	c.height=200;
+	c.width=200;
+	document.getElementById('native').appendChild(c);
+	buildTest(c);
+	
+	// Build an excanvas, IE only
+	var c = document.createElement('canvas');
+	c.height= 200;
+	c.width=200;
+	if("G_vmlCanvasManager" in window){
+		G_vmlCanvasManager.initElement(c);
+	}
+	document.getElementById('excanvas').appendChild(c);
+	buildTest(c);
+
+
+		
+    	
+	function buildTest(el){
+
+		if(!el.getContext){
+			return;
+		}
+		console.log(el);
+		var c = el.getContext('2d');
+
+		c.save();
+		c.fillStyle = "red";
+		c.fillRect(50, 50, 100, 100); 
+		c.restore(); 
+	
+		var i = 1,
+			j = 1,
+			x = 0,
+			y = 0,
+			Bd = 30;
+
+				
+		function animate(){
+			i++;
+	
+			h = el.height-Bd;
+	
+			x = ( 0.5 * el.width);
+	
+			y = ( (4*j++) + (1 * 1 * Math.pow(i,2)));
+	
+			if( y>h && i>0 ){
+				i=-i;
+			}
+			if( y > h ){
+				y = h;
+			}
+	
+			var gradient = c.createRadialGradient(x, y, 0, x, y, Bd ); 
+			gradient.addColorStop(0, rgb);  
+			gradient.addColorStop(1, "rgb(0, 0, 0)"); 
+			gradient.addColorStop(1, "transparent"); 
+			c.save(); 
+			c.fillStyle = gradient;
+			c.fillRect(0, 0, el.width, el.height); 
+			c.restore(); 
+	
+			// set timeout
+			setTimeout(animate,33);
+		};
+		
+		/*
+		function resize(){
+			c.canvas.height=window.innerHeight;
+			c.canvas.width=window.innerWidth;
+		}
+		resize();
+		window.addEventListener('resize', resize,false);
+		*/
+		
+		animate();
+	}
+</script>
+
+</body>
+</html>

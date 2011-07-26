@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drop Files into Browser</title>
+    <script src="../../browserexperiments.js"></script>
+	<script src="js/jquery.js"></script> 
+	<script>
+
+(function () {
+
+
+    // Listen for any anchor tag call
+    $('a:not([href^=http])').live("click", function (e) {
+        // prevent the default reloading the page
+        e.preventDefault();
+        // Does the browser support popstate?
+        if ("history" in window && !!history.pushState) {
+            // Goodbye hashchange, you weren't great at deeplinking and SEO but you did create a nice UX.
+            // Is this a change in location?
+            history.pushState({}, this.title, this.href);
+            // Safari doesn't update our search string
+            $(window).trigger('popstate');
+            return false;
+        }
+
+        window.location.hash = this.href;
+    });
+
+    // Listen out to the new change in
+    $(window).bind("hashchange popstate", function () {
+
+        // Get the new url
+        var url = (window.location.hash.replace(/\#/, '') || window.location.pathname);
+
+        // Add the page
+        $('#page_title').html(url);
+
+        // Just load test* pages
+        if(!url.match(/test/)){
+            $('#page_content').html("");
+            return;
+        }
+
+        // Make a call to grab the new page
+        $.ajax({
+            url: url,
+            type: "get",
+            dataType: "html",
+            success: function (html) {
+                // Insert the content into the page
+                var $div = $('<div></div>');
+                $div.get(0).innerHTML = html;
+                $('#page_content').html( $div.first().html() );
+            },
+            error: function () {
+                
+            }
+        });
+    });
+
+    // Hashchange event doesn't get triggered in all browsers to make it compatible
+    // For IE 6,7
+    (function () {
+        if (!history.pushState && (!("onhashchange" in window) || ($.browser.msie && $.browser.version === '7.0'))) {
+            var hash = window.location.hash;
+            setInterval(function () {
+                if (window.location.hash !== hash) {
+                    $(window).trigger('hashchange');
+                    hash = window.location.hash;
+                }
+            }, 500);
+        }
+    })();
+})();
+
+	</script>
+</head>
+<body>
+    <header><h1>History</h1></header>
+    <blockquote>
+    	<p>
+    	The <a href="http://www.w3.org/TR/html5/history.html">
+		(w3c) History API </a> allows sites to change the url in the clients browser and adds paths and titles to the browser history within the scope of the current domain. So with the History API we can enable the browsers forward and back buttons. And also 
+		make for a more page URL which can be shared.</p>
+		<p>
+    	The shim here is very simple, using jQuery</p>
+    	
+    </blockquote>
+    <div class="demo">
+    	<div id="page_title"></div>
+    	<div id="page_content"></div>
+        <a href="test_one.htm">One</a>
+        <a href="test_two.htm">Two</a>
+        <a href="test_three.htm">Three</a>
+    </div>
+</body>
+</html>

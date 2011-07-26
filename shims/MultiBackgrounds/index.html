@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS Gradient</title>
+    <script src="../../browserexperiments.js"></script>
+	<!-- documentation at http://css3pie.com/  -->
+    <style type="text/css">
+		#demo {
+			color:red;
+			height: 100px;
+			width: 200px;
+			margin: 10px;
+			padding: 10px;
+			background: #cdf;
+			background: url(../images/h5_logo_top.png),
+			    -moz-linear-gradient(left, rgba(255, 255, 255, 0),  rgba(255, 255, 255, 1)),
+			    url(../images/h5-logo.png);
+			background: url(../images/h5_logo_top.png),
+			    -webkit-linear-gradient(left, rgba(255, 255, 255, 0),  rgba(255, 255, 255, 1)),
+			    url(../images/h5-logo.png);
+			background-repeat: no-repeat, no-repeat, repeat;
+			background-position: bottom right, left, right;
+
+			-pie-background: url(../images/h5_logo_top.png), linear-gradient(#111111, #FFFFFF), url(../images/h5-logo.png);
+		}
+    </style>
+    <!--[if lt IE 10]>
+	<style>
+		#demo {
+			/* Enables linear-gradient support for IE6/7/8/9 */
+			position: relative;
+			behavior: url(../Common/css3pie/PIE.htc);
+		}
+	</style>
+    <![endif]-->
+</head>
+<body>
+    <header><h1>CSS3 Multi-Background</h1></header>
+	<blockquote>
+		<p>The <a href="http://www.w3.org/TR/css3-background/#layering">
+		(w3c) CSS3 multi-background</a> property allows for defining multiple 
+		background images and gradients to an element. The shim is part of <a href="http://css3pie.com/">CSS3Pie</a> and 
+		Support IE 6/7/8</p>
+	</blockquote>
+	
+	<div id="demo">
+		You should see lots of images here.
+	</div>
+</body>
+</html>

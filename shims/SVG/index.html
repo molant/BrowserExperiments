@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SVG</title>
+	<script src="../../browserexperiments.js"></script>
+	<script src="svg.js"></script>
+</head>
+<body>
+    <header><h1>SVG</h1></header>
+	<blockquote>
+		<p>The
+		<a href="http://www.w3.org/Graphics/SVG/">(w3c) Scalable Vector Graphics (SVG)</a> is a form of markup similar to HTML, which includes a rich set of shapes and gradients. Like HTML events can be assigned to elements, and new elements can be created and attributes changed dynamically. The shim 
+		<a href="http://code.google.com/p/svgweb/">
+		svgweb by brad neuberg &amp; others</a> requires that the SVG markup is created via javascript or wrapped in a <code>script</code> tag. So the browser may fall back to Flash.</p>
+	</blockquote>
+	
+    <div id="demo">
+    	<script type="image/svg+xml">
+		   <svg 
+		       width="200" height="200"
+		       style="background-color: #D2B48C; display: block; margin-bottom: 5px;"
+		       id="embeddedSVG">
+		     <g 
+		        id="myGroup" 
+		        fill="blue" 
+		        style="font-size: 18px; text-anchor: middle; font-family: serif;">
+		         <circle
+		              id="myCircle" 
+		              cx="100" cy="75" r="50"
+		              stroke="firebrick"
+		              stroke-width="3" />
+		         <text x="100" y="155">Hello World</text>
+		         <text x="100" y="175">From Embedded SVG!</text>
+		     </g>
+		   </svg>
+		</script>
+    </div>
+</body>
+</html>
