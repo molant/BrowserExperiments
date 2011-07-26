@@ -25,7 +25,6 @@ table
     border-left: 0px solid;
     border-collapse: collapse;
     border-spacing: 0;
-    width: 100%;
     margin-bottom: 50px;
 }
 	td, th
@@ -34,135 +33,143 @@ table
 	    vertical-align: top;
 	    border-left: 0px solid;
 	}
-
-	th
-	{
-	    padding-top: 45px;
-	    padding-bottom: 10px;
-	    font-weight: normal;
+	
+	thead.float{
+		box-shadow:0 10px 10px -10px black;
+		top:0;
+		position:fixed;
 	}
 
-	th.title
-	{
-	    padding-left: 0px;
-	    margin: 0px;
-	    text-align: left;
-	    width: 550px;
+	thead{
 	}
-
-		.title img
-		{
-		    display: block;
-		    float: left;
-		}
-	.title-text
-	{
-	    display: block;
-	    float: left;
-	    margin-top: 14px;
-	    text-transform: uppercase;
-	    font-weight: bold;
-	}
-
-		th img
-		{
-		    margin-right: 5px;
+		thead th,
+		thead td{
+		    padding: 41px 0 10px 0;
+		    font-weight: normal;
+		    vertical-align: bottom;
+		    margin: 0;
+		    background-color:white;
+		    overflow:hidden;
 		}
 
-	td
-	{
-	    vertical-align: middle;
-	}
-
-	.feature-row td
-	{
-	    height: 42px;
-	}
-	
-	thead th
-	{
-	    vertical-align: bottom;
-	}
-
-	tbody th
-	{
-	    text-align: left;
-	}
-	
-	th.current
-	{
-	    background-color: #4E5160;
-	    color: #FFFFFF;
-	    font-weight: bold;
-	}
-	
-	.shim-row
-	{
-	    background-color: #F5F7F6;
-	    display: none;
-	}
-	
-	.shim-row td
-	{
-	    padding: 15px 0px 0px 10px;
-	    border-top: 0px solid;
-	    border-bottom: 0px solid;
-	}
-	
-	tr td:first-of-type
-	{
-	    padding-right: 28px !important;
-	}
-	
-	.shim-row td.shim
-	{
-	    background-position: bottom;
-	}
-	
-	.shim-row td.supported
-	{
-	    background-position: bottom;
-	}
-
-		.shim-row td a
+		thead th
 		{
-		    color: #4E5260;
-		    font-weight: bold;
+		    text-align: left;
+		}
+			thead th img
+			{
+			    display: block;
+			    float: left;
+				margin-right:5px;
+			}
+			thead th span
+			{
+			    float: left;
+			    display: block;
+			    margin-top: 14px;
+			    text-transform: uppercase;
+			    font-weight: bold;
+			}
+		thead td{
+		    width: 45px;
+		    overflow:hidden;
+		    text-align:center;
+		}
+			thead td img{
+			    margin-right: 5px;
+			    padding: 0px;
+			    display: block;
+			    margin: auto auto 4px auto;
+			    width: 25px;
+			    height: 25px;
+			}
+
+	tr th{
+	    width: 457px;
+	}
+	tbody{
+	}
+		tbody tr th
+		{
+		    text-align: left;
+		}
+		tbody tr td{
+		    padding:0;
+		    overflow:hidden;
 		}
 
-	.feature-description td
-	{
-	    padding-bottom: 25px;
-	    font-size: 0.9em;
-	    line-height: 1.7em;
-	}
-
-		td .title
-		{
-		    margin: 15px 30px 0px 0px;
-		    display: block;
-		}
-
-	td.feature
-	{
-	    background: transparent url('images/arrow.png') no-repeat left;
-	    text-transform: uppercase;
-	    padding-left: 10px;
-	    cursor: pointer;
-	}
-
-	td.selected
-	{
-	    background: transparent url('images/arrow_down.png') no-repeat left;
-	}
-
-	tr.selected{
-		display:table-row;
-	}
+		tbody tr.feature-row {
 	
-	tr.hide{
-		display:none;
-	}
+		}
+			tbody tr.feature-row th{
+			    background: transparent url('images/arrow.png') no-repeat left;
+			    text-transform: uppercase;
+			    padding-left: 10px;
+			    cursor: pointer;
+			}
+			tbody tr.feature-row th.selected{
+			    background: transparent url('images/arrow_down.png') no-repeat left;
+			}
+	
+			tbody tr.feature-row td,
+			tbody tr.feature-row th
+			{
+			    height: 42px;
+			    vertical-align:middle;
+			    text-align:left;
+			    font-weight:normal;
+			}
+			tbody tr.feature-row td{
+			    width:45px;
+    		    text-align:center;
+    		    vertical-align:bottom;
+			}
+		
+		tbody tr.shim-row
+		{
+		    background-color: #F5F7F6;
+		    display: none;
+		}
+		
+			tbody tr.shim-row td
+			{
+			    padding: 15px 0px 0px 10px;
+			    border-top: 0px solid;
+			    border-bottom: 0px solid;
+			}
+		
+			tbody tr.shim-row td.shim,
+			tbody tr.shim-row td.supported
+			{
+			    background-position: bottom;
+			}
+
+				tbody tr.shim-row td a{
+				    color: #4E5260;
+				    font-weight: bold;
+				}
+	
+		tbody tr.feature-description{
+	
+		}
+			tbody tr.feature-description td
+			{
+			    padding-bottom: 25px;
+			    font-size: 0.9em;
+			    line-height: 1.7em;
+			}
+	
+
+		tbody tr.selected{
+			display:table-row;
+		}
+		
+		tbody tr.hide{
+			display:none;
+		}
+	
+
+
 
 footer
 {
@@ -273,6 +280,7 @@ blockquote{
 		padding:0;
 	}
 
+
 /**
  * VIew Source
  */
@@ -348,16 +356,87 @@ pre { font-size: 14px; }
 .description{
 }
 
+/**
+ * Launch demo page
+ */ 
+a.button{
+	display:inline-block;
+	border:none;
+	filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#30FFFFFF', endColorstr='#30000000');
+	background:-webkit-gradient(linear,left top, left bottom, from(rgba(255,255,255,0.2)), to(rgba(0,0,0,0.2)), 
+				color-stop(50%,rgba(255,255,255,0)), 
+				color-stop(50%,rgba(0,0,0,0)));
+	background: -moz-linear-gradient(rgba(255,255,255,0.2) 0,rgba(255,255,255,0) 49%,rgba(0,0,0,0) 51%,rgba(0,0,0,0.2) 100%);
+    -webkit-box-shadow: rgba(255, 255, 255, 0.1) 0 1px inset,
+                        rgba(0, 0, 0, 0.4) 0px 1px 1px;
+    -moz-box-shadow: rgba(255, 255, 255, 0.1) 0 1px inset,
+                        rgba(0, 0, 0, 0.4) 0px 1px 1px;
+	text-shadow:rgba(0, 0, 0, 0.4) 0px 1px;
 
-.browser{
-    width: 42px;
-    margin: auto;
-    padding-top: 41px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	padding:3px 6px;
+	color:white;/*IE*/
+	text-decoration:none;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	font-family:"Lucida Grande", Arial, sans-serif;
+	font-size:13px;
+	cursor:pointer;
+	vertical-align: middle;
 }
-	.browser img{
-	    padding: 0px;
-	    display: block;
-	    margin: auto auto 4px auto;
-	    width: 25px;
-	    height: 25px;
+	a.button:active{
+	    -webkit-box-shadow: rgba(255, 255, 255, 0.2) 0 1px,
+	                        rgba(0, 0, 0, 0.7) 0px 1px 3px inset,
+	                        rgba(0, 0, 0, 0.1) 0px -5px 12px inset;
+	    -moz-box-shadow: rgba(255, 255, 255, 0.2) 0 1px,
+	                        rgba(0, 0, 0, 0.7) 0px 1px 3px inset,
+	                        rgba(0, 0, 0, 0.1) 0px -5px 12px inset;
+		text-shadow:white 0 0 5px;
+		color:white;
+	}
+
+a.button.blue{
+	background-color:blue;	
+}
+a.button.green{
+	background-color:green;	
+}
+a.button.yellow{
+	background-color:yellow;
+	color:black;	
+}
+a.button.orange{
+	background-color:orange;
+	color:black;	
+}
+
+article{
+	display:none;
+}
+	article h2{
+		margin-top:60px;
+	}
+	article h2:first-child{
+		margin-top:30px;
+	}
+
+article.show{
+	display:block;
+}
+
+#more{
+	background:#ccc;
+	border:none;
+}
+
+
+	.inline{
+		vertical-align:top;
+		display:inline-block;
+	}
+	div.inline{
+		width:50%;
+		text-align:justify;
 	}
