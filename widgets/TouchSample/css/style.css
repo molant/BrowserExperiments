@@ -1,0 +1,183 @@
+/* reset styles
+--------------------------------------------- */
+
+html, body, div, span, applet, object, input, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    
+    }
+ol, ul {
+    list-style: none;
+    }
+blockquote, q {
+    quotes: none;
+    }
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    }
+    
+    
+/* end reset
+  ------------------------------------------------------------------------------*/
+
+
+body, html{
+	background-color:#1e1e1e;
+	padding-top:10px;
+	font-family:eogesRegular;
+	color:#fff;
+	font-size:14px;
+}
+
+#container{
+	width:850px;
+	height:550px;
+	margin:0 auto;
+	background-color:#5f5f5f;	
+	border:2px solid #163d3d;
+}
+
+#tile{
+	background-image:url(../images/bg.jpg);
+	width:850px;
+	height:550px;
+	float:left;	
+}
+
+
+#content{
+	float:left;
+	padding:30px;
+}
+
+#title{
+	font-size:36pt;
+	float:left;
+	margin-bottom:50px;
+	float:left;
+	width:100%;
+}
+
+.lightblue{
+	color:#5cdeec;
+	display:inline;
+	float:left;
+}
+
+#content ul{
+	width:400px;
+	float:left;
+	list-style:none;
+}
+
+#content li{
+	display:block;	
+	margin-bottom:30px;
+	list-style:none;
+        
+}
+
+#canvas{
+	float:left;
+	width:335px;	
+	height:300px;
+        border:solid 1px #5cdeec;
+        border: 1px solid rgba(92, 222, 236, .3);
+}
+
+
+
+/*///////// BUTTON /////////////*/
+
+.the_button{
+		
+	width:195px;
+	height:50px;
+        -webkit-appearance: none;
+        background: url('../images/btn_back.png') no-repeat;
+        background-position:bottom left;
+	color:#5cdeec;
+	font-size:18px;
+	text-align:center;
+	padding-top:4px;
+        cursor:pointer;
+        
+}
+
+.the_button:active{    
+    background-position: bottom right;
+}
+
+.the_button_pressed{
+    background-position: bottom right;    
+}
+
+
+
+/*///////// SLIDER /////////////*/
+
+/*the slider background*/
+.slider {
+	width:230px;
+	height:11px;
+	background-color:rgba(255,255,255, .1);
+	position:relative;
+	margin:0;
+	padding:0 10px;	
+	margin-top:20px;
+}
+
+
+/*Style for the slider button*/
+.ui-slider-handle {
+	        
+        background:url(../images/thumb.png) no-repeat;
+        background-position:bottom left;
+	width:41px;
+	height:40px;        
+	top:-15px;
+	margin-left:-20px;
+	position:absolute;	
+}
+
+
+.ui-slider-handle:active{
+        background-position:bottom right;
+}
+
+
+#result {
+        color:#5cdeec;
+	font-size:12px;        
+        float:left;
+}
+
+#result p{
+    margin-bottom:6px;
+}
+
+
+
+/*///////// FONT /////////////*/
+
+@font-face {
+	  font-family: 'eogesRegular';
+	  src: url('../fonts/eoges-webfont.eot');
+	  src: url('../fonts/eoges-webfont.eot?#iefix') format('embedded-opentype'),
+		   url('../fonts/eoges-webfont.woff') format('woff'),
+		   url('../fonts/eoges-webfont.ttf') format('truetype'),
+		   url('../fonts/eoges-webfont.svg#eogesRegular') format('svg');
+	  font-weight: normal;
+	  font-style: normal;
+}
+
+
+
+
+
