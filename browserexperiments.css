@@ -19,6 +19,22 @@ body
     font-size: 12px;
 }
 
+#breadcrumbs{
+	position:absolute;
+	top:0;
+}
+	#breadcrumbs a{
+		color:#ccc;
+		text-decoration:none;
+		-webkit-transition:0.3s;
+	}
+	#breadcrumbs a:after{
+		content:" / ";
+	}
+	#breadcrumbs a:hover{
+		color:gray;
+	}
+
 table
 {
     border-top: 4px solid #4F535F;
@@ -362,16 +378,27 @@ pre { font-size: 14px; }
 a.button{
 	display:inline-block;
 	border:none;
+	
+	/* IE10 */ 
+	background-image: -ms-linear-gradient(rgba(255,255,255,0.2) 0,rgba(255,255,255,0) 49%,rgba(0,0,0,0) 51%,rgba(0,0,0,0.2) 100%);
+	/* IE < 10 */
 	filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#30FFFFFF', endColorstr='#30000000');
+	/* Chrome */
 	background:-webkit-gradient(linear,left top, left bottom, from(rgba(255,255,255,0.2)), to(rgba(0,0,0,0.2)), 
 				color-stop(50%,rgba(255,255,255,0)), 
 				color-stop(50%,rgba(0,0,0,0)));
+	/* FF */
 	background: -moz-linear-gradient(rgba(255,255,255,0.2) 0,rgba(255,255,255,0) 49%,rgba(0,0,0,0) 51%,rgba(0,0,0,0.2) 100%);
+	/** Default */
+	background-image: linear-gradient(rgba(255,255,255,0.2) 0,rgba(255,255,255,0) 49%,rgba(0,0,0,0) 51%,rgba(0,0,0,0.2) 100%);
+
+	
     -webkit-box-shadow: rgba(255, 255, 255, 0.1) 0 1px inset,
                         rgba(0, 0, 0, 0.4) 0px 1px 1px;
     -moz-box-shadow: rgba(255, 255, 255, 0.1) 0 1px inset,
                         rgba(0, 0, 0, 0.4) 0px 1px 1px;
 	text-shadow:rgba(0, 0, 0, 0.4) 0px 1px;
+
 
 	-webkit-border-radius:3px;
 	-moz-border-radius:3px;
@@ -424,6 +451,7 @@ a.box{
 	padding-top:30px;
 	-webkit-box-reflect: below 5px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.8, transparent), to(rgba(0, 0, 0, 0.3)));
 	-webkit-transform: perspective(500px) rotateY(20deg);
+	-webkit-transform-style: preserve-3d;
 	-webkit-transition:0.3s;
 }
 a.box:hover{
@@ -432,6 +460,7 @@ a.box:hover{
 a.box:hover ~ a.box{
 	-webkit-transform: perspective(500px) rotateY(-20deg);
 }
+
 
 article{
 	display:none;
@@ -461,10 +490,41 @@ section{
 			border:1px solid #ccc;
 		}
 
-		section figure figcaption img{
+		section figure figcaption span{
 			float:right;
 			margin-left:5px;
-			border:none;
+			height:17px;
+			width:17px;
+			background-repeat:no-repeat;
+			background-position:0 0;
+		}
+		
+		 span.css3{
+			background-image:url(images/css3.png);
+		}
+		 span.performance{
+			background-image:url(images/performance.png);
+		}
+		 span.3d{
+			background-image:url(images/3d.png);
+		}
+		 span.device{
+			background-image:url(images/device.png);
+		}
+		 span.conn{
+			background-image:url(images/connectivity.png);
+		}
+		 span.loader{
+			background-image:url(images/loader.png);
+		}
+		 span.multimedia{
+			background-image:url(images/multimedia.png);
+		}
+		 span.offline{
+			background-image:url(images/offline.png);
+		}
+		 span.semantics{
+			background-image:url(images/semantics.png);
 		}
 
 section{

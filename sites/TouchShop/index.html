@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>BrowserExperiments - Image Bank</title>
+	<meta charset="utf-8">
+			
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+	
+	 <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+	      Remove this if you use the .htaccess -->
+	 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+     
+     <!--Pinned Site Stuff -->
+     <meta name="application-name" content="BrowserExperiments - Image Bank" />
+     <meta name="msapplication-tooltip" content="BrowserExperiments" />     
+     <meta name="msapplication-window" content="width=1366;height=800" />
+     <meta name="msapplication-navbutton-color" content="#111111" />
+
+	 <!-- Mobile viewport  -->
+	<meta name="viewport" content="height=device-height,width=device-width, initial-scale=.87,maximum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	
+	<!-- startup image for web apps - iPad - portrait (768x1004) 
+	<link rel="apple-touch-startup-image" href="images/startup-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)" />	
+	<link rel="apple-touch-startup-image" href="images/startup-portriat.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)" />
+	-->
+
+	<link rel="stylesheet" href="css/style.css">		
+	<script src="js/libs/modernizr-1.7.min.js"></script>    
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>	
+	<script>window.jQuery || document.write('<script src="js/libs/jquery-1.5.1.min.js"><\/script>')</script>
+	<script src="js/libs/jquery.easing.1.3.js"></script>
+	<script src="js/jquery.animate-enhanced.js"></script>	
+ 
+</head>
+<body ontouchmove="BlockMove(event);">
+	
+	<!---------------------Loader----------------------------->
+	 <div id="progressBar"></div>
+     <div id="container">    
+		<header>			
+			<div id="logo" style="display:none;"></div>	
+		</header>
+		<div id="main" role="main">
+			<div class="womens">
+				<div class="block-b" name="wimg1" style="cursor:pointer;"></div>
+				<div class="block-a" name="wimg2"></div>
+				<div class="block-a" name="wimg3"></div>
+				<div class="block-a" name="wimg4"></div>
+				<div class="block-a" name="wimg5"></div>
+				<div class="block-a" name="wimg6"></div>
+				<div class="block-a" name="wimg7"></div>
+				<div class="block-a skinny" name="wimg8"></div>
+				<div class="block-a skinny" name="wimg9"></div>
+				<div class="block-a skinny" name="wimg10"></div>
+				<div class="block-a skinny" name="wimg11"></div>
+				<div class="block-a skinny" name="wimg12"></div>
+				<div class="block-a skinny" name="wimg13"></div>
+				<div class="block-a skinny" name="wimg14"></div>
+				<div class="block-a skinny" name="wimg15"></div>
+				<div class="block-a skinny" name="wimg16"></div>
+				<div class="block-a skinny" name="wimg17"></div>
+				
+				<div class="block-d welcome">
+					<div class="welcomeContent">
+						<h1>Welcome to my image bank!</h1>
+						<p>Be amazed at all my photo subjects and compostions</p>
+						<h3><em>Buy different size of my image:</em></h3>
+						<p>If you want a high quality print of an image then add to your kart.</p>
+					</div>
+				</div>
+			</div>
+			<div class="mens">
+				<div class="block-b" name="mimg1"></div>
+				<div class="block-a" name="mimg2"></div>
+				<div class="block-a" name="mimg3"></div>
+				<div class="block-a" name="mimg4"></div>
+				<div class="block-a" name="mimg5"></div>
+				<div class="block-c" name="mimg6"></div>
+				<div class="block-b" name="mimg7"></div>
+				<div class="block-b" name="mimg8" style="cursor:pointer;"></div>
+			</div>
+			<div class="kids">
+				<div class="block-b" name="kimg1" style="cursor:pointer;"></div>
+				<div class="block-a" name="kimg2"></div>
+				<div class="block-a" name="kimg3"></div>
+				<div class="block-a" name="kimg4"></div>
+				<div class="block-a" name="kimg5"></div>
+				<div class="block-a" name="kimg6"></div>
+				<div class="block-a" name="kimg7"></div>
+				<div class="block-a" name="kimg8"></div>
+				<div class="block-a" name="kimg9"></div>
+			</div>
+		</div>	
+	</div> <!--! end of #container -->
+
+	<!---------------------CONTENT----------------------------->
+	
+	<div id="wrap">		
+	
+		<div id="sale">
+			<span class="saleTitle">Color Trend: Hello Sunshine</span><br />
+			<span >SALE ENDS&nbsp;&nbsp;</span><span>06.28 11PM CT</span>
+		</div>
+		
+		<div id="backBtn"></div>				
+
+		<div id="dataList"></div>		
+		<div class="infobox" ></div>				
+		<canvas width="100px" height="100px" id="preloader" ></canvas>		         	
+	</div>
+	
+	<div id="dragDim" ></div>
+	<!---------------------CART----------------------------->
+	<div id="cart"   >		
+		<div id="cartItems">
+			  <ul id="itemList"></ul>            
+		</div>		
+		
+		<span id="cartTotal">Order Subtotal: $0.00</span>
+		<div id="checkOutBtn"></div>				
+		
+		<div class="handle">
+			<nav>
+				<ul >		
+					<li class="selected" ><a href="#"><h2>Women</h2></a></li>
+					<li><a href="#"><h2>Men</h2></a></li>
+					<li><a href="#"><h2>Children</h2></a></li>
+				</ul>
+			</nav>		
+			<div id="cartInfo">
+				
+				<img id="cartIcon" src="images/cartIcon.png" alt="opn cart"></img>
+				<span >Cart</span><span id="cartCount">(0)</span>			
+			</div>
+		</div>				
+	</div>
+	
+<script  src="js/plugins.js"></script>
+<script  src="js/preloader.js"></script>	
+<script src="js/docker.js"></script>
+<script  src="js/script.js"></script>
+<script src="js/sales.js"></script>
+<script  src="js/application.js"></script>
+
+
+</body>
+</html>
