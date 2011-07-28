@@ -82,6 +82,7 @@ p{
     height:50px;
     color:#fff;
     border-top:solid 1px #000;
+    bottom:0px;
 }
 .ui-footer h2{
     margin: 15px auto 10px 50px;
