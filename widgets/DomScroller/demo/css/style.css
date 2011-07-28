@@ -127,6 +127,7 @@ h2{
 
 #dataList {
         border: solid 1px #ccc;
+        background-color: rgb(220,220,220);
         background-color: rgba(128,128,128,0.15);
         overflow: hidden;
         width: 600px;

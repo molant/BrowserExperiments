@@ -52,12 +52,12 @@ var Docker = new function () {
             }
         } else { //set footer
             if (supportTouch) {
-                return el.css('top', fromTop + screenHeight - thisHeight);  //needed for iOS
-
+                return el.css({'top': fromTop + screenHeight - thisHeight});  //needed for iOS
             } else { 
                 return el.css({
                     position: 'fixed',
-                    top: screenHeight - thisHeight
+                    top: screenHeight - thisHeight,
+                    bottom : 0 /** IE <8 fix */
                 });
             }
         }
