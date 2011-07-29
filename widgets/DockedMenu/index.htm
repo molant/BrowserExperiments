@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Docked Menu</title>
+    <script src="../../browserexperiments.js"></script>
+    
+	<style type="text/css">
+
+div.WordSection1
+	{page:WordSection1;}
+	</style>
+    
+</head>
+<body>
+    <header><h1>Docked Menu</h1></header>
+	
+	<section>
+		<img src="../images/screenshots/headerFooter.jpg" class="inline"/>
+
+		<div class="inline">
+			<h2>Summary</h2>
+			<p>One pattern that is common in many web UI designs is the presence of a header and/or footer on the page. The header or footer areas typically contain status information, navigational buttons, advertisements, and/or a toolbar. In many cases, these areas should remain visible on the screen even when the main content of the page is being scrolled.</p>
+			
+			<a href="http://www.youtube.com/watch?v=EXngIrVXn70" target="_blank" class="button blue">Launch Video</a>
+			<a href="./demo/" target="_blank" class="button green">Launch Demo</a>
+			<a href="https://github.com/molant/BrowserExperiments/tree/master/cookbook/7_DockedMenu/" class="button orange">Source</a>
+			
+			<p><strong>Author</strong>: Clarity Consulting <em>(demo)</em>, Dave Methvin
+			<em>(write up)</em></p>
+			
+			<button id="more">more</button>
+		</div>
+	</section>
+	
+
+	<article id="article">
+		<h2>Experience Walkthrough</h2> 
+		<p>
+			The Fixed Header and Footer sample creates static header and footer areas on a web page. The demo page includes the following behavior:
+		</p>
+		
+		<ol>
+			<li><p>The user navigates to the HTML application or web page which displays header and footer information.</p><img src="images/ss1.png"/></li>
+			<li><p>User scrolls the main content of the page (headers and footers may disappear briefly).</p><img src="images/ss2.png"/></li>
+			<li><p>Header/footer is present after the user completes the scrolling operation.</p><img src="images/ss3.png"/></li>
+		</ol>
+		
+		<h2>Browser Support</h2>		
+	<table>
+	    <thead>
+	        <tr>
+	            <th>
+	                <img src="../../images/h5_logo_top.png" alt="HTML5 Logo" />
+	                <span>HTML5 Features</span>
+	            </th>
+	            <td>
+	                <img src="../../images/icon_ie_6.png" alt="IE" />6.0
+	            </td>
+	            <td>
+	                <img src="../../images/icon_ie_7_8.png" alt="IE" />7.0
+	            </td>
+	            <td>
+	                <img src="../../images/icon_ie_7_8.png" alt="IE" />8.0
+	            </td>
+	            <td>
+	                <img src="../../images/icon_ie_9_pp.png" alt="IE" />9.0
+	            </td>
+	            <td>
+	                <img src="../../images/icon_ie_9_pp.png" alt="IE" />
+	                PP
+	            </td>
+	            <td>
+	                <img src="../../images/icon_chrome.png" alt="Chrome" />
+	                11
+	            </td>
+	            <td>
+	                <img src="../../images/icon_chrome.png" alt="Chrome" />
+	                12
+	            </td>
+	            <td>
+	                <img src="../../images/icon_safari.png" alt="Safari" />
+	                4.x
+	            </td>
+	            <td>
+	                <img src="../../images/icon_safari.png" alt="Safari" />
+	                5.x
+	            </td>
+	            <td>
+	                <img src="../../images/icon_firefox.png" alt="Firefox" />
+	                3.6
+	            </td>
+	            <td>
+	                <img src="../../images/icon_firefox.png" alt="Firefox" />
+	                4.x
+	            </td>
+	            <td>
+	                <img src="../../images/icon_firefox.png" alt="Firefox" />
+	                5.x
+	            </td>
+	            <td>
+	                <img src="../../images/icon_opera.png" alt="Opera" />
+	                11
+	            </td>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr class="feature-row" id="semantictsgs">
+	            <th>
+	                JQuery
+	            </th>
+	            <td class="supported"></td>
+	            <td class="supported"></td>
+	            <td class="supported"></td>
+	            <td class="supported"></td>
+	            <td class="supported"></td>
+	            <td class="supported"></td>
+	            <td class="supported"></td>
+	            <td class="supported"></td>
+	            <td class="supported"></td>
+	            <td class="supported"></td>
+	            <td class="supported"></td>
+	            <td class="supported"></td>
+	            <td class="supported"></td>
+	        </tr>
+	     </tbody>
+		</table>		
+
+
+	<h2>Implementation details</h2>
+<p>Markup for the header and footer is placed into the HTML document:</p>
+
+<pre>
+&lt;div class="ui-header ui-fixed-inline "&gt; 
+   &lt;h2&gt;Fixed Header and Footer&lt;/h2&gt; 
+&lt;/div&gt; 
+
+&lt;div class="ui-footer ui-fixed-inline " &gt; 
+	&lt;h2&gt;Fixed Footer&lt;/h2&gt; 
+&lt;/div&gt; 
+</pre>
+
+<p>The CSS can reflect whatever styling is appropriate for the document:</p>
+<pre>
+.ui-header{
+    position: absolute;    
+    width: 100%;    
+    color: #333;
+    height: 50px;
+    border-bottom: solid 1px #dcdcdc;    
+}
+
+.ui-footer  {
+    position: absolute;    
+    width: 100%;    
+    background: #333;
+    height: 50px;
+    color: #fff;
+    border-top: solid 1px #000;
+}
+</pre>
+
+<p>
+This cryptic CSS rule has two functions. It ensures the fixed toolbars are positioned over the remainder of the page, and most importantly it encourages Webkit browsers to use hardware acceleration for CSS animations used to show and hide the toolbars.  By default, 2D animations are not hardware accelerated, so specifying the Z axis convinces Webkit browsers that hardware 3D acceleration should be used.</p>
+
+<pre>
+.ui-header-fixed, .ui-footer-fixed {
+	z-index: 1000;
+	-webkit-transform: translateZ(0);
+}
+</pre>
+<p>A relatively small Javascript object named Docker handles the bulk of the remaining work; it depends on jQuery to support its use of browser events. 
+On platforms with touch events, such as the iPad, Android, and iPhone, Docker attaches to the touchstart/touchstop events and uses a CSS animation to remove the fixed header/footer while the user is scrolling the page. When the user completes scrolling by lifting their finger, it “re-docks” the fixed header/footer to the page using another animation. </p>
+<pre>
+if (supportTouch) {
+    $(document).bind(touchStartEvent, function (event) {
+        self.hide();
+    }).bind(touchStopEvent, function (event) {
+        self.show();
+    });
+}
+</pre>
+<p>This is consistent with the way native apps work on those platforms, and can be seen in the screen shots from an iPad above. 
+For desktop browsers, Docker continues to show the header/footer even when scrolling.  Whenever a scroll event is triggered, the script redraws the toolbars and sets them to position: fixed  to ensure they were not clipped or removed by the scrolling part of the page.</p>
+
+<pre>
+var fromTop = $(window).scrollTop(),
+	screenHeight = window.innerHeight,
+	thisHeight = el.outerHeight(),
+	relval;
+
+if (el.is('.ui-header-fixed')) { //Set header
+    if (supportTouch) {
+        return el.css('top', fromTop);
+    } else { //For smoother positioning
+        return el.css({
+            position: 'fixed',
+            top: 0
+        });
+    }
+} else { //set footer
+    if (supportTouch) {
+        return el.css('top', fromTop + screenHeight - thisHeight);  //needed for iOS
+
+    } else { 
+        return el.css({
+            position: 'fixed',
+            top: screenHeight - thisHeight
+        });
+    }
+}
+</pre>
+ 
+<h2>Conclusions and Recommendations</h2>
+<p>
+This simple and small combination of HTML, CSS, and JavaScript can easily add fixed headers and footers to most designs.  It works well for both desktop and mobile browsers, and takes advantage of hardware acceleration on platforms where CSS animations are supported. For mobile designs with limited screen space, the “disappear while scrolling” behavior lets the user see maximum content but still allows them to interact with the header/footer toolbars at all other times. Where a fixed-toolbar component is appropriate for HTML-based designs, this implementation allows it to be done across multiple platforms with a minimum of effort.
+</p>
+
+	</article>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+* {margin: auto; padding: 0; }
+body{font-family:Arial, Helvetica, sans-serif; background-color:#000;}
+a { text-decoration: none; }
+h2 {color:#c0997d; font-size:10pt;display:inline-block; margin:0px; }
+h3 { font-size:10pt;color:#FFF; margin-bottom:-2px; }
+h4{color:#88BEED;font-size:15pt; text-transform:uppercase; display:inline-block; margin-top:22px;}
+
+.info{position:absolute; margin:450px 0 20px 0; text-align:center; width:700px;}
+
+/*Intro Image*/
+#intro{position:absolute;top:0px;height:800px;z-index:1000;}
+
+/*Content Wraps*/
+#wrap { width:700px; margin:0 auto; padding:0; background-color:#FFF;}
+.content-box { overflow: hidden; margin:96px 0 0 130px; width:425px; height: 160px; }
+
+/*Recipe Text*/
+#results{top:0; padding-left:104px; height:50px; text-align:center;z-index:10;}
+.result {padding-top:44px; width:475px; height:80px;}
+
+/*Spin Button*/
+button {top:38px; left:272px; position:relative; z-index:0; height:45px; width:132px; border:none; background:none; background-image:url(../images/button.png); overflow:hidden; }
+input:focus{outline: 0;outline-style:none;outline-width:0;}
+button::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner{border: none;}
+
+/*Slot Machine*/
+.top{position:absolute;top:0px;height: 145px;z-index:0;}
+.slots{position:absolute;top:145px;height: 480px;z-index:0;}
+.bottom{position:absolute;top:321px;height: 480px;z-index:0;}
+

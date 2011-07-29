@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<assetsManager>
+    <home>           
+        <images>
+          <backgrounds>
+            <image name="background">
+              <src>images/back.jpg</src>
+            </image>
+          </backgrounds>
+            <portfolioItems>
+                <image name="image1">
+                    <src>images/1.jpg</src>
+                </image>
+                <image name="image2">
+                    <src>images/2.jpg</src>
+                </image>                                
+                <image name="image3">
+                    <src>images/3.jpg</src>
+                </image>
+                <image name="image4">
+                    <src>images/4.jpg</src>
+                </image>
+                <image name="image5">
+                    <src>images/5.jpg</src>
+                </image>
+                <image name="image6">
+                    <src>images/6.jpg</src>
+                </image>
+                <image name="image7">
+                    <src>images/7.jpg</src>
+                </image>
+                <image name="image8">
+                    <src>images/8.jpg</src>
+                </image>
+                <image name="image9">
+                    <src>images/9.jpg</src>
+                </image>
+                <image name="image10">
+                    <src>images/10.jpg</src>
+                </image>
+              <image name="image11">
+                <src>images/11.jpg</src>
+              </image>
+              <image name="image12">
+                <src>images/12.jpg</src>
+              </image>
+              <image name="image13">
+                <src>images/13.jpg</src>
+              </image>
+              <image name="image14">
+                <src>images/14.jpg</src>
+              </image>
+              <image name="image15">
+                <src>images/15.jpg</src>
+              </image>
+              <image name="image16">
+                <src>images/16.jpg</src>
+              </image>
+              <image name="image17">
+                <src>images/17.jpg</src>
+              </image>
+              <image name="image18">
+                <src>images/18.jpg</src>
+              </image>
+              <image name="image19">
+                <src>images/19.jpg</src>
+              </image>
+              <image name="image20">
+                <src>images/20.jpg</src>
+              </image>
+
+            </portfolioItems>
+        </images>
+    </home>     
+</assetsManager>

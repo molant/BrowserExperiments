@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<results>
+	<result id="1">
+		<rowitems>
+			<disc01 y="0">Seven</disc01>
+			<disc02 y="1350">Seven</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="2">	
+		<rowitems>
+			<disc01 y="750">Lemon</disc01>
+			<disc02 y="1200">Bar</disc02>
+			<disc03 y="1200">Bar</disc03>
+		</rowitems>	
+	</result>
+	<result id="3">
+		<rowitems>
+			<disc01 y="750">Lemon</disc01>
+			<disc02 y="150">Banana</disc02>
+			<disc03 y="300">Grape</disc03>
+		</rowitems>	
+	</result>
+	<result id="4">
+		<rowitems>
+			<disc01 y="0">Seven</disc01>
+			<disc02 y="750">Lemon</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="5">
+		<rowitems>
+			<disc01 y="600">Watermelon</disc01>
+			<disc02 y="450">Big Win</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="6">
+		<rowitems>
+			<disc01 y="300">Grape</disc01>
+			<disc02 y="0">Seven</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="7">
+		<rowitems>
+			<disc01 y="1800">Big Win</disc01>
+			<disc02 y="450">Big Win</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="8">
+		<rowitems>
+			<disc01 y="300">Grape</disc01>
+			<disc02 y="150">Banana</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="9">
+		<rowitems>
+			<disc01 y="1350">Seven</disc01>
+			<disc02 y="1200">Bar</disc02>
+			<disc03 y="1200">Bar</disc03>
+		</rowitems>	
+	</result>
+	<result id="10">
+		<rowitems>
+			<disc01 y="1350">Seven</disc01>
+			<disc02 y="150">Banana</disc02>
+			<disc03 y="150">Banana</disc03>
+		</rowitems>	
+	</result>
+	<result id="11">
+		<rowitems>
+			<disc01 y="1050">Orange</disc01>
+			<disc02 y="750">Lemon</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>
+	</result>
+	<result id="12">
+		<rowitems>
+			<disc01 y="1050">Orange</disc01>
+			<disc02 y="150">Banana</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="13">
+		<rowitems>
+			<disc01 y="300">Grape</disc01>
+			<disc02 y="1200">Bar</disc02>
+			<disc03 y="1200">Bar</disc03>
+		</rowitems>	
+	</result>
+	<result id="14">
+		<rowitems>
+			<disc01 y="300">Grape</disc01>
+			<disc02 y="1350">Seven</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="15">
+		<rowitems>
+			<disc01 y="1200">Bar</disc01>
+			<disc02 y="1200">Bar</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="16">
+		<rowitems>
+			<disc01 y="900">Cherries</disc01>
+			<disc02 y="1350">Seven</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="17">
+		<rowitems>
+			<disc01 y="1050">Orange</disc01>
+			<disc02 y="450">Big Win</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="18">
+		<rowitems>
+			<disc01 y="300">Grape</disc01>
+			<disc02 y="600">Watermelon</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="19">
+		<rowitems>
+			<disc01 y="300">Grape</disc01>
+			<disc02 y="450">Big Win</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="20">
+		<rowitems>
+			<disc01 y="1350">Seven</disc01>
+			<disc02 y="150">Banana</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="21">
+		<rowitems>
+			<disc01 y="300">Grape</disc01>
+			<disc02 y="900">Cherries</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="22">
+		<rowitems>
+			<disc01 y="300">Grape</disc01>
+			<disc02 y="1200">Bar</disc02>
+			<disc03 y="1200">Bar</disc03>
+		</rowitems>	
+	</result>
+	<result id="23">
+		<rowitems>
+			<disc01 y="0">Seven</disc01>
+			<disc02 y="1200">Bar</disc02>
+			<disc03 y="1200">Bar</disc03>
+		</rowitems>	
+	</result>
+	<result id="24">
+		<rowitems>
+			<disc01 y="900">Cherries</disc01>
+			<disc02 y="450">Big Win</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="25">
+		<rowitems>
+			<disc01 y="1950">Watermelon</disc01>
+			<disc02 y="150">Banana</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="26">
+		<rowitems>
+			<disc01 y="750">Lemon</disc01>
+			<disc02 y="1800">Big Win</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="27">
+		<rowitems>
+			<disc01 y="300">Grape</disc01>
+			<disc02 y="1650">Grape</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="28">
+		<rowitems>
+			<disc01 y="1050">Orange</disc01>
+			<disc02 y="1350">Seven</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="29">
+		<rowitems>
+			<disc01 y="1950">Watermelon</disc01>
+			<disc02 y="150">Banana</disc02>
+			<disc03 y="150">Banana</disc03>
+		</rowitems>	
+	</result>
+	<result id="30">
+		<rowitems>
+			<disc01 y="1500">Banana</disc01>
+			<disc02 y="450">Big Win</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="31">
+		<rowitems>
+			<disc01 y="1650">Grape</disc01>
+			<disc02 y="450">Big Win</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>
+	</result>
+	<result id="32">
+		<rowitems>
+			<disc01 y="0">Seven</disc01>
+			<disc02 y="150">Banana</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="33">
+		<rowitems>
+			<disc01 y="1650">Grape</disc01>
+			<disc02 y="750">Lemon</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="34">
+		<rowitems>
+			<disc01 y="750">Lemon</disc01>
+			<disc02 y="150">Banana</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="35">
+		<rowitems>
+			<disc01 y="1050">Orange</disc01>
+			<disc02 y="150">Banana</disc02>
+			<disc03 y="150">Banana</disc03>
+		</rowitems>	
+	</result>
+	<result id="36">
+		<rowitems>
+			<disc01 y="150">Banana</disc01>
+			<disc02 y="450">Big Win</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>
+	</result>
+	<result id="37">
+		<rowitems>
+			<disc01 y="900">Cherries</disc01>
+			<disc02 y="750">Lemon</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="38">
+		<rowitems>
+			<disc01 y="1350">Seven</disc01>
+			<disc02 y="1200">Bar</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="39">
+		<rowitems>
+			<disc01 y="750">Lemon</disc01>
+			<disc02 y="150">Banana</disc02>
+			<disc03 y="150">Banana</disc03>
+		</rowitems>	
+	</result>
+	<result id="40">
+		<rowitems>
+			<disc01 y="750">Lemon</disc01>
+			<disc02 y="1200">Bar</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="41">
+		<rowitems>
+			<disc01 y="900">Cherries</disc01>
+			<disc02 y="150">Banana</disc02>
+			<disc03 y="150">Banana</disc03>
+		</rowitems>	
+	</result>
+	<result id="42">
+		<rowitems>
+			<disc01 y="0">Seven</disc01>
+			<disc02 y="1350">Seven</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="43">
+		<rowitems>
+			<disc01 y="1650">Grape</disc01>
+			<disc02 y="150">Banana</disc02>
+			<disc03 y="150">Banana</disc03>
+		</rowitems>	
+	</result>
+	<result id="44">
+		<rowitems>
+			<disc01 y="600">Watermelon</disc01>
+			<disc02 y="450">Big Win</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>
+	</result>
+	<result id="45">
+		<rowitems>
+			<disc01 y="900">Cherries</disc01>
+			<disc02 y="150">Banana</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="46">
+		<rowitems>
+			<disc01 y="750">Lemon</disc01>
+			<disc02 y="1050">Orange</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="47">
+		<rowitems>
+			<disc01 y="1650">Grape</disc01>
+			<disc02 y="1350">Seven</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="48">
+		<rowitems>
+			<disc01 y="0">Seven</disc01>
+			<disc02 y="450">Big Win</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="49">
+		<rowitems>
+			<disc01 y="150">Banana</disc01>
+			<disc02 y="150">Banana</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+	<result id="50">
+		<rowitems>
+			<disc01 y="300">Grape</disc01>
+			<disc02 y="1050">Orange</disc02>
+			<disc03 y="450">Big Win</disc03>
+		</rowitems>	
+	</result>
+</results>

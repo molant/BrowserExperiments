@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>sessionStorage</title>
+    <script src="../../browserexperiments.js"></script>
+    <script src="sessionStorage.js"></script>
+</head>
+<body>
+    <header><h1>sessionStorage</h1></header>
+	<blockquote>
+		<p>The
+		<a href="http://www.w3.org/TR/webstorage/#the-sessionstorage-attribute">
+		(w3c) SessionStorage</a> temporarily stores key value data in the client for as long as the tab is open. The shim 
+		<a href="http://code.google.com/p/sessionstorage/">
+		SessionStorage by Andrew Giammarchi</a>&nbsp; uses window.name to shim unsupported browser.</p>
+	</blockquote>
+	
+    <div id="demo">
+    	<input type="text" value="text to store" id="input" onkeyup="sessionStorage.setItem('mykey', this.value);">
+    	<button onclick="window.location.reload();">reload page</button>
+    </div>
+
+    <script>
+    	document.getElementById('input').value=sessionStorage.getItem('mykey');
+    </script>
+</body>
+</html>

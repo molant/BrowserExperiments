@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Text Shadow in IE</title>
+    <script src="../../browserexperiments.js"></script>
+
+    <!--[if lt IE 9]>
+		<script src="html5.js"></script>
+	<![endif]-->
+
+    <link href="jquery.textshadow.css" rel="stylesheet" type="text/css" />
+    <style>
+        .shadow-text
+        {
+            text-shadow: 2px 2px 2px #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSS
+            <br />
+            Text-Shadow</h1>
+    </header>
+
+    <blockquote>
+        <p>The <a href="http://www.w3.org/TR/css3-text/#text-shadow">
+		(w3c) Text-Shadow</a> property enables us to create shadows similar to the box-shadow but which follows the stroke of the text. The shim by <a href="http://heygrady.com/text-shadow-for-internet-explorer">heygrady</a>, 
+		is a jQuery plugin. Unfortunatly it requires that you target each 
+		element with javascript.</p>
+    </blockquote>    
+
+    <div id="demo">
+        <span class="shadow-text">This demo text should have a red shadow.</span>
+    </div>
+
+
+    <script src="../Common/jquery-1.6.1.min.js"></script>
+    <script src="jquery.textshadow.js"></script>
+    <script type="text/javascript">
+    	// detect weather text-shadow is supported
+    	// FF3.0 will false positive on this.
+    	// Alternatively use Modernizr.textshadow
+        if (!document.createElement('div').style.textShadow === '') {
+            $('.shadow-text').textshadow({ useStyle: true });
+        }
+    </script>
+</body>
+</html>

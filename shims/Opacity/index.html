@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Opacity</title>
+    <script src="../../browserexperiments.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.js"></script>
+   <style type="text/css">
+		#demo {
+			position: relative;
+		}
+		#demo p {
+			color: black;
+			font-size: 150%;
+		}
+		#opaque {
+			position: absolute;
+			left: 20em;
+			width: 30em;
+			color: #600;
+			background: #fc8;
+			border: 2px solid #600;
+			padding: 4px;
+			opacity: 0.2;
+			filter: alpha(opacity=20);
+		}
+    </style>
+</head>
+<body>
+    <header><h1>Opacity support</h1></header>
+	<blockquote>
+		<p>
+		IE 6/7/8 do not support the CSS <code>opacity</code> property, but they do support giving opacity to an 
+		element via a filter. By specifying both <code>opacity</code> and <code>filter</code>
+		in a stylesheet, it is possible to support all browsers. The jQuery framework supports the <code>opacity</code>
+		property in all browsers in its <code>.css()</code> method, so no special-case code is needed 
+		to accomodate opacity in most scripts.</p>
+		<p>
+		To implement opacity shims without jQuery, see the <a href="http://blogs.msdn.com/b/ie/archive/2010/08/17/ie9-opacity-and-alpha.aspx">Microsoft IE Blog</a>.
+		</p>
+	</blockquote>
+	<div id="buttons">
+		<button id="more">Increase opacity by 10%</button> 
+		<button id="less">Decrease opacity by 10%</button> 
+		(Current opacity is <span id="current"></span>)<br />
+    </div>
+	<div id="demo">
+		<div id="opaque">
+			This element is positioned over the page, and will change opacity when you click the button</code>.
+		</div>
+		<p>
+		This is body text, the opacity-changing element is positioned over it and eventually it
+		will be completely obscured if you press the button enough times.
+		</p>
+	</div>
+	
+    <script>
+	$(function(){
+		$("#more, #less").click(function(){
+			var $box = $("#opaque"),
+				newval = Math.min(1, Math.max(0, +$box.css("opacity") + (this.id=="more"? 0.1 : -0.1)));
+			$box.css("opacity", newval);
+			$("#current").text(newval.toFixed(2));
+		}).eq(0).click();
+	});
+    </script>
+</body>
+</html>

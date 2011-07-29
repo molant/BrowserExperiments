@@ -4,7 +4,7 @@
 (function(){
 	var t = document.createElement("div"),
 		a = 'abbr|article|aside|audio|canvas|datalist|details|figcaption|figure|footer|header|hgroup|mark|meter|nav|output|progress|section|summary|time|video'.split("|");
-	
+
 	for(var i=0;i<a.length;i++){
 		t.innerHTML = "<"+a[i]+"></"+a[i]+">";
 		if( t.childNodes.length === 0 ){
@@ -14,15 +14,7 @@
 	}
 })();
 
-/** 
- * Add Styles
- */
-(function(){
-	var s = document.createElement('link');
-	s.rel="stylesheet";
-	s.href = "../browserexperiments.css";
-	document.getElementsByTagName('head')[0].appendChild(s);
-})();
+
 
 
 
@@ -37,91 +29,6 @@ var disqus_shortname = 'browserexperiments'; // required: replace example with y
 var disqus_identifier = "be_"+window.location.pathname;
 // var disqus_url = 'http://example.com/permalink-to-page.html';
 
-
-
-/**
- * Run this when the page has loaded
- */
-window.onload = function(){
-
-	// Build footer to the bottom of the page
-    var f = document.createElement('footer');
-    document.getElementsByTagName('body')[0].appendChild(f);
-
-    // add elements to the footer with classnames
-	var a = ["h5-logo","h5-logos"];
-	for(var i=0;i<a.length;i++){
-		d = document.createElement('div');
-		d.className = a[i];
-		f.appendChild(d);
-	}
-
-
-	/**
-	 * COMMENTING by DISQUS
-	 */
-
-    // Controls to show hide disqus
-	var h = document.createElement('a');
-	h.onclick = function(){
-		document.getElementById("disqus_thread").style.display = "block";
-	};
-	h.innerHTML = h.title = "Comments";
-	h.className = "control";
-	f.appendChild(h);
-	
-
-	// control to show hide the source of the page
-	var h = document.createElement('a');
-	h.innerHTML = h.title = "View Source";
-	h.href='#view-source';
-	h.className = "control";
-	f.appendChild(h);
-
-
-	/**
-	 * DISQUS
-	 */
-    var d = document.createElement('div'); d.id = "disqus_thread"; d.style.display = 'none';
-    f.appendChild(d);
-	
-	// Add script for commenting and attach to our div
-	(function() {
-	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-	})();
-	
-		
-	/************************************************
-	 * BREADCRUMBS BACK TO HOMEPAGE
-	 ************************************************/
-	
-	(function(){
-		var h = document.getElementsByTagName('header')[0];
-		h.title = 'Home';
-		h.style.cursor = "pointer";
-	
-		addEvent( h, 'click', function(){
-			window.location = "../";
-		});
-	
-	})();
-		
-	/************************************************
-	 * Add Google Analytics
-	 ************************************************/
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', 'UA-18575680-3']);
-	_gaq.push(['_trackPageview']);
-	
-	(function () {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	})();
-
-}
 
 
 
@@ -154,19 +61,43 @@ var addEvent = (function () {
 
 
 
+
+
+
+
 /*********************************
- * VIEW SOURCE EVENT
+ * Load
  *********************************/
 
 (function () {
+
+
+	/** 
+	 * Add Styles
+	 */
+
+	var a = document.getElementsByTagName('script'),
+		m = a[a.length-1].getAttribute('src').match(/^([\.\/]*)/),
+		path = (m?m[0]:'');
+
+	// How nested is this script, we get the style sheet from the same root
+	var s = document.createElement('link');
+	s.rel="stylesheet";
+	s.href = path+"browserexperiments.css";
+	document.getElementsByTagName('head')[0].appendChild(s);
+
 	
+	/**
+	 * View Source
+	 */
 	// add pretify
     var prit = document.createElement('script'); prit.type = 'text/javascript'; prit.async = true;
-    prit.src = '../Common/jsprettify.packed.js';
+    prit.src = path + 'Common/jsprettify.packed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(prit);
 
 	var pre = document.createElement('pre');
 	pre.id = "view-source"
+
 	
 	// private scope to avoid conflicts with demos
 	addEvent(window, 'click', function (event) {
@@ -201,4 +132,144 @@ var addEvent = (function () {
 	  }
 	});
   
+
+	
+
+	/**
+	 * Run this when the page has loaded
+	 */
+	addEvent(window, 'load', function(){
+		
+		/**
+		 * Pretify any PRE tags 
+		 */
+		prettyPrint();
+		
+		/**
+		 * Add toggle
+		 */
+		addEvent(document.getElementById('more'), 'click', function(){
+			var n = document.getElementById('article');
+			n.className = (n.className!=='show'?'show':''); 
+			this.innerHTML = (n.className==='show'?'less':'more');
+		});
+	
+		// Build footer to the bottom of the page
+	    var f = document.createElement('footer');
+	    document.getElementsByTagName('body')[0].appendChild(f);
+	
+	    // add elements to the footer with classnames
+		var a = ["h5-logo","h5-logos"];
+		for(var i=0;i<a.length;i++){
+			d = document.createElement('div');
+			d.className = a[i];
+			f.appendChild(d);
+		}
+	
+		/**
+		 * Add site navigation
+		 * .breadcrumbs
+		 */
+		var a = window.location.pathname.replace(/^\//,'').replace(/\/$/,'').split("/"),
+			b = [],
+			url = '';
+		
+		b.push("<a href='/'>home</a>"); 
+		for(var i=0;i<a.length;i++){
+			url += "/" + a[i]; 
+			b.push("<a href='" + url + "'>"+a[i]+"</a>"); 
+		}
+		
+		var div = document.createElement("div");
+		div.id = "breadcrumbs";
+		div.style.opacity = 0;
+		div.innerHTML = b.join(" ");
+		document.getElementsByTagName("body")[0].appendChild(div);
+		(function self(){
+			if(div.style.opacity < 1){
+				console.log(div.style.opacity);
+				div.style.opacity = parseFloat(div.style.opacity) + 0.1;
+				setTimeout(self, 100);
+			}
+		})();
+		
+	
+		/**
+		 * Adding comments to some of the icons
+		 */	
+		try{
+			var a = document.querySelectorAll("figure figcaption span");
+			for(var i=0;i<a.length;i++){
+				a[i].title = { 
+					performance : "Performance",
+					css3 : "CSS3",
+					semantics : "Semantic Elements",
+					offline : "Offline & Storage features, LocalStorage and ApplicationCache",
+					multimedia : "HTML5 Video and Audio",
+					device : "Device Access kicks off with Geolocation",
+					connectivity : "More efficient connectivity means real time chats, faster games and better communication",
+					"3d" : "3D Graphics",
+				}[a[i].className];
+			}
+		}catch(e){}
+			
+		/**
+		 * COMMENTING by DISQUS
+		 */
+	
+	    // Controls to show hide disqus
+		var h = document.createElement('a');
+		h.onclick = function(){
+			document.getElementById("disqus_thread").style.display = "block";
+		};
+		h.innerHTML = h.title = "Comments";
+		h.className = "control";
+		h.href = "#disqus_thread";
+		f.appendChild(h);
+		
+	
+		// control to show hide the source of the page
+		var h = document.createElement('a');
+		h.innerHTML = h.title = "View Source";
+		h.href='#view-source';
+		h.className = "control";
+		f.appendChild(h);
+	
+	
+		/**
+		 * DISQUS
+		 */
+	    var d = document.createElement('div'); d.id = "disqus_thread"; d.style.display = 'none';
+	    f.appendChild(d);
+		
+		// Add script for commenting and attach to our div
+		(function() {
+		    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+		    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		})();
+		
+	    /* * * DON'T EDIT BELOW THIS LINE * * */
+	    (function () {
+	        var s = document.createElement('script'); s.async = true;
+	        s.type = 'text/javascript';
+	        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+	        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+	    }());
+			
+		/************************************************
+		 * Add Google Analytics
+		 ************************************************/
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-18575680-3']);
+		_gaq.push(['_trackPageview']);
+		
+		(function () {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	
+	});
 })();
+
