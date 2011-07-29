@@ -134,7 +134,7 @@ function Sprite(params) {
 	this.active = 				true;
 	this.currentCellX = 		0;
 	this.currentCellY = 		0;
-	this.context =				this.container.get(0).getContext('2d'); //get a handle to the canvas context
+	this.context =				this.container.getContext('2d'); //get a handle to the canvas context
 	
 	this.customAnimate = true;
 	this.updated = false;
@@ -194,7 +194,7 @@ this.paintImage = function () {
         if (image != null) this.context.drawImage(image, 0, 0, this.width, this.height);
     }
     catch (err) {
-  	
+        windows.console.log('paintImage');
     }
 }
 

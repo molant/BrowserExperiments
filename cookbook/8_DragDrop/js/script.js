@@ -207,7 +207,7 @@
                     // Update our drag templates position, make fully visible and styled, attach drag handlers.
                     $dragHolder.css({
                         top: dragDeets.currY,
-                        left: dragDeets.currX,
+                        left: dragDeets.currX
                     });
     
                     $dragHolder.addClass('placed');

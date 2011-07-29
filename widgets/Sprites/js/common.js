@@ -62,38 +62,42 @@ this.resultsHTML;
 // initialization
 ///////////////////////////////////////////////////////////////////////////////////////////
 //determine if this browser supports the HTML5 canvas
-this.detectSupportsCanvas = function() {
-	return !!document.createElement('canvas').getContext;
+this.detectSupportsCanvas = function () {
+    return true;
+    //	return !!document.createElement('canvas').getContext;
 }
 
-this.load = function() {	
-	//detect if the browser supports the html5 canvas element
-	_this.supportsCanvas = _this.detectSupportsCanvas();
-			
-	//canvas method
-	if (_this.supportsCanvas) {
-		//get a handle to page elements
-		_this.canvasElement = $('#canvas');
-		
-		//measure content size				
-		_this.canvasWidth = _this.canvasElement.attr('width');
-		_this.canvasHeight = _this.canvasElement.attr('height');		
+this.load = function () {
+    //detect if the browser supports the html5 canvas element
+    _this.supportsCanvas = _this.detectSupportsCanvas();
 
-		//get a handle to the canvas elements
-		_this.canvasElementContext = _this.canvasElement.get(0).getContext('2d');		
-	}
-	
-	//create array to hold sprites
-	if (_this.spriteQueue) _this.spriteQueue.removeAll();
-		_this.spriteQueue = new SpriteQueue();
-	
-	_this.resultsHTML = $("#results");
+    //canvas method
+    if (_this.supportsCanvas) {
+        //get a handle to page elements
+        _this.canvasElement = document.getElementById('canvas');
+        if (typeof G_vmlCanvasManager !== 'undefined') {
+            G_vmlCanvasManager.initElement(_this.canvasElement);
+        }
 
-	_this.loadXML();							
-	
-	_this.createSprites();
-	
-	_this.paintStart();			
+        //measure content size				
+        _this.canvasWidth = '425';
+        _this.canvasHeight = '160';
+
+        //get a handle to the canvas elements
+        _this.canvasElementContext = _this.canvasElement.getContext('2d');
+    }
+
+    //create array to hold sprites
+    if (_this.spriteQueue) _this.spriteQueue.removeAll();
+    _this.spriteQueue = new SpriteQueue();
+
+    _this.resultsHTML = $("#results");
+
+    _this.loadXML();
+
+    _this.createSprites();
+
+    _this.paintStart();
 
 }			
 
@@ -316,7 +320,7 @@ function randomFromTo(from, to){
 ///////////////////////////////////////////////////////////////////////////////////////////
 // painting methods
 ///////////////////////////////////////////////////////////////////////////////////////////
-	this.paintStart = function() {
+this.paintStart = function () {	    
 		_this.paintInterval = setInterval( 
 			function(){ 
 				try {
@@ -324,7 +328,8 @@ function randomFromTo(from, to){
 				}
 				//stop the painting refresh if an error occurs
 				catch(e) {
-					_this.paintStop();
+				    windows.console.log('paintStart-common');
+                    _this.paintStop();
 					throw(e);
 				}							
 			}
