@@ -193,9 +193,7 @@ this.paintImage = function () {
         var image = this.image;
         if (image != null) this.context.drawImage(image, 0, 0, this.width, this.height);
     }
-    catch (err) {
-        windows.console.log('paintImage');
-    }
+    catch (err) {}
 }
 
 	
