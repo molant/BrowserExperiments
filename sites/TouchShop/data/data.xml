@@ -4,9 +4,11 @@
     <home>           
         <images>
            <preload>
+           <!--
             <image name="preload_wimg1">
                 <src>images/womens/1_md.jpg</src>
             </image>
+            -->
             <image name="preload_wimg2">
                 <src>images/womens/1_sm.jpg</src>
             </image>
@@ -76,12 +78,14 @@
             <image name="preload_mimg7">
                 <src>images/mens/3_md.jpg</src>
             </image>
+<!--
             <image name="preload_mimg8">
                 <src>images/mens/1_md.jpg</src>
             </image>
             <image name="preload_kimg1">
                 <src>images/kids/1_md.jpg</src>
             </image>
+            -->
             <image name="preload_kimg2">
                 <src>images/kids/1_sm.jpg</src>
             </image>

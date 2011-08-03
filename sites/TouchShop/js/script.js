@@ -139,9 +139,9 @@ $(document).ready(function () {
                 preloader = new Preloader(array_assets);
                 preloader.onComplete = function () {
 
-                    $('img[name="img_wimg1"]').css({ 'margin-top': '25px' }).animate({ 'margin-top': '0px', opacity: 1 }, 350, 'easeOutBack').click(function () { initApp(); });
-                    $('img[name="img_mimg8"]').css('margin-top', '25px').animate({ 'margin-top': '0px', opacity: 1 }, 350, 'easeOutBack').click(function () { initApp(); });
-                    $('img[name="img_kimg1"]').css('margin-top', '25px').animate({ 'margin-top': '0px', opacity: 1 }, 350, 'easeOutBack').click(function () { initApp(); });
+                    $('div[name="wimg1"] h1').css('margin-top', '150px').animate({ 'margin-top': '130px', opacity: 1 }, 350, 'easeOutBack').parent().click(function () { initApp(); });
+                    $('div[name="mimg8"] h1').css('margin-top', '150px').animate({ 'margin-top': '130px', opacity: 1 }, 350, 'easeOutBack').parent().click(function () { initApp(); });
+                    $('div[name="kimg1"] h1').css('margin-top', '150px').animate({ 'margin-top': '130px', opacity: 1 }, 350, 'easeOutBack').parent().click(function () { initApp(); });
 
                 };
                 preloader.onProgress = function (obj) {
