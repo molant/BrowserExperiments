@@ -91,7 +91,7 @@ var addEvent = (function () {
 	 * View Source
 	 */
 	// add pretify
-    var prit = document.createElement('script'); prit.type = 'text/javascript'; prit.async = true;
+    var prit = document.createElement('script'); prit.type = 'text/javascript'; 
     prit.src = path + 'Common/jsprettify.packed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(prit);
 
@@ -142,8 +142,9 @@ var addEvent = (function () {
 		
 		/**
 		 * Pretify any PRE tags 
-		 */
-		prettyPrint();
+		 *		try{
+			prettyPrint();
+		}catch(e){}
 		
 		/**
 		 * Add toggle
@@ -165,11 +166,46 @@ var addEvent = (function () {
 			d.className = a[i];
 			f.appendChild(d);
 		}
-	
+
+
+		/**
+		 * Add links to the body headers
+		 */
+		var header = document.getElementsByTagName('header')[0],
+			a = {
+				'sites/' : "Complete Experiences",
+				'widgets/' : "Widgets &amp; UI",
+				'shims/' : "Shims &amp; Polyfills"
+			};
+		for( var x in a ){
+			var h = document.createElement('a'),
+				c = (header.children.length?header.children[0]:false);
+			h.href = path + x;
+			h.className = (window.location.pathname.match(x)?"selected":"");
+			h.innerHTML = a[x];
+			if(c){
+				header.insertBefore(h,c);
+			}
+			else{
+				header.appendChild(h);
+			}
+		}
+		
+		
+		/**
+		 * Add github logo to the page
+		 */
+		var a = document.createElement('a');
+		a.href=  "http://github.com/molant/BrowserExperiments";
+		a.className = "git";
+		a.target = "_blank";
+		a.title = 'Fork me on GitHub';
+		header.appendChild(a);
+		
+
 		/**
 		 * Add site navigation
 		 * .breadcrumbs
-		 */
 		var a = window.location.pathname.replace(/^\//,'').replace(/\/$/,'').split("/"),
 			b = [],
 			url = '';
@@ -193,6 +229,7 @@ var addEvent = (function () {
 			}
 		})();
 		
+		 */
 	
 		/**
 		 * Adding comments to some of the icons

@@ -37,7 +37,6 @@ body
 
 table
 {
-    border-top: 4px solid #4F535F;
     border-left: 0px solid;
     border-collapse: collapse;
     border-spacing: 0;
@@ -51,15 +50,19 @@ table
 	}
 	
 	thead.float{
+		top:0;
+		position:fixed;
+		-webkit-transition:0.5s;
+	}
+	thead.float.show{
 		box-shadow:0 10px 10px -10px black;
 		-webkit-box-shadow: 0 10px 10px -10px black;
 		-moz-box-shadow: 0 10px 10px -10px black; 
-		top:0;
-		position:fixed;
 		filter: progid:DXImageTransform.Microsoft.dropShadow(color=#11000000, offX=0, offY=3px, positive=true);
 	}
 
 	thead{
+	    border-top: 4px solid #4F535F;
 	}
 		thead th,
 		thead td{
@@ -247,15 +250,50 @@ footer
 
 
 header{
-    width: 100%;
+    width: auto;
     margin: 0px auto 35px auto;
     height: 75px;
+    position:relative;
     display: block;
     background: transparent url('images/main_logo.png') no-repeat;
+	padding-left:190px;
 }
+	header a.git{
+		position:absolute;
+		right:-65px;
+		top:0;
+		margin:0;
+		padding:0;
+		width:29px;
+		height:99px;
+		display:block;
+		background:url(images/github_fork.png) no-repeat;
+		box-shadow:-3px 3px 3px rgba(0,0,0,0.2);
+	}
+
+	header a{
+		font-size:1.3em;
+		font-family:"Arial Bold",Arial;
+		margin-left:50px;
+		text-transform:uppercase;
+		text-decoration:none;
+		color:#4E5160;
+		font-stretch: narrower;
+		letter-spacing:-1px;
+		border:1px solid transparent;
+		padding:5px;
+	}
+	header a:hover{
+		color:#6E7180;
+	}
+	header a.selected{
+		background-color:#F5F7F6;
+		border-color:#CCC;
+	}
+
 	header input{
 		font-size:18px;
-		margin-left:400px;
+		margin-left:210px;
 		margin-top:30px;
 		width:300px;
 	}
@@ -264,7 +302,9 @@ header{
 	header .legend{
 	    border-left: 1px solid #CCCCCC;
 	    padding-left: 11px;
-	    float: right;
+	    position:absolute;
+	    top:0;
+	    right:0;
 	    width: 155px;
 	    margin: 0;
 	}
@@ -456,13 +496,14 @@ a.box{
 	text-shadow: -2px 1px 0 #ccc, -2px 2px 0 #c9c9c9, -2px 3px 0 #bbb, -2px 4px 0 #b9b9b9, -2px 5px 0 #aaa, -2px 6px 1px rgba(0,0,0,.1), -2px 0 5px rgba(0,0,0,.1), -2px 1px 3px rgba(0,0,0,.3), -2px 3px 5px rgba(0,0,0,.2), -2px 5px 10px rgba(0,0,0,.25), -2px 10px 10px rgba(0,0,0,.2), -2px 20px 20px rgba(0,0,0,.15);
 }
 a.box:hover{
-	-webkit-transform: perspective(500px) rotateY(0deg);
+	-webkit-transform: perspective(500px) rotateY(0deg) scale(1.05);
 	text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
 }
 a.box:hover ~ a.box{
 	-webkit-transform: perspective(500px) rotateY(-20deg);
 	text-shadow: 2px 1px 0 #ccc, 2px 2px 0 #c9c9c9, 2px 3px 0 #bbb, 2px 4px 0 #b9b9b9, 2px 5px 0 #aaa, 2px 6px 1px rgba(0,0,0,.1), 2px 0 5px rgba(0,0,0,.1), 2px 1px 3px rgba(0,0,0,.3), 2px 3px 5px rgba(0,0,0,.2), 2px 5px 10px rgba(0,0,0,.25), 2px 10px 10px rgba(0,0,0,.2), 2px 20px 20px rgba(0,0,0,.15);
 }
+
 
 
 article{
@@ -541,3 +582,4 @@ section{
 		margin-left:20px;
 		text-align:justify;
 	}
+
