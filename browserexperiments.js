@@ -297,6 +297,10 @@ var addEvent = (function () {
 		/************************************************
 		 * Add Google Analytics
 		 ************************************************/
+		 
+		if(window.location.host!=="browserexperiments.com"){
+			return;
+		}
 		var _gaq = _gaq || [];
 		_gaq.push(['_setAccount', 'UA-18575680-3']);
 		_gaq.push(['_trackPageview']);

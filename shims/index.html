@@ -129,7 +129,7 @@ function testSubmitted(p){
 	        <tr>
 	            <th>
 	                <img src="../images/h5_logo_top.png" alt="HTML5 Logo" />
-	                <span>HTML5 Features</span>
+	                <span>HTML5, CSS3, etc.. Features</span>
 	            </th>
 	            <td>
 	                <img src="../images/icon_ie_6.png" alt="IE" />6.0
@@ -1971,58 +1971,60 @@ function testSubmitted(p){
 		No results could be found
 	</p>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-			$("tbody th").click(function () {
-			    var element = $(this);
-			    element.toggleClass("selected");
-			    element.parent().nextUntil(".feature-row").toggleClass("selected");
-			});
-			
-			function format(s){
-				return s.toLowerCase().replace("-","").replace(/\s+$/,'').replace(/\^s+/,'');
-			}
-			
-			$("input[type=search]").bind("change keyup",function(){
-				// remove all rows from the table below that do not match the search string
-				var v = format(this.value);
-				$("tbody tr").addClass("hide");
-				var $s = $("tbody tr th").filter(function(){
-					return format(this.innerHTML).indexOf(v) >= 0;
-				}).parent();
-				var l = $s.add($s.nextUntil("tr.feature-row")).removeClass("hide").length;
-				$("#noresults")[(l===0?'show':'hide')]();
-			});
-			
-			if (($.browser.msie && $.browser.version >= 8) || !$.browser.msie) {
-				
-				var flot = false,
-					$thead = $('table thead').first();
-					
-				var $theadFlot = $thead.clone().addClass('float').insertAfter($thead).hide();
-				
-				            	
-			    $(window).bind('scroll', function () {
-			        var $tbody = $('table tbody'),
-			        	_flot = flot,
-			        	docViewTop = $(window).scrollTop(),
-			        	docViewBottom = docViewTop + $(window).height(),
-			        	elemTop = $thead.offset().top,
-			        	elemBottom = $tbody.offset().top;
+<script>
 
-			        flot = (!((elemBottom >= docViewTop) && (elemTop <= docViewBottom) && (elemBottom <= docViewBottom) && (elemTop >= docViewTop)) );
+(function(){
 
-			        if(flot!==_flot){
-			            $theadFlot[(flot?'show':'hide')]();
-			            setTimeout(function(){
-			            	$theadFlot[(flot?"add":"remove")+"Class"]("show");	
-			            },17);
-			        }
-			    });
-			}        
-         });
+$("tbody th").click(function () {
+    var element = $(this);
+    element.toggleClass("selected");
+    element.parent().nextUntil(".feature-row").toggleClass("selected");
+});
 
-    </script>
+function format(s){
+	return s.toLowerCase().replace("-","").replace(/\s+$/,'').replace(/\^s+/,'');
+}
+
+$("input[type=search]").bind("change keyup",function(){
+	// remove all rows from the table below that do not match the search string
+	var v = format(this.value);
+	$("tbody tr").addClass("hide");
+	var $s = $("tbody tr th").filter(function(){
+		return format(this.innerHTML).indexOf(v) >= 0;
+	}).parent();
+	var l = $s.add($s.nextUntil("tr.feature-row")).removeClass("hide").length;
+	$("#noresults")[(l===0?'show':'hide')]();
+});
+
+if (($.browser.msie && $.browser.version >= 8) || !$.browser.msie) {
+	
+	var flot = false,
+		$thead = $('table thead').first();
+		
+	var $theadFlot = $thead.clone().addClass('float').insertAfter($thead).hide();
+	
+	            	
+    $(window).bind('scroll', function () {
+        var $tbody = $('table tbody'),
+        	_flot = flot,
+        	docViewTop = $(window).scrollTop(),
+        	docViewBottom = docViewTop + $(window).height(),
+        	elemTop = $thead.offset().top,
+        	elemBottom = $tbody.offset().top;
+
+        flot = (!((elemBottom >= docViewTop) && (elemTop <= docViewBottom) && (elemBottom <= docViewBottom) && (elemTop >= docViewTop)) );
+
+        if(flot!==_flot){
+            $theadFlot[(flot?'show':'hide')]();
+            setTimeout(function(){
+            	$theadFlot[(flot?"add":"remove")+"Class"]("show");	
+            },17);
+        }
+    });
+}        
+})();
+
+</script>
 
 <script>
 	var _gaq = _gaq || [];
