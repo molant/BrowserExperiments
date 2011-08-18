@@ -43,8 +43,6 @@
 	<p>The <a href="https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html">Web Timing API</a> is a standardization of providing performance information to the script to help infer whether the computer, browser and or connection is capable of running a web application smoothly and perhaps infer whether a degraded experience might be more appropriate.</p>
 </blockquote>
 
-<button onclick="getPerformance()">window.performance.timing</button>
-
 <button onclick="createload()">run intensive task</button>
 
 
@@ -60,7 +58,24 @@
 
 <script>
 
+addLoadEvent(function(){setTimeout(getPerformance,1000);});
+
 var X;
+
+
+function addLoadEvent(func) {
+  var oldonload = window.onload;
+  if (typeof window.onload != 'function') {
+    window.onload = func;
+  } else {
+    window.onload = function() {
+      if (oldonload) {
+        oldonload();
+      }
+      func();
+    }
+  }
+}
 
 function getPerformance(){
 	if(!( "performance" in window )){
