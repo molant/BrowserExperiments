@@ -41,6 +41,7 @@ table
     border-collapse: collapse;
     border-spacing: 0;
     margin-bottom: 50px;
+    width:100%;
 }
 	td, th
 	{
@@ -53,6 +54,7 @@ table
 		top:0;
 		position:fixed;
 		-webkit-transition:0.5s;
+		width:1056px;
 	}
 	thead.float.show{
 		box-shadow:0 10px 10px -10px black;
@@ -77,6 +79,7 @@ table
 		thead th
 		{
 		    text-align: left;
+		    width:50%;
 		}
 			thead th img
 			{
@@ -93,7 +96,7 @@ table
 			    font-weight: bold;
 			}
 		thead td{
-		    width: 45px;
+		    width: 45px !important;
 		    overflow:hidden;
 		    text-align:center;
 		}
@@ -107,7 +110,6 @@ table
 			}
 
 	tr th{
-	    width: 457px;
 	}
 	tbody{
 	}
