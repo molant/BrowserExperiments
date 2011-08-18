@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Performance</title>
+	<script src="../../browserexperiments.js"></script>
+	
+	<style>
+		#demo{
+			margin-bottom:20px;
+			width:100%;
+		}
+		#demo > div{
+			padding:2px 0;
+			border-bottom:1px solid #aaa;
+		}
+		#demo div div{
+			padding:2px 0;
+			vertical-align:middle;
+			display:inline-block;
+			width:20%;
+		}
+		#demo div div.bar {
+			width:1px;
+			background-color:red;
+		}
+		#demo div div.bar:after{
+			display:block;
+			content: attr(title);
+			text-align:right;
+			color:black;
+		}
+		#demo div #scale {
+			width:80%;
+		}
+		
+	</style>
+</head>
+<body>
+
+<header><h1>Performance</h1></header>
+
+<blockquote>
+	<p>The <a href="https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html">Web Timing API</a> is a standardization of providing performance information to the script to help infer whether the computer, browser and or connection is capable of running a web application smoothly and perhaps infer whether a degraded experience might be more appropriate.</p>
+</blockquote>
+
+<button onclick="getPerformance()">window.performance.timing</button>
+
+<button onclick="createload()">run intensive task</button>
+
+
+<div id="demo">
+	<div>
+		<div></div><div id="scale"></div>
+	</div>
+	<div id="cpu">
+		<div>CPU </div><div class="bar">&nbsp;</div>
+	</div>
+</div>
+
+
+<script>
+
+var X;
+
+function getPerformance(){
+	if(!( "performance" in window )){
+		return;
+	}
+
+	var min=(new Date).getTime(),max=0;
+	for( var x in window.performance.timing ){
+		var v = window.performance.timing[x];
+		if(v===0){
+			continue;
+		}
+		if(v>max){
+			max = v;
+		}
+		if(v<min){
+			min = v;
+		}
+	}
+	
+	X = Math.ceil((max-min)/100)*100;
+
+	createScale(X);
+	
+	var o = window.performance.timing;
+	o.domInteractiveEnd = o.domContentLoaded;
+	o.domCompleteEnd = o.domLoading;
+	o.navigationEnd = o.loadEventEnd;
+	for( var x in o ){
+
+		var id = x.replace(/(Start|End)$/,''),
+			start = ( window.performance.timing[id+'Start'] || window.performance.timing[id] ) || min,
+			finish = window.performance.timing[id+'End'] || 0,
+			length = (finish>0?finish-start:0),
+			start = start - min;
+
+		bar( id, start, length );
+	}
+}
+
+
+
+function createload(){
+	for(var	i = 0, a = []; i < Math.ceil(Math.random() * 1234567809); i++)
+		a[i] = String.fromCharCode(Math.round(Math.random() * 50) + 30);
+
+	var p = document.createElement("p");
+	a.join("");
+	
+	document.body.appendChild(p);
+	
+	p.innerHTML = a;
+	
+	p.style.color = 'white';
+	p.style.overflow = "hidden";
+	p.style.height = "0";
+	p.style.position = "absolute";
+}
+
+function createScale(X){
+	var s = document.getElementById('scale'),
+		d = '';
+	
+	for(var i=0; i<X; i = i+100){
+		d += "<div title='"+i+"' style='width:" + (10000/X) +"%;'>"+i+"</div>";
+	}
+	s.innerHTML = d;
+}
+
+// Monitor load and trigger callback
+// i is a rough percentage
+monitorLoad(function(i){
+	bar('cpu', 0, i);
+});
+
+
+function bar(id,start,length){
+
+	var demo = document.getElementById("demo"),
+		div = document.getElementById(id);
+
+	if( !div ){
+		div = document.createElement("div");
+		div.id = id;
+		div.innerHTML = "<div>"+id + "</div><div class='bar'></div>";
+		demo.appendChild(div);
+	}
+
+	var bar = div.getElementsByTagName("div")[1];
+	
+	bar.style.width = length>0? (length/X)*80+"%" : "1px";
+	bar.style.marginLeft = (start/X)*80+"%";
+
+	bar.title = length + "ms";
+}
+
+
+function monitorLoad(callback){
+	var D=new Date;
+	setInterval(function(l){
+        var l=1;
+        callback( (D=((new Date-D)-500)) > 500 ? 100 : D/500 );
+        D=new Date
+    }
+    ,500);
+};
+
+
+
+</script>
+
+
+
+</body>
+</html>
