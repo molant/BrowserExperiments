@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS3 Animations</title>
+    <script src="../../browserexperiments.js"></script>
+<style>
+	#demo{
+		width:100%;
+		height:200px;
+		position:relative;
+	}
+		#demo div{
+			background-color:red;
+			position:absolute;
+			width:100px;
+			height:100px;
+			top:100px;
+		}
+		#demo:after{
+			content:"Hover over me";
+			font-size:3em;
+			text-align:center;
+			width:100%;
+		}
+		#demo:hover:after{
+			content:"Keep your eye on the ball...";
+		}
+
+		#demo:hover div{
+
+			animation-name: redbox, move;
+			animation-duration: 0.3s, 5s;
+			animation-iteration-count: 10, 2;
+			animation-timing-function: ease, linear;
+			animation-direction: infinite, infinite;
+			
+			-webkit-animation-name: 'redbox', 'move';
+			-webkit-animation-duration: 0.3s, 5s;
+			-webkit-animation-iteration-count: infinite, infinite;
+			-webkit-animation-timing-function: ease, linear;
+			-webkit-animation-direction: alternate, alternate;
+
+			-moz-animation-name: 'redbox', 'move';
+			-moz-animation-duration: 0.3s, 5s;
+			-moz-animation-iteration-count: infinite, infinite;
+			-moz-animation-timing-function: ease, linear;
+			-moz-animation-direction: alternate, alternate;
+		}
+
+	@keyframes 'move' {
+		from {
+			left: 0;
+		}
+		to {
+			left: 100%;
+			transform:rotate(270deg);
+		}
+	}
+	
+	@keyframes 'redbox' {
+		from {
+			top: 100px;
+			background-color:blue;
+			border-radius:10em;
+		}
+		
+		to {
+			top: 0;
+			background-color:red;
+		}
+	}
+	@-webkit-keyframes 'move' {
+		from {
+			left: 0;
+		}
+		to {
+			left: 100%;
+			-webkit-transform:rotate(270deg);
+		}
+	}
+	@-webkit-keyframes 'redbox' {
+		from {
+			top: 100px;
+			background-color:blue;
+			border-radius:10em;
+		}
+		
+		to {
+			top: 0;
+			background-color:red;
+		}
+	}
+	@-moz-keyframes 'move' {
+		from {
+			left: 0;
+		}
+		to {
+			left: 100%;
+		}
+	}
+	@-moz-keyframes 'redbox' {
+		from {
+			top: 100px;
+			background-color:blue;
+			border-radius:10em;
+		}
+		
+		to {
+			top: 0;
+			background-color:red;
+		}
+	}
+</style>
+</head>
+<body>
+    <header><h1>CSS3 Animation</h1></header>
+	<blockquote>
+		<p>The <a href="http://www.w3.org/TR/css3-animations/">(w3c) CSS3 Animations</a> 
+		define a way to add animation to page elements when a style rule is applied. On modern devices, such as the iPhone and iPad, the 
+		hardware-enhanced CSS3 Animations and Transitions are more performant than the old method of making timed style changes.
+		</p>
+		<br/>
+		<p>
+			This approach replaces what has for a long time been possible with javascript. A potential shim would be to use the popular jQuery.animate.
+		</p>
+	</blockquote>
+	<div id="demo">
+		<div></div>
+	</div>
+</body>
+</html>
