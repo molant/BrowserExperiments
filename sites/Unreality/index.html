@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+
+<!--
+	Load bing maps using the geolocation API: plot your position on the map.
+
+	Highlight locations which correspond to the following on FourSquare. 
+	* train station, 
+	* coffee shop
+	* clothes shop
+	  
+	When the user goes to these places we are going to show them a short film as a reward.
+-->
+
+<html class="locked">
+<head>
+	<title>Augmented unreality</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/> 
+	<script src="../../Common/jquery-1.6.1.js"></script>
+	<script src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+	<script src="script.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>	
+	<link rel="stylesheet" href="style.css"/>
+
+</head>
+<body>
+
+	<section id="page_start" class="show">
+		<header>
+			<img src="v3/images/title_txt.png">
+		</header>
+	</section>
+
+	<section id="page_menu" style="display:none;">
+		<header class="locked">
+			<h1>Welcome</h1>
+			<p>This text explains what the user must do to play the game, and what they get rewarded for playing the game</p>
+			<p>This text explains what the user must do to play the game, and what they get rewarded for playing the game</p>
+		</header>
+		<header class="unlocked">
+			<h1>Home</h1>
+			<p>Rewards</p>
+		</header>
+	</section>
+
+	<section id="page_locations" style="display:none;">
+		<header>
+			<h1>locations</h1>
+			<nav><a class="selected">List View</a> <a>Map View</a></nav>
+		</header>
+		<ol></ol>
+	</section>
+
+	<section id="page_map" style="display:none;">
+		<header>
+			<h1>locations</h1>
+			<nav><a>List View</a> <a class="selected">Map View</a></nav>
+		</header>
+		<div id="map"></div>
+	</section>
+
+	<section id="page_video" style="display:none;">
+		<header>
+			<h1>Congrats</h1>
+			<p>You've unlocked the <span class="scene_number">first</span> reward. Click on the image below to see the trailer that you've worked so damn hard to see. Video will be saved to your <a href="#page=menu">rewards</a></p>
+		</header>
+		<div class="subway_vid">
+			<video loop="false" poster="scenes/Subway.png">
+				<img src="scenes/Subway.png" alt="Poster Image" title="No video playback capabilities.">
+				<source src="scenes/Subway.webm" type="video/webm; codecs='vp8, vorbis'">
+				<source src="scenes/Subway.mp4" type="video/mp4; codecs='avc1.42E01E, mp4a.40.2'">
+				<source src="scenes/Subway.ogv" type="video/ogg; codecs='theora, vorbis'">
+
+				<object width="100px" height="100px" type="application/x-shockwave-flash" data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf">
+					<param name="movie" value="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf">
+					<param name="allowfullscreen" value="true">
+					<param name="flashvars" value="config={'playlist':['scenes/Subway.png', {'url': 'scenes/Subway.mp4','autoPlay':false,'autoBuffering':true}]}">
+					<img src="scenes/Subway.png" alt="Poster Image" title="No video playback capabilities.">
+				</object>
+			</video>
+		</div>
+		<div class="grocery_vid">
+			<video loop="false" poster="scenes/Groceries.png">
+				<img src="scenes/Groceries.png" alt="Poster Image" title="No video playback capabilities.">
+				<source src="scenes/Groceries.webm" type="video/webm; codecs='vp8, vorbis'">
+				<source src="scenes/Groceries.mp4" type="video/mp4; codecs='avc1.42E01E, mp4a.40.2'">
+				<source src="scenes/Groceries.ogv" type="video/ogg; codecs='theora, vorbis'">
+
+				<object width="100px" height="100px" type="application/x-shockwave-flash" data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf">
+					<param name="movie" value="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf">
+					<param name="allowfullscreen" value="true">
+					<param name="flashvars" value="config={'playlist':['scenes/Groceries.png', {'url': 'scenes/Groceries.mp4','autoPlay':false,'autoBuffering':true}]}">
+					<img src="scenes/Groceries.png" alt="Poster Image" title="No video playback capabilities.">
+				</object>
+			</video>
+		</div>
+		<div class="casino_vid">
+			<video loop="false" poster="scenes/Casino.png">
+				<img src="scenes/Casino.png" alt="Poster Image" title="No video playback capabilities.">
+				<source src="scenes/Casino.webm" type="video/webm; codecs='vp8, vorbis'">
+				<source src="scenes/Casino.mp4" type="video/mp4; codecs='avc1.42E01E, mp4a.40.2'">
+				<source src="scenes/Casino.ogv" type="video/ogg; codecs='theora, vorbis'">
+
+				<object width="100px" height="100px" type="application/x-shockwave-flash" data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf">
+					<param name="movie" value="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf">
+					<param name="allowfullscreen" value="true">
+					<param name="flashvars" value="config={'playlist':['scenes/Casino.png', {'url': 'scenes/Casino.mp4','autoPlay':false,'autoBuffering':true}]}">
+					<img src="scenes/Casino.png" alt="Poster Image" title="No video playback capabilities.">
+				</object>
+			</video>
+		</div>
+	</section>
+	
+</body>
+</html>

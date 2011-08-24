@@ -1,0 +1,411 @@
+﻿body{
+	background-color:#1b1b1b;
+	height:100%;
+	padding:0;
+	margin:0;
+	color:white;
+	background: black url("v3/images/lola_running_bg.png") no-repeat center top;
+	background-size:100%;
+	width:100%;
+	text-align:center;
+}
+
+
+section{
+	max-width:400px;
+	font: 100%/1.9 Arial, Helvetica, sans-serif;
+	margin:0 auto;
+	padding:0 10px;
+	text-align:left;
+	height:100%;
+	-webkit-transform:translate3d(1000px,0,0);
+	-webkit-transition:-webkit-transform 0.3s;
+}
+section.show{
+	-webkit-transition:-webkit-transform 0.3s;
+	-webkit-transform:translate3d(0,0,0);
+}
+
+	section header{
+		margin-top:30px;
+	}
+		section header h1{
+			text-transform:uppercase;
+			font-size:3em;
+			font-weight:normal;
+			margin:10px 0;
+			padding:0;
+			line-height:1;
+		}
+		section header nav{
+			
+		}
+			section header nav p{
+				
+			}
+			section header nav a{
+				color:red;
+			}
+			section header nav a.selected{
+				color:white;
+			}
+
+
+	section button{
+		display:block;
+		background-color:rgba(0,0,0,0.2);
+		padding:20px;
+		width:100%;
+		border-radius:1em;
+	}
+		section button div{
+			background-repeat:no-repeat;
+			min-height:100px;
+			text-align:left;
+		}
+			section button span{
+				color:red;
+				text-transform:uppercase;
+			}
+			section button h2{
+				font-size:1.4em;
+				line-height:1.2em;
+				margin:0;
+				text-transform:uppercase;
+			}
+			section button p{
+				padding:0;
+				line-height:1.3em;
+				margin:3px 0;
+			}
+
+	section button div:before{
+		content: url("v3/images/btn_arrow.png");
+		float:right;
+		display:inline-block;
+		margin-top:10px;
+	}
+
+
+
+
+/**
+ * Start 
+ */
+ 	section#page_start{
+		position:absolute;
+		top:0;
+		bottom:0;
+		left:0;
+		right:0;
+	}
+	section#page_start header img{
+		margin-top:40%;
+		max-width:100%;
+	}
+
+/**
+ * Menu
+ */
+
+	/**  HEADER **/ 
+ 	html.unlocked .locked,
+ 	html.locked .unlocked{
+		display:none;
+	}
+ 
+	
+	section header div{
+		width:30%;
+		margin:2%;
+		display:inline-block;
+		position:relative;
+		counter-increment: index;
+	}
+	section header div:after{
+		content: "Complete step " counter(index);
+		text-transform:uppercase;
+		line-height:1em;
+		position:absolute;
+		font-weight:bold;
+        top:0;
+        left:0;
+        padding:10px;
+        color:#ccc;
+	}
+	section header div.unlocked:after{
+		content: url("v3/images/congrats_play_icon_sml.png");
+        top:auto;
+        left:auto;
+        padding:5px;
+        bottom:0;
+        right:0;
+	}
+	section header div.unlocked{
+		outline:1px solid #900;
+	}
+	section header div:first-child{
+		margin-left:0;
+	}
+	section header div:last-child{
+		margin-right:0;
+	}
+		section header div img{
+			width:100%;
+			border:0;
+			margin:0;
+			padding:0;
+		}
+
+
+	
+	
+	/** BODY */
+	section button:before{
+		display:inline-block;
+		float:left;
+		padding-right:5px;
+	}
+	section button.casino:before{
+		content:url("v3/images/casino_btn_icon.png");
+	}
+	section button.grocery:before{
+		content:url("v3/images/grocery_btn_icon.png");
+	}
+	section button.subway:before{
+		content:url("v3/images/subway_btn_icon.png");
+	}
+	section button.unlocked:before{
+		content:url("v3/images/confirmation_btn_icon.png");
+	}
+
+	section button.unlocked, 
+	section button.unlocked:hover{
+		background:none;
+		border:none;
+		box-shadow:none;
+	}
+
+
+/**
+ * Locations
+ */
+	section ol{
+		margin:0;
+		padding:0;
+		padding-left:20px;
+	}
+
+	section ol:empty{
+	    -webkit-animation-name: 'loading';
+	    -webkit-animation-duration: 0.5s;
+	    -webkit-animation-iteration-count: infinite;
+	    -webkit-animation-timing-function: linear;
+	    -webkit-animation-direction: alternate;
+	}
+
+	section ol:empty:after{
+		content:"Loading...";
+	}
+
+		section ol li{
+			margin:0;
+			padding:0;
+			list-style:decimal-leading-zero;
+		}
+			section ol li div{
+			}
+
+			section ol li h3{
+				font-weight: normal;
+				margin:0;
+				padding:0;
+			}
+			section ol li p{
+				margin:0;
+				padding:0;
+				font-size:0.9em;
+				line-height:0.5em;
+			}
+			section ol li span{
+				font-size:0.9em;
+				color:red;
+			}
+			
+			section ol li button{
+				padding:3px 6px;
+				width:auto;
+				display:inline-block;
+				float:right;
+			}
+			section ol li button:after{
+				content:"GO";
+			}
+
+    @-webkit-keyframes 'loading' {
+            from {
+            	color:#FFF;
+            }
+            to {
+            	color:#AAA;
+            }
+    }
+/**
+ * Map
+ */
+	.map section{
+		-webkit-transform:none;
+	}
+
+	.map section header{
+		z-index:11;
+		position:absolute;
+		top:0;
+		background-color:rgba(0,0,0,0.6);
+	}	
+		.map section header h1{
+			margin-top:0;
+		}
+		#map{
+			z-index:10;
+			width:100%;
+			height:100%;
+			
+		}
+
+
+/**
+ * Video
+ */
+
+	body.video {
+		background-image:url("v3/images/congrats_bg.jpg");
+		background-size:auto;
+	}
+	
+		video{
+			width:100%;
+			-webkit-box-reflect:below 5px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.9, transparent), to(white));
+		}
+	body.video section div{
+		position:relative;
+	}
+		body.video section div:after{
+			content: url("v3/images/congrats_play_icon.png");
+			position:absolute;
+			right:20px;
+			bottom:-30px;
+		}
+	
+	
+/**
+ * Parallax
+ * As the user moves to another page we want to also move the background, this is known as a parrallaz effect
+ */
+	body,
+	body.start{
+		background-size:130%;
+		background-position:left top;
+		-webkit-transition:background-position 0.5s;
+	}
+	body.menu{
+		background-position:25% top;
+	}
+	body.locations{
+		background-position:50% top;
+	}
+	body.map{
+		background-position:75% top;
+	}
+	body.video{
+		background-position:50% top;
+	}
+
+
+
+
+/**
+ * GENERIC
+ */
+
+
+button{
+	border:none;
+	filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#30FFFFFF', endColorstr='#30000000');
+	background:-webkit-gradient(linear,left top, left bottom, from(rgba(255,255,255,0.3)), to(rgba(0,0,0,0.3)), 
+				color-stop(50%,rgba(255,255,255,0)), 
+				color-stop(50%,rgba(0,0,0,0)));
+	background: -moz-linear-gradient(rgba(255,255,255,0.2) 0,rgba(255,255,255,0) 49%,rgba(0,0,0,0) 51%,rgba(0,0,0,0.2) 100%);
+    -webkit-box-shadow: rgba(255, 255, 255, 0.1) 0 1px inset,
+                        rgba(0, 0, 0, 0.4) 0px 1px 1px;
+    -moz-box-shadow: rgba(255, 255, 255, 0.1) 0 1px inset,
+                        rgba(0, 0, 0, 0.4) 0px 1px 1px;
+	text-shadow:rgba(0, 0, 0, 0.4) 0px 1px;
+
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	padding:3px 6px;
+	color:white;/*IE*/
+	color:rgba(255,255,255,0.5);
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	font-family:"Lucida Grande", Arial, sans-serif;
+	font-size:13px;
+	cursor:pointer;
+	vertical-align: middle;
+}
+	button:hover{
+		color:white;
+		-moz-box-shadow: 0 1px 2px rgba(255,255,255,0.3);
+		-webkit-box-shadow: 0 1px 2px rgba(255,255,255,0.3);
+	}
+
+
+/**
+ * Styling the scrollbars
+ */
+* {
+	scrollbar-3dlight-color:#333333;
+	scrollbar-arrow-color:#999999;
+	scrollbar-darkshadow-color:#333333;
+	scrollbar-face-color:#444444;
+	scrollbar-highlight-color:#333333;
+	scrollbar-shadow-color:#333333;
+	scrollbar-track-color:#333333;	
+}
+
+ 
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {
+    display: block;
+}
+::-webkit-scrollbar-button:vertical:start:increment,
+::-webkit-scrollbar-button:vertical:end:decrement {
+    display: none;
+}
+::-webkit-scrollbar-button:vertical:increment {
+    border:5px solid transparent;
+    border-bottom:none;
+    border-top:5px solid gray;
+}
+::-webkit-scrollbar-button:vertical:decrement {
+    margin:2px;
+    border:5px solid transparent;
+    border-top:none;
+    border-bottom:5px solid gray;
+}
+::-webkit-scrollbar-thumb:vertical {
+    background-color: rgba(80,80,80,0.5);
+	background-image:-webkit-gradient(linear, left top, right top, from(rgba(80,80,80,0.5)), to(rgba(0,0,0,0.5)));
+}
+::-webkit-scrollbar-thumb:vertical:hover {
+    background-color: rgba(80,80,80,1);
+	background-image:-webkit-gradient(linear, left top, right top, from(rgba(80,80,80,0.6)), to(rgba(0,0,0,0.6)));
+}
+
+
