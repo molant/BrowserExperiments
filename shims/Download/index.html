@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+    <title>Download Attribute</title>
+    <script src="../../browserexperiments.js"></script>
+    <script src="base64.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Download Attribute</h1>
+    </header>
+	<blockquote>
+		<p>The <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#attr-hyperlink-download">WHATWG Download Attribute</a> for on the fly file creation and dwnload. This is useful for provide a mechanism for saving canvas artwork without the overhead of uploading it to a server first. In the demo below i am editing a table.</p>
+	</blockquote>
+
+	<div id="demo">
+		<table contenteditable="true" style="width:200px">
+		   <tr>
+		       <th>name</th>
+		       <th>age</th>
+		   </tr>
+		   <tr>
+		       <td>Dan</td>
+		       <td>33</td>
+		   </tr>
+		   <tr>
+		       <td>John</td>
+		        <td>32</td>
+		    </tr>
+		</table>
+	</div>
+
+<script>
+
+function tableToCSV(table) {
+
+	var rows = table.getElementsByTagName('tr'),
+		_rows = [];
+	for(var i=0;i<rows.length;i++){
+		var cells = rows[i].querySelectorAll('th,td'),
+			_cells = [];
+
+		for(var j=0;j<cells.length;j++){
+			_cells.push(cells[j].innerText);
+		}
+		_rows.push(_cells.join(","));
+	}
+	return _rows.join("\n");
+}
+
+(function self(){
+
+	var a = document.getElementById('download'),
+		MIME_TYPE = "text/csv",
+		csv = tableToCSV(document.getElementById("demo").getElementsByTagName("table")[0]);
+	
+	if(!a){
+		a = document.getElementById('demo').appendChild(
+			document.createElement("a")
+		);
+	}
+
+	a.download = "table.csv";
+	a.id = "download";
+	a.href = "data:text/csv;base64," + btoa(csv);
+	a.innerHTML = "download csv";
+
+	/**
+	 * CHROME 14
+	 */
+	window.URL = window.webkitURL || window.URL;
+	window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder;
+	
+	if("BlobBuilder" in window){
+		var bb = new BlobBuilder();
+		bb.append(csv);
+		a.href = window.URL.createObjectURL(bb.getBlob(MIME_TYPE));
+	}
+
+	setTimeout(self, 500);
+})();
+
+
+</script>
+</body>
+</html>
