@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <title>Text Gradient</title>
+    <script src="../../browserexperiments.js"></script>
+<style>
+	#demo{
+		font-size:3em;	
+		font-family: 'Cooper', 'Cooper black', 'Cooper Std', 'ballterminals';
+		position: relative;
+	}
+	
+	 /* Select only h1s that contain a 'data-text' attribute */ 
+	 
+	#demo[data-text]::after { 
+		content: attr(data-text);  
+		z-index: 2;  
+		color: silver; 
+		position: absolute; 
+		left: 0;  
+		-webkit-mask-image: -webkit-gradient( 
+			linear,   
+			0 0, 
+			0 100%,   
+			from(rgba(0,0,0,1)),
+			color-stop(50%, rgba(0,0,0,1)),
+			color-stop(50%, rgba(0,0,0,0)),
+			to(rgba(0,0,0,0))
+		); 
+	}
+</style>
+</head>
+<body>
+    <header>
+        <h1>CSS
+            <br />
+            Text-Gradient</h1>
+    </header>
+
+    <blockquote>
+        <p>Couldn't find anything official on this property, but perhaps this 
+		will be a standard image mask and wil work with other shapes other than 
+		just text. For now its difficult to implement in any browser.</p>
+    </blockquote>    
+
+	<div id="demo">
+		Text should be darker on the bottom than the top
+	</div>
+
+    <script>
+		document.getElementById('demo').setAttribute("data-text", document.getElementById('demo').innerHTML)
+    </script>
+</body>
+</html>
