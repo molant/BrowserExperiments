@@ -54,11 +54,11 @@ $(function(){
 			$.getJSON("http://search.twitter.com/search.json?q=twitpic%20Fashion&geocode="+FashionCapitals[CapitalCity]+",10mi&callback=?", function(r){
 				// build the element record
 				for(var i=0;i<r.results.length;i++){
-					var m = r.results[i].text.match(/http\:\/\/twitpic.com\/\w+/);
+					var m = r.results[i].text.match(/http\:\/\/(twitpic.com|t\.co)\/\w+/);
 
-					if(m&&unique(m[0])){
+					if(m&&m[0]){
 						var $img = $("<figure><div class='img'></div><figcaption>"+r.results[i].text+"</figcaption></figure>").appendTo($div).find(".img");
-						$img.load("http://sandbox.knarly.com/proxy.php?path="+ m + " #photo-display");
+						$img.load("http://sandbox.knarly.com/proxy.php?path="+ m[0] + " #photo-display");
 					}
 				}
 				// 
