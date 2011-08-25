@@ -4,7 +4,7 @@
 	padding:0;
 	margin:0;
 	color:white;
-	background: black url("v3/images/lola_running_bg.png") no-repeat center top;
+	background: black url("images/lola_running_bg.png") no-repeat center top;
 	background-size:100%;
 	width:100%;
 	text-align:center;
@@ -80,7 +80,7 @@ section.show{
 			}
 
 	section button div:before{
-		content: url("v3/images/btn_arrow.png");
+		content: url("images/btn_arrow.png");
 		float:right;
 		display:inline-block;
 		margin-top:10px;
@@ -134,7 +134,7 @@ section.show{
         color:#ccc;
 	}
 	section header div.unlocked:after{
-		content: url("v3/images/congrats_play_icon_sml.png");
+		content: url("images/congrats_play_icon_sml.png");
         top:auto;
         left:auto;
         padding:5px;
@@ -167,16 +167,16 @@ section.show{
 		padding-right:5px;
 	}
 	section button.casino:before{
-		content:url("v3/images/casino_btn_icon.png");
+		content:url("images/casino_btn_icon.png");
 	}
 	section button.grocery:before{
-		content:url("v3/images/grocery_btn_icon.png");
+		content:url("images/grocery_btn_icon.png");
 	}
 	section button.subway:before{
-		content:url("v3/images/subway_btn_icon.png");
+		content:url("images/subway_btn_icon.png");
 	}
 	section button.unlocked:before{
-		content:url("v3/images/confirmation_btn_icon.png");
+		content:url("images/confirmation_btn_icon.png");
 	}
 
 	section button.unlocked, 
@@ -279,7 +279,7 @@ section.show{
  */
 
 	body.video {
-		background-image:url("v3/images/congrats_bg.jpg");
+		background-image:url("images/congrats_bg.jpg");
 		background-size:auto;
 	}
 	
@@ -291,7 +291,7 @@ section.show{
 		position:relative;
 	}
 		body.video section div:after{
-			content: url("v3/images/congrats_play_icon.png");
+			content: url("images/congrats_play_icon.png");
 			position:absolute;
 			right:20px;
 			bottom:-30px;
