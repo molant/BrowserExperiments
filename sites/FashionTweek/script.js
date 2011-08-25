@@ -50,6 +50,7 @@ $(function(){
 		// Append
 		(function($div){
 			// get pictwits
+			// Can't get "pic.twitter.com" because users have to be following the other to see their pics.
 			$.getJSON("http://search.twitter.com/search.json?q=twitpic%20Fashion&geocode="+FashionCapitals[CapitalCity]+",10mi&callback=?", function(r){
 				// build the element record
 				for(var i=0;i<r.results.length;i++){
@@ -57,7 +58,7 @@ $(function(){
 
 					if(m&&unique(m[0])){
 						var $img = $("<figure><div class='img'></div><figcaption>"+r.results[i].text+"</figcaption></figure>").appendTo($div).find(".img");
-						$img.load("proxy.php?path="+m + " #photo-display");
+						$img.load("http://sandbox.knarly.com/proxy.php?path="+ m + " #photo-display");
 					}
 				}
 				// 
