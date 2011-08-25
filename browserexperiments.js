@@ -245,7 +245,7 @@ var addEvent = (function () {
 					multimedia : "HTML5 Video and Audio",
 					device : "Device Access kicks off with Geolocation",
 					connectivity : "More efficient connectivity means real time chats, faster games and better communication",
-					"3d" : "3D Graphics",
+					"3d" : "3D Graphics"
 				}[a[i].className];
 			}
 		}catch(e){}
