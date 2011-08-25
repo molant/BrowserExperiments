@@ -1,20 +1,51 @@
 <!doctype html>
 <html>
 <head>
-    <title>Download Attribute</title>
-    <script src="../../browserexperiments.js"></script>
-    <script src="base64.js"></script>
+	<title>Download Attribute</title>
+	<script src="../../browserexperiments.js"></script>
+	<script src="../../Common/jquery-1.6.1.js"></script>
+
+	<script src="base64.js"></script>
+	<script src="pdf.js"></script>
+
+	<script src="vendor/js/swfobject.js"></script> 
+	<script src="vendor/js/downloadify.min.js"></script>
+
+	<style>
+		#demo a{margin-right:20px;}
+		#downloadify object{
+			position:absolute;
+			top:0;
+			left:0;
+		}
+		#downloadify a{
+			position:relative;
+		}
+	</style>
 </head>
+
 <body>
     <header>
         <h1>Download Attribute</h1>
     </header>
 	<blockquote>
-		<p>The <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#attr-hyperlink-download">WHATWG Download Attribute</a> for on the fly file creation and dwnload. This is useful for provide a mechanism for saving canvas artwork without the overhead of uploading it to a server first. In the demo below i am editing a table.</p>
+		<p>The <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#attr-hyperlink-download">WHATWG Download Attribute</a> for on the fly file download of any blob data / or data-uri. This is useful for provide a mechanism for saving canvas artwork without the overhead of uploading it to a server first. 
+		It may also be used to replace traditional the method of &quot;Print Screen&quot; for saving of digital documents such as itineraries and receipts.</p>
+		<h2>Demo</h2>
+		<p>Edit the table below and then try to save it to your local computer. I have various formats in which you may save the data. 
+		<ul>
+			<li>
+				In the "a[download]" we set the a.href to the data-uri.
+			</li>
+			<li>
+				Using dcneiners <a href="https://github.com/dcneiner/downloadify">Downloadify</a> shim. The link is overlayed with a flash object which triggers the prompt save event.
+			</li>
+		</ul>
+		<p><strong>Bugs</strong>: Chrome 13 and "a[download]" create a blank PNG, whilst "Downloadify" creates a corrupt PDF.</p>
 	</blockquote>
 
 	<div id="demo">
-		<table contenteditable="true" style="width:200px">
+		<table contenteditable="true" style="width:200px" onblur="buildLinks();">
 		   <tr>
 		       <th>name</th>
 		       <th>age</th>
@@ -28,16 +59,21 @@
 		        <td>32</td>
 		    </tr>
 		</table>
+		
+		<h2>a[download]</h2>
+		<nav id="basic"></nav>
+		<h2>Downloadify</h2>
+		<nav id="downloadify"></nav>
 	</div>
 
 <script>
 
-function tableToCSV(table) {
+function tableToCSV(table,name) {
 
 	var rows = table.getElementsByTagName('tr'),
 		_rows = [];
 	for(var i=0;i<rows.length;i++){
-		var cells = rows[i].querySelectorAll('th,td'),
+		var cells = (rows[i].querySelectorAll ? rows[i].querySelectorAll('th,td') : rows[i].getElementsByTagName("td")),
 			_cells = [];
 
 		for(var j=0;j<cells.length;j++){
@@ -45,40 +81,140 @@ function tableToCSV(table) {
 		}
 		_rows.push(_cells.join(","));
 	}
-	return _rows.join("\n");
+
+	return "data:text/csv;filename="+name+";base64," + btoa(_rows.join("\n"));
 }
 
-(function self(){
+function tableToPDF(table,name) {
 
-	var a = document.getElementById('download'),
-		MIME_TYPE = "text/csv",
-		csv = tableToCSV(document.getElementById("demo").getElementsByTagName("table")[0]);
-	
-	if(!a){
-		a = document.getElementById('demo').appendChild(
-			document.createElement("a")
-		);
+	var doc = new pdf(),
+		rows = table.getElementsByTagName('tr');
+
+	for(var i=0;i<rows.length;i++){
+		var cells = (rows[i].querySelectorAll ? rows[i].querySelectorAll('th,td') : rows[i].getElementsByTagName("td")),
+			_cells = [];
+
+		for(var j=0;j<cells.length;j++){
+			_cells.push(cells[j].innerText);
+		}
+
+		doc.text(20, (i+1)*10, _cells.join(",") );
 	}
 
-	a.download = "table.csv";
-	a.id = "download";
-	a.href = "data:text/csv;base64," + btoa(csv);
-	a.innerHTML = "download csv";
+	return doc.output('datauri', {"fileName":name});
+}
 
-	/**
-	 * CHROME 14
-	 */
-	window.URL = window.webkitURL || window.URL;
-	window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder;
+
+function tableToPNG(table,name) {
+
+	try{
+		var c = document.createElement('canvas'),
+			ctx = c.getContext("2d"),
+			rows = table.getElementsByTagName('tr');
 	
-	if("BlobBuilder" in window){
-		var bb = new BlobBuilder();
-		bb.append(csv);
-		a.href = window.URL.createObjectURL(bb.getBlob(MIME_TYPE));
-	}
+		c.height = rows.length*30;
+		c.width = 150;
+		
+		ctx.font = "15pt Arial";
+	
+		for(var i=0;i<rows.length;i++){
+			var cells = rows[i].querySelectorAll('th,td'),
+				_cells = [];
+	
+			for(var j=0;j<cells.length;j++){
+				_cells.push(cells[j].innerText);
+			}
+			ctx.fillText( _cells.join(","), 10, (i+1)*30 );
+		}
 
-	setTimeout(self, 500);
-})();
+		return c.toDataURL("image/png");
+	}
+	catch(e){
+		// this browser doesn't support canvas so lets fake it with this little base64;
+		return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAABaCAYAAABaK68tAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAdTSURBVHhe7Z0xsuQ0EIYXDkICGfFGSwIH4AwbQP44CS8gg2C5AgeABCLizSDhIuC/yv9W069batnWjGfmd5XrvfG0pNandkuWpZ5Xr3SIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIwMUJfL+U+O9yfrqcv6//4zPOLxNtvBxkv3Gy+Mx8kQ/zxF8e/nq1PF9WDxp1sTqgDtER6cRrkX6exahuPd1v9nsaloVu/7cwYXyZnDcuNmbWqL4BI2NulQe9K0d0E7Asb1yRrpAloyqLqm4V/W9WxhoWGpIHr1tIEWDIs0FsQ9lGsg1iG9re3czbXqOs9wK8nnk47xF9Q1uDZZ3tNZuv5RPVY6tuN2swVcWjBkVagq7efbizI8Py4OmpssbmdZafdS30JNV6ejnWm4ZlPayX9YY8W7etdZqa7uONuf/m0v29fn7dyM/e5RB7E8gyH//V+46en6zf/7j8jbpffN3SLcueRvK0CrCcz9fPngMuv3OZzdJtY9NdJtlWw6pqZ7uyv6qJJslFhuyL8uOmShqfR3ZztKq1pZxJmI7JdqZhofuwwD5aPvM8RvuXuXxryrDlVcpFtwuPx+Mrk9fzgMJ27GmT7dFtoPhziM40rKelin8ExpSB30PknzXx2x2ZfL2m/WzV2XZzvhtl1xw9EHgdjtBtR7Wuk3SmYaFG8FjWkNAQM7pEdD8wYpTnB/rZA0BG3BsLxmy+q6LRwcNZeXSlXvZI3a5jJRco1T8d2SL9k5599I4G1LjGg2Mb36g0Cv+0Fz2F9ubNrIFH6bO5Mqu7N6KsXrhenceC7AwvfgFzyIuY6bG+W4p9DopGV8PrvbmlETjwDBhLwXPZg91xb1ANL4RxlT8wNuJ1dpeQ+SmQR1mQ98de3UY4SPbKBGDU1Xm3EVXpfe/OC41AeGRZGNXWd3U0ntYs/SOzfei6+3d/IzB647kju/gRvSR7JwSil9bqAu+kcVUNERABERABERABERABERABERABERABERABERABERABERABERCB/xGoLIY7EzK/2LC1TMZvpNjzkvpMDG5Cl4ph+dWT16pY9ILYr3Klbq3VrtfS/6HKzZYKE4K966/5lp96eq8T7Yr2+x29sW1ds/VQhrG3sj3DQv7ZIri9ZY+kz9bmRxsrsvX2NDh1iSPkN8pWDAtZ0zP4Yvw4Juqa7EYH3/XubeSq/tB7NGzARqRKBgLVhom8QDbm8cbVW525x7i4q6bSTUfdpqxgEoGqYVGOS3SzvX29SC72KS6SrVTTe71WGm/UFQOs6PBwMjO3f7E7wV9srcLWLGwJswe2RT03qFv5nmy18Ub28WFzrdavV8kauVmGxTu9tZcvi+RC9SKD49Z2RnCpVJlGDcPGnkYc2W5s7v+DLE4cvy6nPFeF9AUMK1LjiEgug9V7IW69XsUTcfNpRXavbneVfpbHertSYowDNMwRkVyOgN+LtWXL6O2ePkKfu8xjhmExMIbtykYiuRwBOpvuQN4MmsYoMK14FJUu/Qh97y6Pow0LRkXP9ENAy3cpUSSXIyC/WzOJIs88Ld8hxgK90S+r7M+uYBgV60LPe4RuyiMxjFaEFX7nDajyjpFpWhOT0fxYNnPemjfzg/HWu0KNrzbcCkd7LEZ28Xf4aCSXDVV5keSL5YrtjiGQRZ7BtEYUJQZPhvJWR7TGjeYBjyPPcqONd2a1RyY9z1wP6XYiAvBUWtpyogaRKiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiKwh0C20K6a59701XK8nF8I2HqR7Rc3zvhxp631OGW6oxf6nbKSgVLRkmgsQ85+dMln8bRcQB46EgKPaFj0TM8LE+4f5B5CGIxdtsx18P73nPmbiFquM/HW2tuV7U0/WrVewBJrLPBKUbenSDQd6rM9lt+k0Avo4Tdd+OXG1gh93lXvgbXw9FARHruXMAoLgDTabzh6O2+QzzxOazePLYbps50y1mD8bmpfRtW4fDWz4GsZDoU4upLHYvfBXTEcy3BsEnUvGN/gt5cpy10zb5M6jMhmGGioiOVAXSv3Fj0p9yRW0khmkEDksehJoqw4xuEg2XosL498bPc5IlupRuQBe+mykEy9dPp+kIA3rF434eVbg3c/0B6RHazGh6ByrXEgjao3Vhwt++7kZw/ebwkYNqaiO3yznFHYIhgVQhpBBg8AOhoERgyLd+vWATLVYFCOMzbMn4lSGBPKqAZabMSwqobBR/GnRI/X63VGexlQ9xBRP26zmVI3O52Abg91eZanOoT/i0x68UJt98GpAz8W4ZjJPhWOjJtGZDMK1M173ujBgLJ6NzjHpj7kms01ReBb81jWCEeMZUQWSvvBPytSmWPrRW9uPflObobzZz/aFSIqC7oEe2C+Cdf9gfkoL5tFe7k0KejGOTWWDV3tjPxInNNL63/68v4DzGS4KTmI11QAAAAASUVORK5CYII=";
+	}
+}
+/**
+ * CHROME 14
+ */
+window.URL = window.webkitURL || window.URL;
+window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder;
+
+
+function buildLinks(){
+
+	var table = document.getElementById("demo").getElementsByTagName("table")[0],
+		mimes = {
+			"csv" : tableToCSV(table, "download.csv"),
+			"pdf" : tableToPDF(table, "download.pdf"),
+			"png" : tableToPNG(table, "download.png")
+		};
+	
+	for(var x in mimes){
+
+		(function(x,mimes){
+			var base64 = mimes[x],
+				MIME_TYPE = base64.match(/data:(.*?);/)[1],
+				filename = 'download.'+x,
+				a = document.getElementById(filename);
+	
+			if(!a){
+				a = document.getElementById('basic').appendChild(
+					document.createElement("a")
+				);
+			}
+	
+			a.download = filename;
+			a.id = filename;
+			a.href = base64;
+			a.innerHTML = filename;
+			a.target = "_blank";
+			
+			$(a).data("base64", base64.match(/base64,(.*)/)[1] );
+	
+			if("BlobBuilder" in window && window.BlobBuilder){
+				var bb = new BlobBuilder();
+				bb.append(atob(base64.match(/base64,(.*)/)[1]));
+				a.href = window.URL.createObjectURL(bb.getBlob(MIME_TYPE));
+				a.dataset.downloadurl = [MIME_TYPE, filename, a.href].join(':');
+			}
+				// DOWNLOADIFY BUTTONS
+			var btn_id = filename + "_btn",
+				btn = document.getElementById(btn_id);
+
+			if(!btn){
+				btn = document.getElementById('downloadify').appendChild(
+					document.createElement("a")
+				);
+				btn.id = btn_id;
+				btn.innerHTML = filename;
+
+				$(btn).downloadify({
+					filename: function(){
+						return filename;
+					},
+					data: function(){
+						return $(a).data('base64');
+					},
+					dataType : "base64",
+					onComplete: function(){ alert('Your File Has Been Saved!'); },
+					onCancel: function(){ alert('You have cancelled the saving of this file.'); },
+					onError: function(){ alert('You must put something in the File Contents or there will be nothing to save!'); },
+					swf: 'vendor/media/downloadify.swf',
+					downloadImage: 'transparent.png',
+					width: 100,
+					height: 30,
+					transparent: true,
+					append: true
+				});
+			}
+			
+			btn.href = a.href;
+		})(x,mimes);
+	}
+}
+
+buildLinks();
 
 
 </script>
