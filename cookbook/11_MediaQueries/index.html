@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="user-scalable=yes, initial-scale=1.0" />
+        <title>Media Queries</title>
+        <link rel="Stylesheet" type="text/css" media="screen" href="style.css" />
+        <script type="text/javascript" src="respond.min.js"></script>
+    </head>
+    <body>
+        <div class="header">
+            <h1 class="logo"></h1>
+            <ul class="nav-set">
+                <li class="nav nav-1">
+                    <a href="#" class="nav-a">Nav Link 1</a>
+                </li>
+                <li class="nav nav-2">
+                    <a href="#" class="nav-a">Nav Link 2</a>
+                </li>
+                <li class="nav nav-3">
+                    <a href="#" class="nav-a">Nav Link 3</a>
+                </li>
+                <li class="nav nav-4">
+                    <a href="#" class="nav-a">Nav Link 4</a>
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            <img src="small.jpg" class="hero" />
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et nunc sem, non gravida urna. Nam rhoncus, tellus dapibus faucibus venenatis, est enim molestie erat, facilisis tempor magna lacus in nisl. Aliquam suscipit lobortis dui, id facilisis massa placerat id. Suspendisse mattis congue nisi eget pharetra. Morbi viverra velit in lectus dignissim porta. Vestibulum justo dui, pretium in mattis bibendum, lobortis vitae dui. Mauris fermentum dignissim massa non dapibus. Aenean eget ipsum et arcu vulputate iaculis ut ac dolor. Nam varius lacus quis sapien porttitor tristique. Suspendisse orci justo, semper ac malesuada ac, luctus quis odio. Suspendisse hendrerit dignissim sapien nec volutpat. Proin bibendum interdum bibendum. Cras odio nibh, fermentum non rutrum vitae, rhoncus ut nulla. Proin porta sem et purus sollicitudin semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper est non quam posuere bibendum sodales lectus eleifend. Phasellus ultrices pellentesque elementum. Aliquam erat volutpat.
+            </p>
+            <p>
+            Morbi a lacus nec massa lobortis semper. Etiam nisl orci, vulputate quis eleifend eget, gravida sed enim. Sed a purus nisi, sit amet dictum nulla. Suspendisse nisl mi, elementum et sollicitudin eget, semper ut libero. Duis fringilla velit quis felis gravida aliquet. Pellentesque nec ultrices elit. Curabitur sollicitudin tempus ligula vitae porta. Vestibulum vel felis ipsum. Suspendisse ut dolor odio. Aliquam nibh justo, aliquet sit amet placerat in, accumsan et quam. Etiam lectus purus, interdum quis pellentesque at, vehicula eu justo. In hac habitasse platea dictumst. Curabitur nec orci in dolor pulvinar accumsan.
+            </p>
+            <p>
+            Etiam condimentum, justo blandit consequat tempus, velit velit ultricies eros, in pretium elit magna eget augue. Etiam in eros nibh, sit amet accumsan quam. Integer nec neque id sapien viverra porta sit amet sed dolor. Donec sit amet sem mauris, vel consectetur purus. Ut vel velit massa, eu vulputate massa. Nullam sit amet tempus risus. Vivamus vulputate, metus id semper congue, sem mi molestie diam, eu pharetra neque ipsum id turpis. Mauris imperdiet fermentum mi vitae tincidunt. Etiam malesuada ultricies elit vitae dapibus. In mollis ultrices leo eget venenatis. Curabitur vitae rhoncus quam. Duis ultricies ligula in tortor varius non accumsan purus iaculis.
+            </p>
+            <p>
+            Aenean sit amet eros vitae lorem porta convallis vel id risus. Mauris urna augue, tincidunt quis placerat vitae, semper nec sem. Proin eu lorem in lectus commodo venenatis. Fusce facilisis lorem vitae ligula luctus id vestibulum turpis accumsan. Cras mi leo, bibendum non molestie in, tempus non felis. In hac habitasse platea dictumst. Integer turpis risus, tempor id laoreet consectetur, cursus eu urna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vehicula nibh in tortor interdum fermentum. Nunc accumsan dapibus ante sed elementum. Curabitur turpis ligula, tempus pretium egestas ut, lacinia non ipsum. Donec iaculis quam a dolor dapibus accumsan. Morbi at dolor ac nulla viverra posuere ut eu lacus. Sed scelerisque, sapien quis gravida pellentesque, neque dui pretium leo, quis feugiat odio sapien eget velit. Fusce eu nisl ligula. Suspendisse cursus convallis massa, posuere tempor arcu sollicitudin non. Aenean scelerisque tristique nisi nec tincidunt. Nullam vulputate dictum hendrerit. Aenean commodo vestibulum iaculis. Ut est neque, volutpat id viverra quis, consectetur viverra neque.
+            </p>
+            <p>
+            Duis non eros in dolor feugiat dapibus. Sed sit amet risus enim, id iaculis orci. Nullam in leo eget arcu vestibulum lacinia. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla tempor vestibulum orci, et imperdiet nisi sagittis quis. Praesent fringilla gravida aliquet. Aliquam congue eros id felis sagittis rutrum. Duis et massa libero, sit amet mattis felis. Maecenas egestas ornare dictum. Cras nibh leo, fermentum at volutpat ac, adipiscing ac ipsum. Aenean eget viverra erat. Fusce molestie pharetra venenatis. Pellentesque sagittis consectetur metus, rhoncus iaculis purus pellentesque ut. Aliquam id odio a felis placerat dignissim vitae ac ante. Suspendisse tempus convallis erat, id venenatis massa auctor id.
+            </p>
+        </div>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            //swap image based on browser size so large image won't load for a smaller screens
+            $(function(){
+                var $win = $(window),
+                    $hero_img = $('.hero')
+                    ;
+                function resize_hero(win_w)
+                {
+                    $hero_img.attr('src', win_w > 768 ? 'large.jpg' : 'small.jpg');
+                }
+                $win.resize(function(){
+                    var win_w = $win.width();
+                    resize_hero(win_w);
+                });
+                $hero_img.attr('src','');  //remove the src so the wrong image won't load
+                resize_hero($win.width());
+            });
+        </script>
+    </body>
+</html>
