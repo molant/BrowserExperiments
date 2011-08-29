@@ -432,7 +432,7 @@ $(function(){
 				coords = r.coords;
 			}, log);
 		} else {
-			log('not supported');
+			alert('Halt!... your browser doesn\'t support some features of this site. Sorry but its probably going to break.');
 		}
 
 		setTimeout(self,60000);

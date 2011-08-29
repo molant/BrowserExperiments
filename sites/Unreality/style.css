@@ -98,11 +98,24 @@ section.show{
 		bottom:0;
 		left:0;
 		right:0;
+		width:100%;
+		height:100%;
+		text-align:center;
 	}
-	section#page_start header img{
-		margin-top:40%;
-		max-width:100%;
-	}
+		section#page_start header{
+			text-align:center;
+		}
+			section#page_start header a{
+				color:gray;
+				font-size:2em;
+			}
+			section#page_start header a:active{
+				color:lightgray;
+			}
+			section#page_start header img{
+				margin-top:40%;
+				max-width:100%;
+			}
 
 /**
  * Menu
@@ -296,7 +309,7 @@ section.show{
 			right:20px;
 			bottom:-30px;
 		}
-	
+
 	
 /**
  * Parallax
@@ -327,11 +340,19 @@ section.show{
 /**
  * GENERIC
  */
+a:focus, button:focus{
+	outline:none;
+}
 
+
+
+.no-cssgradients button{
+	filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#30FFFFFF', endColorstr='#30000000');
+}
 
 button{
 	border:none;
-	filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0,startColorstr='#30FFFFFF', endColorstr='#30000000');
+	background:-ms-linear-gradient(rgba(255,255,255,0.2) 0,rgba(255,255,255,0) 49%,rgba(0,0,0,0) 51%,rgba(0,0,0,0.2) 100%);
 	background:-webkit-gradient(linear,left top, left bottom, from(rgba(255,255,255,0.3)), to(rgba(0,0,0,0.3)), 
 				color-stop(50%,rgba(255,255,255,0)), 
 				color-stop(50%,rgba(0,0,0,0)));
