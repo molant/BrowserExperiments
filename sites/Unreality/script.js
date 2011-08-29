@@ -339,7 +339,7 @@ $(function(){
 	/**
 	 *  START PAGE
 	 */
-	$("section#page_start").click(function(){
+	$("body.start").live('click',function(){
 		change({page:"menu"});
 	});
 
@@ -430,9 +430,11 @@ $(function(){
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(function(r){
 				coords = r.coords;
-			}, log);
+			}, function(){
+				alert('Halt!... enable Geolocation tracking!... and refresh teh site');
+			});
 		} else {
-			alert('Halt!... your browser doesn\'t support some features of this site. Sorry but its probably going to break.');
+			alert('Halt!... enable Geolocation tracking!');
 		}
 
 		setTimeout(self,60000);
