@@ -1,0 +1,77 @@
+body, html {
+    background: #fff;
+    color: #333;
+    font: normal 13px "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+    .container {
+        width: 500px;
+        margin: 0 auto;
+    }
+
+    .field-set {
+        list-style-type: none;
+    }
+
+        .field {
+            list-style-type: none;
+        }
+
+            .field label {
+                clear: left;
+                display: block;
+                float: left;
+                padding: 4px 0;
+                width: 100px;
+            }
+
+            .field input {
+                border: 1px solid #ccc;
+                font: normal 13px "Helvetica Neue", Arial, Helvetica, sans-serif;
+                padding: 6px 9px;
+                width: 200px;
+            }
+
+            .field input:focus {
+                border-color: #999;
+                outline: 0;
+            }
+
+            .field-select {
+                float: left;
+                position: relative;
+                height: 27px;
+            }
+
+                .field-select-value {
+                    background: #fff;
+                    border: 1px solid #ccc;
+                    display: block;
+                    font-size: 93%;
+                    height: 13px;
+                    line-height: 1;
+                    padding: 6px 31px 6px 9px;
+                    white-space: nowrap;
+                    width: 178px;
+                }
+
+                    .field-select-value-focus {
+                        border-color: #999;
+                    }
+
+                .field-select-icon {
+                    background: url('arrow.gif') no-repeat 3px 2px;
+                    display: block;
+                    width: 16px; height: 11px;
+                    position: absolute; top: 8px; right: 8px;
+                }
+
+                    .js .field-select select {
+                        opacity: 0; filter: alpha(opacity = 0);
+                        position: absolute; top: 0; left: 0;
+                    }
+
+                    .applemac-safari .field-select select,
+                    .safari .field-select select {
+                        left: 10px;
+                    }

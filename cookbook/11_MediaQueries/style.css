@@ -1,0 +1,94 @@
+html, body
+{
+    margin:0;
+    padding:0;
+    font: normal 100% Helvetica, Arial, san-serif, clean;
+}
+
+.header .logo
+{
+    height: 150px; width: 150px;
+    background: #fff url(logo.jpg);
+    margin: 0 auto 10px;
+}
+.header .nav-set
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+    .header .nav-a
+    {
+        background: #fff;
+        display: block;
+        color: #000;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+.content
+{
+    padding: 0 20px;
+}
+.content .hero
+{
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+@media screen and (min-width: 769px) {
+    .header
+    {
+        float: left;
+        width: 200px;
+    }
+        .header .nav
+        {
+            padding-left: 25px;
+            margin-bottom: 10px;
+            background: #fff url(nav-icons.jpg) no-repeat 0 0;
+            height: 20px;
+            margin-left: 25px;
+        }
+        .header .nav-2
+        {
+            background-position: 0 -25px;
+        }
+        .header .nav-3
+        {
+            background-position: 0 -50px;
+        }
+        .header .nav-4
+        {
+            background-position: 0 -75px;
+        }
+            .header .nav-a
+            {
+                padding-top: 2px;
+            }
+    .content
+    {
+        margin-top: 20px;
+        padding-left: 220px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .header
+    {
+        margin-bottom: 20px;
+    }
+    .header .nav-set
+    {
+        display: block;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+        .header .nav
+        {
+            margin-left: 10px;
+            display: inline-block;
+        }
+        .header .nav:first-child
+        {
+            margin-left: 0;
+        }
+}

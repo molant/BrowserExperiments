@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="jquery-1.6.2.js"></script>
+<script type="text/javascript" src="jquery.color.js"></script>
+<script type="text/javascript" src="modernizr-2.0.6.js"></script>
+<style>
+
+/* Animate to a red label when corresponding checkbox is checked */
+.warning-label, .warning-label-js {
+	font-weight: bold;
+	color: #888888;
+	padding: 1px 4px;
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-ms-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
+input[type=checkbox]:checked + .warning-label {
+	color: #ff4400;
+	background: #ffff88;
+}
+
+/* Zoom images when they are clicked */
+.zoom-image, .zoom-image-js {
+	position: absolute;
+	width: 128px;
+	height: 201px;
+	-webkit-transition: all 2s ease;
+	-moz-transition:  all 2s ease;
+	-o-transition:  all 2s ease;
+	-ms-transition:  all 2s ease;
+	transition:  all 2s ease;
+}
+.zoom-image:active {
+	width: 256px;
+	height: 403px;
+}
+
+/* Unroll a box when the mouse is over it */
+.roll-box, .roll-box-js {
+	margin-left: 130px;
+	width: 280px;
+	height: 200px;
+	overflow: hidden;
+	border: 1px solid red;
+	border-bottom-style: dotted;
+	padding: 4px 4px 0 4px;
+	-webkit-transition: all 1s ease;
+	-moz-transition:  all 1s ease;
+	-o-transition:  all 1s ease;
+	-ms-transition:  all 1s ease;
+	transition:  all 1s ease;
+}
+.roll-box ul, .roll-box-js ul {
+	font-size: 80%;
+	list-style-type: box;
+}
+.roll-box:hover {
+	height: 300px;
+	border-bottom-style: solid;
+}
+</style>
+<script type="text/javascript">
+if ( !window.console ) {
+	window.console = { log: function(){} };
+}
+
+// http://www.impressivewebs.com/css3-transitions-without-hover/
+
+$(function(){
+	/*
+	 * If the platform doesn't support CSS transitions, use jQuery to provide them.
+	 * Alternatively, do not animate if CSS transitions are unsupported; in that
+	 * case Modernizr and jQuery are optional and the code below is not needed.
+	 */
+	var csstrans = Modernizr.csstransitions && !/notrans/.test(window.location.search);
+	
+	$(".status").hide().filter(csstrans? ".cssanim" : ".jsanim").show();
+
+	if ( !csstrans ) {
+
+		console.log("No CSS transition support; using jQuery animations instead.");
+		
+		// Checkbox label animations
+		$(".warning-label")
+			.removeClass("warning-label")
+			.addClass("warning-label-js")
+			.prev("input[type=checkbox]")
+			.click(function(){
+				$(this).siblings(".warning-label-js").stop().animate(
+					!this.checked? {
+						"color": "#888888",
+						"background-color": "#ffffff"
+					} : {
+						"color": "#ff4400",
+						"background-color": "#ffff88"
+					},
+					1000
+				);
+			});
+
+		// Image zoom animations
+		$(".zoom-image")
+			.removeClass("zoom-image")
+			.addClass("zoom-image-js")
+			.mousedown(function(){
+				$(this).stop().animate({ width: 256, height: 403 }, 2000);
+			})
+			.mouseup(function(){
+				$(this).stop().animate({ width: 128, height: 201 }, 2000);
+			});
+
+		// Unrolling box animations
+		$(".roll-box")
+			.removeClass("roll-box")
+			.addClass("roll-box-js")
+			.hover(
+				function(){
+					$(this)
+						.css("border-bottom-style", "solid")
+						.stop()
+						.animate({ height: 300 }, 1000);
+				},
+				function(){
+					$(this)
+						.css("border-bottom-style", "dotted")
+						.stop()
+						.animate({ height: 200 }, 1000);
+				}
+			);
+	}
+});
+</script>
+</head>
+<body>
+
+<p>
+	This page demonstrates CSS transitions, with a fallback to JavaScript animations. 
+</p>
+
+<p class="status cssanim">CSS animations are supported in this browser.</p>
+<p class="status jsanim">CSS animations are <em>not</em> supported in this browser; Javascript will be used.</p>
+<p class="status noscript">JavaScript does not appear to work in this browser.</p>
+
+<ul>
+	<li>Click the check box to animate its label.</li>
+	<li>Click and hold the mouse on the image to zoom it.</li>
+	<li>Mouse over the text to see the full description.</li>
+</ul>
+<p>
+	<input type="checkbox" id="check" />
+	<label class="warning-label" for="check">I want one of these phones!</label>
+</p>
+
+<div>
+	<img src="samsungfocus.png" class="zoom-image" />
+</div>
+
+<div class="roll-box">
+	<p>Samsung Focus:</p>
+	<ul>
+		<li>Super AMOLED 4.0” Touchscreen Display</li>
+		<li>Downloadable apps via Windows Marketplace</li>
+		<li>Social Networking Integration</li>
+		<li>5 Megapixel Camera & Camcorder</li>
+	</ul>
+	<p>
+		The Super AMOLED screen gives you a razor sharp, cinema quality image. 
+		It makes surfing the web and reading texts much easier in bright sunlight. 
+		The brilliant display allows you to quickly access the information most
+		important to you with Live Tiles on your start screen.
+	</p>
+</div>
+
+</body>
+</html>

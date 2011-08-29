@@ -1,0 +1,113 @@
+html, body
+{
+    margin:0;
+    padding:0;
+    font: normal 100% Helvetica, Arial, san-serif, clean;
+}
+
+.header
+{
+    margin-bottom: 50px;
+}
+    .header .title
+    {
+        font-size: 200%;
+        font-weight: bold;
+        text-align: center;
+    }
+
+
+.content {}
+    .content .example-set
+    {
+        list-style: none;
+        padding: 0;
+        margin: 0 30px;
+    }
+
+@media screen and (max-width: 1024px) and (min-width: 769px)
+{
+
+        .content .example
+        {
+            margin: 80px 0;
+        }
+        .content .example:first-child
+        {
+            margin-top: 0;
+        }
+        .content .example:last-child
+        {
+            margin-bottom:0;
+        }
+
+            .content .example .example-image
+            {
+                width: 300px;
+                float: left;
+                border: solid 2px #ccc;
+            }
+            .content .example .example-title
+            {
+                font-size: 130%;
+                font-weight: bold;
+                padding-left: 320px;
+            }
+            .content .example .example-description
+            {
+                padding-left: 320px;
+            }
+}
+@media screen and (min-width: 1025px)
+{
+    .content .example
+    {
+        margin: 40px 20px;
+        width: 250px;
+        height: 680px;
+        float: left;
+        position: relative;
+    }
+        .content .example .example-image
+        {
+            width: 100%;
+            margin-bototm: 20px;
+            border: solid 2px #ccc;
+        }
+        .content .example .example-title
+        {
+            background: rgba(255,255,255,.8);
+            font-size: 130%;
+            font-weight: bold;
+            padding: 3px 6px;
+            margin:0;
+            position: absolute; top:2px; left:2px;
+        }
+}
+
+@media screen and (max-width: 768px)
+{
+    .content .example
+    {
+        float: none;
+        width: 100%;
+        height: auto;
+        margin: 40px 0;
+        position: relative;
+    }
+        .content .example .example-image
+        {
+            width: 100%;
+            margin-bototm: 20px;
+            border: solid 2px #ccc;
+        }
+        .content .example .example-title
+        {
+            background: rgba(255,255,255,.8);
+            font-size: 130%;
+            font-weight: bold;
+            padding: 3px 6px;
+            margin:0;
+            position: absolute; top:2px; left:2px;
+        }
+}
