@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1">
+
+<title>testing</title>
+<style>
+a {
+	text-indent: -999em;
+	overflow: hidden;
+	display: block;
+	float: left;
+	width: 15px;
+	padding: 5px 30px;
+}
+
+a span {
+	width: 13px;
+	height: 15px;
+	text-indent: -999em;
+	display: block;
+}
+
+.prev {
+	background-image: url('/node-projects/tweet-event-map/img/prev-arrow.png');
+	background-repeat: no-repeat;
+	background-position: 0 0;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	display: block;
+}
+
+tbody, tr, td {
+	display: block;
+}
+
+
+table tr {
+	
+	
+}
+
+table td {
+	background: red;
+	position: absolute;
+	width: 100%;
+	
+}
+
+</style>
+<script>
+
+function groupWords() {
+	var body = document.getElementsByTagName('body')[0];
+	var texts = body.innerText;
+	texts = texts.replace(/\s+/g, ' ');
+	texts = texts.replace(/^\s/, '');
+	texts = texts.split(/ /);
+	var text = texts.join('|');
+	body.innerText = text;
+
+}
+
+
+</script>
+</head>
+<body style="word-wrap:break-word;">
+<script>
+	//Twitter Event Groups
+	var groupings = {
+		"bieber" : ["bieber", "bieberfever", "bieberama", "justinbieber", "jbieber"],
+		"aea" : ["aea", "an event apart", "event apart"],
+		"marcjacobs" : ["Marc Jacobs", "marcjacobs", "marc by marc", "marcbymarc", "mjacobs"],
+		"prada" : ["prada"],
+		"gucci" : ["gucci"]
+	};
+	
+	
+	//TwitterNode and Socket.io
+	var twitterConfig = {
+		user: "mrs_moustache", 
+		password: "gildea1458", 
+		action: "filter", 
+		track: []
+	};
+	
+	function getParentGroup( keyword ) {
+		var parent = '';
+		for (group in groupings) {
+			var list = groupings[group];
+			var count = list.length;
+			for (var i=0; i<count; i++) {
+				var listKeyword = list[i];
+				if (keyword == listKeyword) {
+					parent = group;
+				}
+			}
+		}
+		return parent;
+	}
+	
+	var myDate = new Date("January 13, 2011, 2:45 pm PST");
+	
+	function randomColor() {
+		(function(h){return '#000000'.substr(0,7-h.length)+h})((~~(Math.random()*(1<<24))).toString(16));
+	}
+	
+	function testNoise (message) {
+		var str = message;
+		var noiseMatch = false;
+		var messagekeywords = ["default", "marcjacobs"];
+		for (var i=1; i<messagekeywords.length; i++) {
+			if (!noiseMatch) {
+				var keyword = messagekeywords[i];
+				if (events[keyword].noise) {
+					var check = str.match(events[keyword].noise);
+					if (check && check.length > 0) noiseMatch = true;
+				} 
+			}
+		}
+		if (noiseMatch) {
+			return false;
+		}
+		else return true;
+	}
+	
+	function buildKeywords() {
+		for (event in events) {
+			var eventID = event, 
+				name = events[event].name, 
+				keywords = events[event].keywords,
+				index = keywords.length;
+				
+			if (!events[event].excludeName) keywords[index] = eventID;
+			index++;
+			
+			var matchName = new RegExp(name, 'i');
+			if(!eventID.match(matchName)) {
+				keywords[index] = name;
+				index++;
+			}
+			if (name.match(/ /g)) {
+				keywords[index] = name.replace(/ /g, '-');
+			}
+			
+		}
+	}
+
+	
+	var events = {
+	
+		"marcjacobs" : {
+			"name": "Marc Jacobs",
+			"startTime": new Date("June 20, 2011, 11:30 am EST"),
+			"endTime": new Date("June 20, 2011, 11:45 am EST"),
+			"location": "40.757563, -73.989208",
+			"keywords": ["marc by marc", "marcbymarc", "mjacobs"],
+			"excludeName" : true
+		}
+		
+	}
+	
+	buildKeywords();
+	
+	console.log(events);
+	
+	//build event keyword RegExp
+	function createEventRegExp() {
+		for (event in events) {
+			var re = new RegExp('\\b('+events[event].keywords.join('|')+')\\b', 'gi');
+			events[event].regExpFilter = re;
+		}
+	}
+	
+	createEventRegExp();
+	
+	var spanishFilter = /\b(de|la|que|y|el|los|se|un|las|del|por|con|una|es|lo|para|su|al|como|mas|pero|le|ha|sus|si|yo|ya|este|porque|muy|todo|cuando|sobre|esta|tambien|entre|ser|mi|dos|habia|nos|anos|tiene|hasta|desde|te|eso|fue|todos|puede|pues|asi|bien|vez|ni|ahora|uno|parte|ese|vida|tiempo|mismo|otro|dia|cada|siempre|hacer|donde|esa|nada|hace|entonces|decir|bueno|otra|esto|despues|ella|mundo|tanto|otros|menos|va|poco|aqui|mucho|usted|estado|estaba|ver|como|aunque|estan|les|tres|antes|gobierno|sido|casa|algo|hombre|pais|dijo|sino|forma|ano|estos|caso|hecho|durante|hoy)\b/gi;
+	
+	var colors = 'almond|amber|crimson|rose|amethyst|fuchsia|brass|white|green|apricot|aqua|aquamarine|army green|yellow|grey|gray|ash|asparagus|tangerine|auburn|azure|baby blue|baby pink|light blue|blue|banana|beige|black|blush|cerulean|lavender|maroon|pink|turquoise|bronze|brown|bubble gum|burgundy|burnt orange|burnt sienna|burnt umber|camel|cerise|champagne|charcoal|chartreuse|cherry blossom|chocolate|copper|coral|cream|cyan|daffodil|dandelion|magenta|olive green|orange|rasberry|salmon|sea green|tan|tangerine|taupe|violet|carmine|cerise|chestnut|lilac|saffron|sky blue|denim|eggplant|eggshell|lime|emerald|gold|yellow-green|green-yellow|honeydew|indigo|iris|ivory|jade|jasmine|kelly green|khaki|lemon|mauve|mint|mango|slate|orchid|teal|melon|moss|mustard|olive|chestnut|pistachio|plum|pumpkin|saffron|topaz|smoke|vanilla';
+	var colorPattern = '\\b('+colors+')\\b';
+	
+	var numbers = 'one|two|three|four|five|six|seven|eight|nine|ten|one-piece|two-piece|three-piece|four-piece|one piece|two piece|three piece|double|single|tripple';
+	
+	
+	var miscClothingAdjectives = 'printed|zig-zag|striped|knitted|gathered|raglan|flutter|asymmetrical|symmetrical|cropped|notched|embroidered|sculpted|draped|retro|retro-inspired|sheer|muted|monotone|multi-colored|monochromatic|dyed|woven|hip|downtown|uptown|chic|avant-garde|flaired|boot-cut|neon|fluorescent|pastel';
+	
+	var commonAdjectives = 'abandoned|abhorrent|abiding|ablaze|able|abnormal|aboard|aboriginal|abrasive|abrupt|absent|absorbed|absorbing|abstracted|absurd|abundant|abusive|acceptable|accessible|accidental|accurate|acidic|acoustic|ad|hoc|adamant|adaptable|addicted|adhesive|adjoining|adorable|adventurous|afraid|aggressive|agonizing|agreeable|ajar|alert|alike|alive|alluring|aloof|amazing|ambiguous|ambitious|amuck|amusing|ancient|angry|animated|annoyed|annoying|anxious|apathetic|aquatic|aromatic|arrogant|ashamed|aspiring|assorted|astonishing|attractive|auspicious|automatic|average|awesome|awful|bad|barbarous|bashful|bawdy|beautiful|befitting|belligerent|bent|berserk|best|better|bewildered|big|billowy|bite-sized|bitter|bizarre|bloody|blue-eyed|blushing|boiling|boorish|bored|boring|bouncy|boundless|brainy|brash|brave|brawny|breakable|breezy|brief|bright|broad|broken|bumpy|burly|bustling|busy |cagey|calculating|callous|calm|capable|capricious|careful|careless|caring|cautious|ceaseless|certain|changeable|charming|cheap|checkered|cheerful|chemical|chief|childlike|chilly|chivalrous|chubby|chunky|clammy|classy|clean|clear|clever|cloistered|cloudy|closed|clumsy|cluttered|coherent|cold|colorful|colossal|combative|comfortable|common|complete|complex|concerned|condemned|confused|conscious|cool|coordinated|courageous|cowardly|crabby|craven|crazy|creepy|crooked|crowded|cruel|cuddly|cultured|cumbersome|curious|curly|curved|curvy|cute|cynical|damaged|damaging|damp|dangerous|dapper|dark|dashing|dazzling|dead|deadpan|deafening|dear|debonair|decisive|decorous|deep|deeply|defeated|defective|defiant|delicate|delicious|delightful|demonic|delirious|dependent|depressed|deranged|descriptive|deserted|detailed|determined|devilish|didactic|different|difficult|diligent|direful|dirty|disagreeable|disastrous|discreet|disgusted|disgusting|disillusioned|dispensable|distinct|disturbed|divergent|dizzy|domineering|doubtful|drab|draconian|dramatic|dreary|drunk|dry|dull|dusty|dusty|dynamic|dysfunctional |eager|earsplitting|earthy|easy|eatable|economic|educated|efficacious|efficient|elastic|elderly|electric|elegant|elfin|elite|embarrassed|empty|enchanted|enchanting|encouraging|endurable|energetic|enormous|entertaining|enthusiastic|envious|erect|erratic|ethereal|evanescent|evasive|even|excellent|excited|exciting|exclusive|exotic|expensive|extra-large|extra-small|exuberant|exultant|fabulous|faded|faint|fair|faithful|fallacious|familiar|famous|false|fanatical|fancy|fantastic|far|far-flung|fascinated|fast|fat|faulty|fearful|fearless|feeble|feigned|female|fertile|festive|few|fierce|filthy|fine|finicky|first|fixed|flagrant|flaky|flashy|flat|flawless|flimsy|flippant|flowery|fluffy|fluttering|foamy|foolish|foregoing|forgetful|fortunate|four|frail|fragile|frantic|free|freezing|frequent|fresh|fretful|friendly|frightened|frightening|full|fumbling|functional|funny|furry|furtive|future|futuristic|fuzzy|gaping|garrulous|gaudy|general|gentle|giant|giddy|gifted|gigantic|glamorous|gleaming|glib|glistening|glorious|glossy|godly|good|goofy|gorgeous|graceful|grandiose|grateful|gratis|greasy|great|greedy|grieving|groovy|grotesque|grouchy|grubby|gruesome|grumpy|guarded|guiltless|gullible|gusty|guttural |habitual|half|hallowed|halting|handsome|handsomely|handy|hanging|hapless|happy|hard|hard-to-find|harmonious|harsh|hateful|heady|healthy|heartbreaking|heavenly|heavy|hellish|helpful|helpless|hesitant|hideous|high|highfalutin|high-pitched|hilarious|hissing|historical|holistic|hollow|homeless|homely|honorable|horrible|hospitable|hot|huge|hulking|humdrum|humorous|hungry|hurried|hurt|hushed|husky|hypnotic|hysterical|icky|icy|idiotic|ignorant|ill|illegal|ill-fated|ill-informed|illustrious|imaginary|immense|imminent|impartial|imperfect|impolite|important|imported|impossible|incandescent|incompetent|inconclusive|industrious|incredible|inexpensive|infamous|innate|innocent|inquisitive|insidious|instinctive|intelligent|interesting|internal|invincible|irate|irritating|itchy|jaded|jagged|jazzy|jealous|jittery|jobless|jolly|joyous|judicious|juicy|jumbled|jumpy|juvenile|kaput|keen|kind|kindhearted|kindly|knotty|knowing|knowledgeable|known|labored|lackadaisical|lacking|lame|lamentable|languid|large|last|late|laughable|lavish|lazy|lean|learned|left|legal|lethal|level|lewd|light|like|likeable|limping|literate|little|lively|living|lonely|long|longing|long-term|loose|lopsided|loud|lovely|loving|low|lowly|lucky|ludicrous|lumpy|lush|luxuriant|lying|lyrical|macabre|macho|maddening|madly|magical|magnificent|majestic|makeshift|male|malicious|mammoth|maniacal|many|marked|massive|married|marvelous|material|materialistic|mature|mean|measly|meaty|medical|meek|mellow|melodic|melted|merciful|mere|messy|mighty|military|milky|mindless|minimal|miniature|minor|miscreant|misty|mixed|moaning|modern|moldy|momentous|motionless|mountainous|muddled|mundane|murky|mushy|mute|mysterious|naive|nappy|narrow|nasty|natural|naughty|nauseating|near|neat|nebulous|necessary|needless|needy|neighborly|nervous|new|next|nice|nifty|nimble|nine|nippy|noiseless|noisy|nonchalant|nondescript|nonstop|normal|nostalgic|nosy|noxious|numberless|numerous|nutritious|nutty|oafish|obedient|obeisant|obese|obnoxious|obscene|obsequious|observant|obsolete|obtainable|oceanic|odd|offbeat|old|old-fashioned|omniscient|one|onerous|open|opposite|optimal|ordinary|organic|ossified|outgoing|outrageous|outstanding|oval|overconfident|overjoyed|overrated|overt|overwrought|painful|painstaking|pale|paltry|panicky|panoramic|parallel|parched|parsimonious|past|pastoral|pathetic|peaceful|penitent|perfect|periodic|permissible|perpetual|petite|petite|phobic|physical|picayune|piquant|placid|plain|plant|plastic|plausible|pleasant|plucky|pointless|poised|polite|political|polka-dot|polka-dotted|poor|possessive|possible|powerful|precious|premium|present|pretty|previous|pricey|prickly|private|probable|productive|profuse|protective|proud|psychedelic|psychotic|public|puffy|pumped|puny|purring|pushy|puzzled|puzzling|quack|quaint|quarrelsome|questionable|quick|quickest|quiet|quirky|quixotic|quizzical|rabid|racial|ragged|rainy|rambunctious|rampant|rapid|rare|raspy|ratty|ready|real|rebel|receptive|recondite|redundant|reflective|regular|relieved|remarkable|reminiscent|repulsive|resolute|resonant|responsible|rhetorical|rich|right|righteous|rightful|rigid|ripe|ritzy|roasted|robust|romantic|roomy|rotten|rough|round|royal|ruddy|rude|rural|rustic|ruthless|sable|sad|safe|salty|same|sassy|satisfying|savory|scandalous|scarce|scared|scary|scattered|scientific|scintillating|scrawny|screeching|second|second-hand|secret|secretive|sedate|seemly|selective|selfish|separate|serious|shaggy|shaky|shallow|sharp|shiny|shivering|shocking|short|shrill|shut|shy|sick|silent|silent|silky|silly|simple|simplistic|sincere|skillful|skinny|sleepy|slim|slimy|slippery|sloppy|slow|small|smart|smelly|smiling|smoggy|smooth|sneaky|snobbish|snotty|soft|soggy|solid|somber|sophisticated|sordid|sore|sore|sour|sparkling|special|spectacular|spicy|spiffy|spiky|spiritual|spiteful|splendid|spooky|spotless|spotted|spotty|spurious|squalid|square|squealing|squeamish|staking|stale|standing|statuesque|steadfast|steady|steep|stereotyped|sticky|stiff|stimulating|stingy|stormy|straight|strange|strong|stupendous|stupid|sturdy|subdued|subsequent|substantial|successful|succinct|sudden|sulky|super|superb|superficial|supreme|swanky|sweet|sweltering|swift|symptomatic|synonymous|taboo|tacit|tacky|talented|tall|tame|tan|tangible|tangy|tart|tasteful|tasteless|tasty|tawdry|tearful|tedious|teeny|teeny-tiny|telling|temporary|tender|tense|tense|tenuous|terrible|terrific|tested|testy|thankful|therapeutic|thick|thin|thinkable|third|thirsty|thirsty|thoughtful|thoughtless|threatening|thundering|tidy|tight|tightfisted|tiny|tired|tiresome|toothsome|torpid|tough|towering|tranquil|trashy|tremendous|tricky|trite|troubled|truculent|true|truthful|typical|ubiquitous|ugliest|ugly|ultra|unable|unaccountable|unadvised|unarmed|unbecoming|unbiased|uncovered|understood|undesirable|unequal|unequaled|uneven|unhealthy|uninterested|unique|unkempt|unknown|unnatural|unruly|unsightly|unsuitable|untidy|unused|unusual|unwieldy|unwritten|upbeat|uppity|upset|uptight|used|useful|useless|utopian|utter|uttermost|vacuous|vagabond|vague|valuable|various|vast|vengeful|venomous|verdant|versed|victorious|vigorous|violent|vivacious|voiceless|volatile|voracious|vulgar |wacky|waggish|waiting|wakeful|wandering|wanting|warlike|warm|wary|wasteful|watery|weak|wealthy|weary|well-groomed|well-made|well-off|well-to-do|wet|whimsical|whispering|whole|wholesale|wicked|wide|wide-eyed|wiggly|wild|willing|windy|wiry|wise|wistful|witty|woebegone|womanly|wonderful|wooden|woozy|workable|worried|worthless|wrathful|wretched|wrong|wry|yielding|young|youthful|yummy|zany|zealous|zesty|zippy'
+	
+	var fabrics = 'aba|aerophane|alepine|alpaca|angora|ardass|armure|arrasene|atlas|baft|bagging|baize|balbriggan|baldachin|balzarine|barathea|barege|barracan|barras|barrateen|batiste|bayadere|beaupers|bengaline|bombazine|borato|boucl|brilliantine|broadcloth|brocade|buckram|bump|bunting|burdet|burlap|burnet|burrel|calamanco|calico|camaca|cambresine|cambric|camlet|caneva|canque|cashmere|cashmerette|cassimere|cendal|challis|chambray|chamois|charmante|charmeuse|chenille|cheviot|chiffon|chino|chintz|cire|cloque|coburg|cordovan|corduroy|crash|crepe|crepon|cretonne|crin|crinoline|cubica|cypress|damask|delaine|dimity|domett|dornick|dowlas|drabbet|drap-de-Berry|dreadnought|drill|droguet|drugget|ducape|duck|duffel|dungaree|dupion|duroy|duvetyn|ecarlate|olienne|etamine|eyelet|faille|farandine|filoselle|flannel|foulard|foul|frieze|fuji|fustian|gabardine|galatea|gambroon|gazar|genappe|georgette|gingham|grenadine|grogram|grosgrain|gulix|harn|herringbone|hodden|holland|hopsack|houndstooth|huckaback|jaconet|jacquard|jaspe|jean|jersey|kalamkari|kelt|kente|kersey|kerseymere|khaddar|kincob|lace|lasting|lawn|leno|linen|linsey|linsey-woolsey|lockram|loden|lustring|lutestring|mackinaw|mackintosh|madapollam|madras|marabout|marcella|marocain|marquisette|matelass|melton|merino|messaline|mockado|mogadore|mohair|moire|moleskin|moreen|mousseline|mull|muslin|musterdevillers|nainsook|nankeen|needlecord|ninon|organdie|organza|orleans|osnaburg|ottoman|oxford|paduasoy|paisley|panne|paramatta|pashmina|pekin|pellicule|percale|percaline|perse|platilla|pongee|poodle|poplin|prunella|rabanna|ramie|raploch|raschel|rep|reticella|romal|rumchunder|russel|russet|sagathy|samite|sarsenet|satara|sateen|satin|satinet|saxony|say|scarlet|scrim|seersucker|sempiternum|sendal|serge|shalloon|shantung|sharkskin|shetland|shoddy|sicilienne|silesia|silk|silkaline|sindon|stammel|stockinette|surah|swansdown|swanskin|straw|tabaret|tabby|tabinet|taffeta|tamin|tamis|tarlatan|terry|ticking|tiffany|tiretaine|toile|tricolette|tricot|tricotine|tulle|tussah|tweed|velour|veloutine|velvet|velvetine|vicuna|voile|wadmal|whipcord|wigan|wincey|wool|woolsey|worcester|worsted|zanella|zephyr|quilted|zibeline|wool|linen|cotten|leather|fur|plaid|pleather|patent leather|canvas|twill';
+	var fabricPattern = '\\b('+fabrics+')\\b';
+	
+	var nouns = '\\b('+fabrics+'|achiever|acoustics|act|action|activity|actor|addition|adjustment|advertisement|advice|angel|angels|arm|arms|ankle|ankles|afterthought|agreement|air|airplane|airport|alarm|amusement|anger|angle|animal|animals|ant|ants|apparel|apple|apples|approval|arch|argument|arm|army|art|attack|attempt|attention|attraction|authority |babies|baby|back|badge|balance|ball|balloon|balls|banana|band|base|baseball|basin|basket|basketball|bat|bath|battle|bead|beads|beam|bean|bear|bears|beast|bed|bedroom|beds|bee|beef|beetle|beggar|beginner|behavior|bell|bells|berry|bike|bikes|bird|birds|birth|birthday|bit|bite|blade|blood|blow|board|boat|boats|body|bodies|bomb|bone|book|books|boot|border|bottle|boundary|box|boy|boys|brain|brake|branch|brass|bread|breakfast|breath|brick|bridge|brother|brothers|brush|bubble|bucket|building|bulb|bun|burn|burst|bushes|business|butter|button|buttons|bustier|bustiers|bra|bras|brazier|braziers|butt|butts|boob|boobs|breast|breasts|chest |cabbage|cable|cactus|cake|cakes|calculator|calendar|camera|cameras|camp|can|cannon|canvas|cap|caps|caption|cape|capes|car|card|care|carpenter|carriage|cars|cart|cast|cat|cats|cattle|cause|cave|celery|cellar|cemetery|cent|chain|chair|chairs|chalk|chance|change|channel|cheese|cherries|cherry|chess|chicken|chickens|children|chin|church|circle|clam|class|cloak|cloaks|clock|clocks|cloth|clothes|cloud|clouds|clover|club|coach|coal|coast|coat|coats|cobweb|coil|collar|color|comb|comfort|committee|company|comparison|competition|condition|connection|control|cook|copper|copy|cord|cork|corn|cough|country|cover|cow|cows|crack|cracker|crate|crayon|cream|creator|creature|creation|credit|crib|crime|crook|crow|crowd|crown|crush|cry|cub|cup|current|curtain|curve|cushion|dad|daughter|day|death|debt|decision|deer|degree|design|desire|desk|destruction|detail|development|digestion|dime|dinner|dinosaurs|direction|dirt|discovery|discussion|disease|disgust|distance|distribution|division|dock|doctor|dog|dogs|doll|dolls|donkey|door|downtown|drain|drawer|drink|driving|drop|drug|drum|duck|ducks|dust|ear|earth|earthquake|edge|education|effect|egg|eggnog|eggs|elbow|end|engine|error|event|example|exchange|existence|expansion|experience|expert|eye|eyes|face|faces|fact|fairies|fall|family|fan|fang|farm|farmer|father|father|faucet|fear|feast|feather|feeling|feet|fiction|field|fifth|fight|finger|fingers|fire|fireman|fish|flag|flame|flames|flavor|flesh|flight|flock|floor|flower|flowers|fly|fog|fold|food|foot|force|fork|form|fowl|frame|friction|friend|friends|frog|frogs|front|fruit|fuel|furniture	|game|garden|gate|geese|ghost|giants|giraffe|girl|girls|glass|glove|gloves|glue|goat|gold|goldfish|good-bye|goose|government|governor|grade|grain|grandfather|grandmother|grape|grass|grip|ground|group|growth|guide|guitar|gun |hair|haircut|hall|hammer|hand|hands|harbor|harmony|hat|hate|head|health|hearing|heart|heat|help|hen|hill|hips|history|hobbies|hole|holiday|home|honey|hook|hope|horn|horns|horse|horses|hose|hospital|hot|hour|house|houses|humor|hydrant|ice|icicle|idea|impulse|income|increase|industry|ink|insect|instrument|insurance|interest|invention|iron|island|jail|jam|jar|jeans|jean|jelly|jellyfish|jewel|join|joke|journey|judge|juice|jump|kettle|key|kick|kiss|kite|kitten|kittens|kitty|knee|knife|knot|knowledge|laborer|lace|laces|ladybug|lake|lamp|land|language|laugh|lawyer|lead|leaf|learning|leg|legs|letter|letters|lettuce|level|library|lift|light|limit|line|linen|lip|lips|liquid|list|lizards|loaf|lock|locket|look|loss|love|low|lumber|lunch|lunchroom|machine|magic|maid|mailbox|man|manager|map|marble|mark|market|mask|mass|match|meal|measure|meat|meeting|memory|men|metal|mice|middle|milk|mind|mine|minister|mint|minute|mist|mitten|mom|money|monkey|month|moon|morning|mother|motion|mountain|mouth|move|muscle|music|trunk|trunks |nail|name|nation|neck|need|needle|nerve|nest|net|news|night|noise|north|nose|note|notebook|number|nut|oatmeal|observation|ocean|offer|office|oil|operation|opinion|oranges|order|organization|ornament|ornaments|oven|owl|owner|page|pail|pain|paint|pan|pancake|paper|parcel|parent|park|part|partner|party|passenger|paste|patch|payment|peace|pear|pen|pencil|person|pest|pet|pets|pickle|picture|pie|pies|pig|pigs|pin|pipe|pizzas|place|plane|planes|plant|plantation|plants|plastic|plate|play|playground|pleasure|plot|plough|pocket|point|poison|police|polish|pollution|popcorn|porter|position|pot|potato|powder|power|price|print|prison|process|produce|profit|property|prose|protest|pull|pump|pumps|punishment|purpose|push|quarter|quartz|queen|question|quicksand|quiet|quill|quilt|quilts|quince|quiver|rabbit|rabbits|rail|railway|rain|rainstorm|rake|range|rat|rate|ray|reaction|reading|reason|receipt|recess|record|regret|relation|religion|representative|request|respect|rest|reward|rhythm|rice|riddle|rifle|ring|rings|river|road|robin|rock|rod|roll|roof|room|root|rose|route|rub|rule|run|sack|sacks|sail|salt|sand|scale|scarecrow|scarf|scene|scent|school|science|scissors|screw|sea|seashore|seat|secretary|seed|selection|self|sense|servant|shade|shake|shame|shape|sheep|sheet|shelf|ship|shirt|shirts|shock|shoe|shoes|shop|show|side|sidewalk|sign|silk|silver|sink|sister|sisters|size|skate|skin|skirt|sky|slave|sleep|sleet|slip|slope|smash|smell|smile|smoke|snail|snails|snake|snakes|sneeze|snow|soap|society|sock|soda|sofa|son|song|songs|sort|sound|soup|space|spade|spark|spiders|sponge|spoon|spot|spring|spy|square|squirrel|stage|stamp|star|stars|start|statement|station|steam|steel|stem|step|stew|stick|sticks|stitch|stocking|stomach|stone|stop|store|story|stove|stranger|straw|stream|street|stretch|string|structure|style|substance|sugar|suggestion|suit|summer|sun|support|surprise|sweater|swim|swing|system|table|tail|tails|talk|tank|taste|tax|teaching|team|teeth|temper|tendency|tent|territory|test|texture|theory|thing|things|thought|thread|thrill|throat|throne|thumb|thunder|ticket|tiger|time|tin|title|toad|toe|toes|tomatoes|tongue|tooth|toothbrush|toothpaste|top|touch|town|toy|toys|trade|trail|train|trains|tramp|transport|tray|treatment|tree|trees|trick|trip|trouble|trouser|trousers|truck|trucks|tub|turkey|turn|twig|twist|umbrella|uncle|underwear|unit|use|vacation|value|van|vase|vegetable|veil|vein|verse|vessel|vest|vests|view|visitor|voice|volcano|volleyball|voyage|walk|wall|war|wash|waste|watch|watches|water|wave|waves|wax|way|wealth|weather|week|weight|wheel|whip|whistle|wilderness|wind|window|wine|wing|winter|wire|wish|woman|women|wood|wool|word|work|worm|wound|wren|wrench|wrist|wrists|writer|writing|yak|yam|yard|yarn|year|yoke |zebra|zephyr|zinc|zipper|zoo|belt|belts|bikini|bikinis|shorts|pant|pants|bottom|bottoms|legging|leggings|tights|heel|heels|strap|straps|bag|bags|dress|dresses|bra|bras|corset|corsets|stripe|stripes|trimming|girdle|girdles|gown|gowns|jacket|jackets|jerkin|sheath|loincloth|robe|robes|sandal|sandals|sash|sashes|beret|berets|blouse|blouses|bowtie|bowties|bow|bows|cardigan|cufflinks|handkerchief|handkerchiefs|hoisery|jumper|jumpers|knickers|laces|lingerie|mask|masks|miniskirt|miniskirts|nightdress|nightdresses|overall|overalls|pajamas|panties|poncho|ponchos|purse|purses|handbag|handbags|raincoat|raincoats|shawl|shawls|trench|slippers|socks|stiletto|stilettos|stockings|suspenders|sweatshirt|sweatshirts|swimsuit|swimsuits|t-shirt|t-shirts|tee|tees|tie|ties|tracksuit|tracksuits|underpants|undershirt|undershirts|uniform|uniforms|waistcoat|waistcoats|wellingtons|wristwatch|zip|jewlery|cover-up|cover-ups|sunglasses|scarves|clutch|clutches|saddle|messenger|tote|satchel|wallet|wallets|iPad|iPads|case|cases|iPhone|iPhones|blackberry|phone|phones|caftan|caftans|sundress|sundresses|knits|lapel|lapels|grommet|grommets|rhinestone|rhinestones|lace-up|lace-ups|dot|dots|henley|henleys|drape|drapes|ruffle|ruffles|brooch|brooches|bangle|inspiration|backpack|backpacks|couture|onesie|oinesies|hem|hems|halter|halters|polka-dots|collars|bathing suit|dinner jacket|high heels|shoulder pads|pull over|camisole|camisoles|long sleeve|long sleeves|long-sleeve|short sleeve|short-sleeve|trench coats)\\b';
+	
+	var adjectives = '\\b('+colors+'|'+fabrics+'|'+numbers+'|'+commonAdjectives+'|'+miscClothingAdjectives+')\\b';
+	var adjNounRegExp = new RegExp('('+adjectives+' '+adjectives+' '+nouns+')|('+adjectives+' '+nouns+' '+nouns+')|('+nouns+' '+nouns+')|('+adjectives+' '+nouns+')', 'gi');
+	
+	var spanishTweet = true;
+	
+	// Array Remove - By John Resig (MIT Licensed)
+	Array.prototype.remove = function(from, to) {
+	  var rest = this.slice((to || from) + 1 || this.length);
+	  this.length = from < 0 ? this.length + from : from;
+	  return this.push.apply(this, rest);
+	};
+		
+	function parseTweetText() {
+		var str, names = [], phrases = [], list = [];
+		
+		//test spanish tweet full drop
+		if (spanishTweet) str = "RT @soandso this RT  is a mas rea#lly asleep como e marc jacobs marc-jacobs Marc Jacobs long Dakota Fanning Bonham Carter #string wi!th a url! heart co@ntains 'rt' an^d a Gucci Mane h&ash tag tr*ending test with test33";
+		
+		else str = "This Is At The Beginning RT @soandso this RT  is Blue Bird Show Now a rea#lly asleep marc jacobs marc-jacobs Marc Jacobs long Dakota Fanning Bonham Carter #string wi!th a url! heart co@ntains 'rt' an^d a Gucci Mane h&ash tag tr*ending test with test33 short sleeve shirt special Vera Wang's blue whit The Best Show In Earth polka-dot dress with glistening  beads and red plaid jumpers followed by leather Alexander McQueen or Mehera O'Brien and lots of fur and also white collars MAC AIDS Fund's Viva Glam ";
+		
+		var spanishTest = str.match(spanishFilter);
+		if (spanishTest && spanishTest.length > 1) { return false; }
+		
+		var noNoise = testNoise(str);
+		console.log("noNoise: "+noNoise);
+		
+		console.log(str);
+		
+		//remove event designer referenes
+		str = str.replace(events['marcjacobs'].regExpFilter, ' ');
+		
+		//remove double spaces
+		//replace all white spaces with a single white space
+		str = str.replace(/\s+/g, ' ');
+		str = str.replace(/^\s/, '');
+		
+		//console.log(str);
+				
+		//save proper nouns as names
+		var names = str.match(/[A-Z][a-z']+[A-Za-z']*(\s[A-Z][a-z']+[A-Za-z']*)+/g);
+		str = str.replace(/[A-Z][a-z']+[A-Za-z']*(\s[A-Z][a-z']+[A-Za-z']*)+/g, ' ');
+		
+		console.log(names);
+		
+		if (names && names.length > 0) {
+			//remove long lists of proper nouns
+			var namesCount = names.length-1;
+			for (var k=namesCount; k>=0; k--) {
+				if (names[k].split(/ /).length > 2) {
+					names.splice(k, 1);
+				}
+			}
+		}
+		
+		//remove double spaces
+		//replace all white spaces with a single white space
+		str = str.replace(/\s+/g, ' ');
+		str = str.replace(/^\s/, '');
+		
+		//save adjective noun patterns
+		var phrases = str.match(adjNounRegExp);
+		//console.log(phrases);
+		console.log(phrases);
+				
+		//split str into array list
+		if (names && phrases) list = names.concat(phrases);
+		else if (phrases) list = phrases;
+		else if (names) list = names;
+		console.log(list);
+
+		
+	}
+	
+	var start = (new Date()).getTime();
+	
+	for (var i=0; i<2; i++) {
+		parseTweetText();
+		spanishTweet = !spanishTweet;
+	}
+	
+	var finished = (new Date()).getTime() - start;
+	console.log("processing time: " + finished + " msec" );
+	
+	/*
+	
+	var str = "RT @soandso this RT  is a mas rea#lly asleep como e marc jacobs marc-jacobs Marc Jacobs long Dakota Fanning Bonham Carter #string wi!th a url! heart co@ntains 'rt' an^d a Gucci Mane h&ash tag tr*ending test with test33";
+	
+	console.log(str);
+	
+	
+	var spanishTest = str.match(spanishFilter);
+	
+	if (spanishTest && spanishTest.length > 1)
+	
+	//remove urls
+	str = str.replace(/http:\/\/\S+/gi, ' ');
+	
+	//remove twitter usernames mentions
+	str = str.replace(/@\S+/gi, ' ');
+	
+	//remove hash tags and other non-alphanumeric characters
+	str = str.replace(/[^a-z1-9\s-]/gi, '');
+	
+	console.log(str);
+	
+	//remove RT at the beginning of the string
+	str = str.replace(/^RT\s/gi, ' ');
+	
+	//remove RT in the middle of the string
+	str = str.replace(/\sRT\s/gi, ' ');
+	
+	//save proper names
+	var properNames = str.match(/[A-Z][a-z]+(\s[A-Z][a-z]+)+/g);
+	console.log(properNames);
+	
+	//strip proper names until later
+	str = str.replace(/[A-Z][a-z]+(\s[A-Z][a-z]+)+/g, ' ');
+	console.log(str);
+	
+	//replace all white spaces with a single white space
+	str = str.replace(/\s+/g, ' ');
+	str = str.replace(/^\s/, '');
+	
+	//split str into array list
+	var list = str.split(/ /);
+	console.log(list);
+	
+	if (properNames) list = properNames.concat(list);
+	console.log(list);
+	
+	*/
+	
+	
+</script> 
+
+
+<!-- <iframe src="http://tweetyvent.dev" style="width: 90%; height: 90%;"></iframe> -->
+
+
+</body>
+</html>

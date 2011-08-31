@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>load</title>
+
+<script language="javascript">
+
+
+
+
+
+
+function bodyLoaded()
+{
+
+	var str = document.location.toString();
+	var num = str.split("=")[1];
+
+	if(!num)
+	{
+		num = 2;
+	}
+
+	var main = document.getElementById("main");
+
+	for(var i=0; i<num; i++)
+	{
+		theFrame = document.createElement("iframe");
+		theFrame.src="frame.htm";
+		main.appendChild(theFrame);
+	}
+
+}
+
+</script>
+
+
+
+<style>
+
+body{
+	background-color:#FFF;
+
+}
+
+#main{
+
+
+}
+
+
+</style>
+
+</head>
+
+
+<body onload="bodyLoaded()">
+
+
+
+<div id="main">
+
+
+
+<!--
+<iframe src="frame.htm" width="400" height="400"></iframe>
+
+
+<iframe src="frame.htm" width="400" height="400"></iframe>
+
+
+<iframe src="frame.htm" width="400" height="400"></iframe>
+-->
+
+
+</div>
+
+
+</body>
+</html>

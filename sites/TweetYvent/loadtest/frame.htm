@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>load</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/libs/jquery-1.5.1.min.js">\x3C/script>');
+</script>
+
+<script language="javascript">
+
+var userID = "";
+
+var statusMsg;
+
+var conn = {};
+
+var resultHolder;
+
+
+function bodyLoaded()
+{
+
+	userID = "user_"+parseInt(20000*Math.random());
+
+	statusMsg = document.getElementById("statusMsg");
+
+	resultHolder = document.getElementById('resultHolder');
+
+	init();
+
+}
+
+function init()
+{
+
+	setTimeout(function () { openConnection();}, 250);
+	
+}
+
+
+var myInterval;
+var msg_cnt = 0;
+var connected = false,
+	RETRY_INTERVAL = 10000,
+	nodeServer = '192.168.160.192',
+	//nodeServer = '192.168.251.150',
+	socketInterval;
+	
+function openConnection() {
+	$.getScript ("http://"+nodeServer+":8080/socket.io/socket.io.js", function(){
+			
+		var socket = new io.Socket(nodeServer, {"port": 8080});
+		
+		socket.on('connect', function() {
+			connected = true;
+			clearInterval(socketInterval);
+			socketInterval = null;
+			
+			statusMsg.innerHTML = 'Socket connected ' + userID;
+		});
+		 
+		socket.on('message', function (json) {
+			
+			data = JSON.parse(json);
+			msg_cnt++;
+			resultHolder.innerHTML = ">>"+ msg_cnt+"<br />" + resultHolder.innerHTML;
+			
+		});
+		
+		socket.on('disconnect', function() {
+			connected = false;
+			statusMsg.innerHTML = 'Socket disconnected. reconnecting...';
+			
+			retryConnectOnFailure(RETRY_INTERVAL);
+		});
+		
+		var retryConnectOnFailure = function(retryInMilliseconds) {
+			socketInterval = setInterval(function() {
+				if (!connected) {
+					
+					$.get('http://'+nodeServer+':8080/ping', function(data) {
+						connected = true;
+						window.location.href = unescape(window.location.pathname);
+						statusMsg.innerHTML = "server responded. reconnecting...";
+					});
+				}
+			}, retryInMilliseconds);
+		}
+		
+		socket.connect();
+	}); 
+
+}
+
+
+
+
+
+
+
+
+</script>
+
+
+
+<style>
+
+body{
+	background-color:#FFF;
+	margin-top:10px;
+    margin-left: auto;
+    margin-right: auto;
+	text-align:center;
+}
+
+#main{
+
+	background-color:#888;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+</style>
+
+</head>
+
+
+<body onload="bodyLoaded()">
+
+
+<div id="main">
+
+
+	<div id="statusMsg" style="position:absolute; top:-2px; left:2px; font-size:10px; color:black; visibility:visible;">
+
+	</div>
+
+
+	<br/>
+
+	<div id="resultHolder" >
+
+	</div>
+
+</div>
+
+
+</body>
+</html>
