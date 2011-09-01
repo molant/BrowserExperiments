@@ -2,7 +2,6 @@
 {
 }
 
-
 html
 {
     background-color: #4E5160;
@@ -13,10 +12,16 @@ body
     font-family: arial;
     margin: 0 auto;
     padding: 35px 50px 15px 50px;
-    width: 1056px;
+    max-width: 1056px;
     background-color: #FFFFFF;
     color: #4E5260;
     font-size: 12px;
+}
+
+@media all and (max-width: 1000px){
+	body{
+		padding:10px;
+	}
 }
 
 #breadcrumbs{
@@ -41,7 +46,7 @@ table
     border-collapse: collapse;
     border-spacing: 0;
     margin-bottom: 50px;
-    width:100%;
+    min-width:100%;
 }
 	td, th
 	{

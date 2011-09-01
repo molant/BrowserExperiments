@@ -15,6 +15,15 @@
 })();
 
 
+/***********************************************
+ * 				Mobile META
+ ***********************************************/
+(function(){
+	var meta = document.createElement('meta');
+	meta.name = 'viewport';
+	meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+	document.getElementsByTagName('head')[0].appendChild(meta);
+})();
 
 
 
@@ -91,13 +100,14 @@ var addEvent = (function () {
 	 * View Source
 	 */
 	// add pretify
-    var prit = document.createElement('script'); prit.type = 'text/javascript'; 
-    prit.src = path + 'Common/jsprettify.packed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(prit);
+	append('script', {
+	    	type : 'text/javascript', 
+	    	src : path + 'Common/jsprettify.packed.js'
+	    },
+	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0])
+	);
 
-	var pre = document.createElement('pre');
-	pre.id = "view-source"
-
+	var pre = append('pre',{id:"view-source"});
 	
 	// private scope to avoid conflicts with demos
 	addEvent(window, 'click', function (event) {
@@ -132,7 +142,19 @@ var addEvent = (function () {
 	  }
 	});
   
-
+	// create an element
+	function append(node,attr,target){
+		var n = document.createElement(node);
+		if(typeof(attr)==='object'){
+			for(var x in attr){
+				n[x] = attr[x];
+			}
+		}
+		if(typeof(target)==='object'){
+			target.appendChild(n);
+		}
+		return n;
+	}
 	
 
 	/**
@@ -177,6 +199,7 @@ var addEvent = (function () {
 				'widgets/' : "Widgets &amp; UI",
 				'shims/' : "Shims &amp; Polyfills"
 			};
+
 		for( var x in a ){
 			var h = document.createElement('a'),
 				c = (header.children.length?header.children[0]:false);
