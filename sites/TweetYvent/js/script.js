@@ -2144,9 +2144,17 @@ DDE.TweetYvent.prototype.NavView.prototype = {
 	},
 	
 	makeLinkHash: function ( link ) {
+		
+		// AD Fix.
+		link.href = "#!/"+ (link.getAttribute("href",0) || link.href).replace(/#(.*)/,'$1\/');
+
+		link.hideFocus = 'hidefocus';
+		
+
+		/*
 		var baseURI = 'http://'+link.hostname+'/';
 		var pathname = link.pathname;
-		
+
 		//fix consistency between pathname structure across browsers
 		pathname = pathname.replace(/^\//, '');
 		
@@ -2156,7 +2164,8 @@ DDE.TweetYvent.prototype.NavView.prototype = {
 		if (link.hash != '') {
 			hash = link.hash.replace(/#/, '') + '/';
 		}
-		
+
+
 		//todo: remove for production
 		var extra = '';
 		if (pathname.match(/node-projects\/tweet-event-map\/fashion-twitter-www/)) {
@@ -2165,7 +2174,9 @@ DDE.TweetYvent.prototype.NavView.prototype = {
 		}
 		
 		link.href = baseURI + extra + '#!/' + pathname + hash;
-		link.hideFocus = 'hidefocus';
+		
+		*/
+
 	},
 	
 	setSelectedNavItem: function ( globals ) {
