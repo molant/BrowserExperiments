@@ -73,7 +73,7 @@ table
 	}
 		thead th,
 		thead td{
-		    padding: 41px 0 10px 0;
+		    padding: 11px 0 10px 0;
 		    font-weight: normal;
 		    vertical-align: bottom;
 		    margin: 0;
@@ -125,6 +125,10 @@ table
 		tbody tr td{
 		    padding:0;
 		    overflow:hidden;
+		}
+
+		tbody tr td.disabled{
+			background-color:#F5F7F6;
 		}
 
 		tbody tr.feature-row {
