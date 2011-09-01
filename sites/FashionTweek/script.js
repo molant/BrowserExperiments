@@ -45,6 +45,9 @@ $(function(){
 	for( var CapitalCity in FashionCapitals ){
 		// Append
 		(function($div){
+			// is unique var
+			var a = [];
+
 			// get pictwits
 			// Can't get "pic.twitter.com" because users have to be following the other to see their pics.
 			$.getJSON("http://search.twitter.com/search.json?q=twitpic%20Fashion&geocode="+FashionCapitals[CapitalCity]+",10mi&callback=?", function(r){
@@ -52,7 +55,8 @@ $(function(){
 				for(var i=0;i<r.results.length;i++){
 					var m = r.results[i].text.match(/http\:\/\/(twitpic.com|t\.co)\/\w+/);
 
-					if(m&&m[0]&&unique(m[0])){
+					// Has an image + is unique
+					if(m && m[0]&& ( a.indexOf(m[0])> -1 ? false : a.push(m[0]) || true ) ){
 						var $img = $("<figure><div class='img'></div><figcaption>"+r.results[i].text+"</figcaption></figure>").appendTo($div).find(".img");
 						$img.load("http://sandbox.knarly.com/proxy.php?path="+ m[0] + " #photo-display");
 					}
@@ -61,14 +65,6 @@ $(function(){
 			});
 		})($("<section id='"+ CapitalCity +"'><header><h2>"+ CapitalCity.replace(/([a-z])([A-Z])/,'$1 $2') +"</h2></header><div class='slider'></div></section>").appendTo("div.container").find("div.slider"));
 	}
-
-	// Image unique?
-	var unique = (function(){
-		var a = [];
-		return function(s){
-			return ( a.indexOf(s)>-1 ? true : !a.push(s) );
-		};
-	})();
 	
 
 	/**
@@ -124,23 +120,3 @@ $(function(){
 	});
 
 });
-	
-
-function distance(latlon1, latlon2){
-
-	var lat1 = latlon1.split('.')[0],
-		lon1 = latlon1.split('.')[1],
-		lat2 = latlon2.split('.')[0],
-		lon2 = latlon2.split('.')[1];
-	
-	var R = 6371; // km
-	var dLat = (lat2-lat1).toRad();
-	var dLon = (lon2-lon1).toRad();
-	var lat1 = lat1.toRad();
-	var lat2 = lat2.toRad();
-	
-	var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-	        Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
-	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-	var d = R * c;
-}
