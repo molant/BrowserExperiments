@@ -24,7 +24,15 @@ body
 	}
 	
 	body header a.git{
-		right:-15px;
+		display:none;
+	}
+	
+	body header nav{
+		position:absolute;
+		left:0;
+		top:80px;
+		width:100%;
+		text-align:left;
 	}
 }
 
@@ -272,6 +280,7 @@ header{
     display: block;
     background: transparent url('images/main_logo.png') no-repeat;
 	padding-left:190px;
+	text-align:center;
 }
 	header a.git{
 		position:absolute;
@@ -289,7 +298,7 @@ header{
 	header a{
 		font-size:1.3em;
 		font-family:"Arial Bold",Arial;
-		margin-left:50px;
+		margin:0 2%;
 		text-transform:uppercase;
 		text-decoration:none;
 		color:#4E5160;
@@ -297,6 +306,12 @@ header{
 		letter-spacing:-1px;
 		border:1px solid transparent;
 		padding:5px;
+	}
+	header nav a:first-child {
+		margin-left:0;
+	}
+	header nav a:last-child {
+		margin-right:0;
 	}
 	header a:hover{
 		color:#6E7180;
@@ -308,18 +323,16 @@ header{
 
 	header input{
 		font-size:18px;
-		margin-left:210px;
-		margin-top:30px;
-		width:300px;
+		margin-top:20px;
+		max-width:300px;
+		width:30%;
 	}
 
 	header h1, 
 	header .legend{
 	    border-left: 1px solid #CCCCCC;
 	    padding-left: 11px;
-	    position:absolute;
-	    top:0;
-	    right:0;
+	    float:right;
 	    width: 155px;
 	    margin: 0;
 	}
@@ -543,13 +556,21 @@ article.show{
 	border:none;
 }
 
+
+
+
 section{
 }
 	section figure{
 		display:inline-block;
+		max-width:444px;
+		width:40%;
+		margin:10px 4.5%;
+		vertical-align:top;
 	}
 		section figure img{
 			border:1px solid #ccc;
+			width:100%;
 		}
 
 		section figure figcaption span{

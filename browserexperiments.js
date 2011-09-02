@@ -145,10 +145,15 @@ var addEvent = (function () {
 	// create an element
 	function append(node,attr,target){
 		var n = document.createElement(node);
-		if(typeof(attr)==='object'){
-			for(var x in attr){
-				n[x] = attr[x];
+		if(!attr.tagName){
+			if(typeof(attr)==='object'){
+				for(var x in attr){
+					n[x] = attr[x];
+				}
 			}
+		}
+		else{
+			target = attr;
 		}
 		if(typeof(target)==='object'){
 			target.appendChild(n);
@@ -194,10 +199,16 @@ var addEvent = (function () {
 		 * Add links to the body headers
 		 */
 		var header = document.getElementsByTagName('header')[0],
-			a = {
-				'sites/' : "Complete Experiences",
+			nav = header.getElementsByTagName('nav')[0]; 
+			
+		if( !nav ){
+			nav = append("nav", header);
+		}
+		var a = {
+				'shims/' : "Shims &amp; Polyfills",
 				'widgets/' : "Widgets &amp; UI",
-				'shims/' : "Shims &amp; Polyfills"
+				'sites/' : "Demo sites",
+				'learn/' : "Learn"
 			};
 
 		for( var x in a ){
@@ -206,12 +217,7 @@ var addEvent = (function () {
 			h.href = path + x;
 			h.className = (window.location.pathname.match(x)?"selected":"");
 			h.innerHTML = a[x];
-			if(c){
-				header.insertBefore(h,c);
-			}
-			else{
-				header.appendChild(h);
-			}
+			nav.appendChild(h);
 		}
 		
 		
@@ -223,7 +229,7 @@ var addEvent = (function () {
 		a.className = "git";
 		a.target = "_blank";
 		a.title = 'Fork me on GitHub';
-		header.appendChild(a);
+		document.getElementsByTagName('header')[0].appendChild(a);
 		
 
 		/**
