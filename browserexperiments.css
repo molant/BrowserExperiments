@@ -22,6 +22,10 @@ body
 	body{
 		padding:10px;
 	}
+	
+	body header a.git{
+		right:-15px;
+	}
 }
 
 #breadcrumbs{
