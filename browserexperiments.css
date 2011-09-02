@@ -80,6 +80,7 @@ table
     border-spacing: 0;
     margin-bottom: 50px;
     min-width:100%;
+	background-color:inherit;
 }
 	td, th
 	{
