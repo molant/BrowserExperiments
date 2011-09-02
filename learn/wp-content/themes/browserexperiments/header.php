@@ -17,9 +17,9 @@
 <meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo( 'charset' ); ?>" />
 <title><?php hybrid_document_title(); ?></title>
 
-<link rel="stylesheet" href="/browserexperiments.css" type="text/css" media="all" />
+<link rel="stylesheet" href="../browserexperiments.css" type="text/css" media="all" />
 <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" media="all" />
-<script src="/Common/modernizr-2.0.js"></script>
+<script src="../Common/modernizr-2.0.js"></script>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
