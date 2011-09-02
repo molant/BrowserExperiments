@@ -4,6 +4,8 @@
     <title>Browser Experiments</title>
     <link rel="stylesheet" href="browserexperiments.css" />
     <script src="Common/modernizr-2.0.js"></script> 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/> 
     <style>
 
 		section{
@@ -28,6 +30,18 @@
 			width:22.5%;
 			padding:1%;
 		}
+		
+		@media all and (orientation: portrait) {
+			section figure{
+				width:48%;
+			}
+		}
+		@media all and (max-width: 800px){
+			section figure{
+				width:48%;
+			}
+		}
+
     	section figure img{
     		padding-top:15px;
     		background-color:#4E5160;
