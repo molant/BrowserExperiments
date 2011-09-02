@@ -3,45 +3,99 @@
 <head>
     <title>Browser Experiments</title>
     <link rel="stylesheet" href="browserexperiments.css" />
-	<script src="Common/modernizr-2.0.js"></script>
+    <script src="Common/modernizr-2.0.js"></script> 
+    <style>
+
+		section{
+			border-top:4px solid #4E5160;
+			border-bottom:1px solid #4E5160;
+			padding-bottom:20px;
+		}
+    	section h2{
+			text-transform:uppercase;
+			margin:25px 0;
+			letter-spacing:1px;
+		}
+    	section p{
+			letter-spacing:1px;
+		}
+		section div{
+			margin:0 -1%;
+		}
+    	section figure{
+    		vertical-align:top;
+    		margin:0;
+			width:22.5%;
+			padding:1%;
+		}
+    	section figure img{
+    		padding-top:15px;
+    		background-color:#4E5160;
+			width:100%;
+		}
+    	section figure h2{
+    		margin:10px 0;
+			font-size:1.3em;
+		}
+    	section figure p{
+    		display:inline-block;
+    		min-height:5em;
+		}
+    	section figure a{
+    		display:inline-block;
+    		color:white;
+    		text-decoration:none;
+    		padding:5px 10px;
+    		background-color:#4E5160;
+		}
+    </style>
 </head>
 <body>
     <header>
-		<a href="shims/">Shims &amp; Polyfills</a>
-		<a href="widgets/">Widgets &amp; UI</a>
-		<a href="sites/">Complete Experiences</a>
 		<a href="http://github.com/molant/BrowserExperiments" class="git" title="Fork me on GitHub" target="_blank"></a>
     </header>
-
-
-<div style="text-align:center;	position:relative;">
-	<div style="width:100%;">
-		<a href="shims/" class="button red box">Shims and Polyfills</a>
-		<a href="widgets/" class="button yellow box">Widgets and UI</a>
-		<a href="sites/" class="button green box">Complete Experiences</a>
-	</div>
-	</div>
-
-	<p style="font-style:italic;text-align:center;">until we think of something cool to put here... this is what we got</p>
-	
-
-    <footer>
-        <div class="h5-logo">
-        </div>
-        <div class="h5-logos">
-        </div>
-    </footer>
-
-<script>
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', 'UA-18575680-3']);
-	_gaq.push(['_trackPageview']);
-	
-	(function () {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	})();
-</script>
+	<section>
+		<h2>Helping us all develop for the modern web</h2>
+		<p>Browserexperiments is a collection of research we've put together to help everybody embrace the new technologies and build kick ass applications for the web.</p>
+		<div>
+			<figure>
+				<img src="images/home/shims.png"/>
+				<figcaption>
+					<h2>Shims and Polyfills</h2>
+					<p>Describes how to leverage modern HTML5 and CSS3 features across all popular browsers.</p>
+				</figcaption>
+				<a href="shims/">view site</a>
+			</figure>
+			<figure>
+				<img src="images/home/widgets.png"/>
+				<figcaption>
+					<h2>Widgets and UI</h2>
+					<p>Examples of little atomic pieces which go into making a website.</p>
+				</figcaption>
+				<a href="widgets/">view site</a>
+			</figure>
+			<figure>
+				<img src="images/home/sites.png"/>
+				<figcaption>
+					<h2>Demo Sites</h2>
+					<p>Examples of modern sites which take all these pieces and mould them into something quite wonderful.</p>
+				</figcaption>
+				<a href="sites/">view site</a>
+			</figure>
+			<figure>
+				<img src="images/home/shims.png" style="opacity:0.4;"/>
+				<figcaption>
+					<h2>Learn (COMING SOON)</h2>
+					<p>Lessons on design considerations, development process, support and evolution</p>
+				</figcaption>
+			</figure>
+		</div>
+	</section>
+    <footer> 
+        <div class="h5-logo"> 
+        </div> 
+        <div class="h5-logos"> 
+        </div> 
+    </footer> 
 </body>
 </html>

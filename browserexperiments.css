@@ -58,7 +58,7 @@ table
 	thead.float{
 		top:0;
 		position:fixed;
-		-webkit-transition:0.5s;
+		-webkit-transition:box-shadow 0.5s;
 		width:1056px;
 	}
 	thead.float.show{
