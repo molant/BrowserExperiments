@@ -36,6 +36,27 @@ body
 	}
 }
 
+@media all and (max-width: 500px){
+	body header{
+		background-size:30%;
+		padding-left:30%;
+	}
+	body header h1, body header .legend{
+		font-size:1em;
+		max-width:100%;
+	}
+	body header nav{
+		font-size:0.8em;
+		top:50px;
+		clear:both;
+		display:block;
+	}
+		body header nav a{
+			display:inline-block;
+		}
+}
+
+
 #breadcrumbs{
 	position:absolute;
 	top:0;
@@ -292,6 +313,9 @@ header{
 		height:99px;
 		display:block;
 		background:url(images/github_fork.png) no-repeat;
+		-webkit-box-shadow:-3px 3px 3px rgba(0,0,0,0.2);
+		-moz-box-shadow:-3px 3px 3px rgba(0,0,0,0.2);
+		-ms-box-shadow:-3px 3px 3px rgba(0,0,0,0.2);
 		box-shadow:-3px 3px 3px rgba(0,0,0,0.2);
 	}
 
