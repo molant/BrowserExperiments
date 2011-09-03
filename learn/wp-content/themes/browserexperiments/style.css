@@ -3,6 +3,11 @@
     margin:0;
     padding:0;    
 }
+
+a {
+    text-decoration:none;
+}
+
 .summary-container
 {
     border: 1px solid #CCCCCC;
@@ -81,4 +86,31 @@
 #container
 {
     border-top:5px solid #4F535F;    
+}
+
+.big-container{
+    width:inherit;
+    min-height:300px;
+    margin-top:20px;
+}
+
+.posts-container{
+    min-width:60%;
+    float:left;
+}
+
+.post-container{
+    float:left;
+    width:30%;
+    margin-left:10px;
+}
+
+.post-container h2{
+    text-transform:uppercase;
+    font-size:1.2em;
+}
+
+.categories-container{
+    float:right;
+    border-top:3px solid #000;
 }
