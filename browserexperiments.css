@@ -57,6 +57,9 @@ body
 		body header nav a{
 			display:inline-block;
 		}
+		body section figure{
+			min-width:250px;
+		}
 }
 
 
@@ -593,7 +596,6 @@ section{
 		display:inline-block;
 		max-width:444px;
 		width:40%;
-		min-width:250px;
 		margin:10px 4.5%;
 		vertical-align:top;
 	}
@@ -659,23 +661,25 @@ section{
 		    		text-align:center;
 		    		text-transform:uppercase;
 		    		text-decoration:none;
-		    		background-color:rgb(78,81,96);
-		    		background-color:rgba(78,81,96,0.5);
-		    		color:white;
+		    		background-color:white;
+		    		background-color:rgba(255,255,255,0.7);
+		    		color:#4E5160;
 		    		padding:5px 0;
 		    		margin:0;
 		    		border:0;
-		    		font-size:20px;
+		    		font-size:1.4em;
 		    		font-weight:bold;
 				}
 		    	section figure div .menu a:hover{
-		    		-webkit-transition:padding-bottom 0.5s,background-color 0.5s;
+		    		-webkit-transition:padding-bottom 0.5s,background-color 0.5s,font-size 0.3s;
 		    		padding-bottom:15px;
-		    		background-color:rgba(78,81,96,1);
+		    		font-size:2em;
+		    		background-color:rgba(255,255,255,1);
 		    	}
 		    	section figure div .menu a[disabled]:hover{
 		    		padding-bottom:0;
 		    		background-color:rgba(255,0,0,0.8);
+		    		font-size:1.4em;
 		    		text-decoration:line-through;
 				}
 
