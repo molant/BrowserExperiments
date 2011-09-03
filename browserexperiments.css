@@ -22,7 +22,40 @@ body
 	body{
 		padding:10px;
 	}
+	
+	body header a.git{
+		display:none;
+	}
+	
+	body header nav{
+		position:absolute;
+		left:0;
+		top:80px;
+		width:100%;
+		text-align:left;
+	}
 }
+
+@media all and (max-width: 500px){
+	body header{
+		background-size:30%;
+		padding-left:30%;
+	}
+	body header h1, body header .legend{
+		font-size:1em;
+		max-width:100%;
+	}
+	body header nav{
+		font-size:0.8em;
+		top:50px;
+		clear:both;
+		display:block;
+	}
+		body header nav a{
+			display:inline-block;
+		}
+}
+
 
 #breadcrumbs{
 	position:absolute;
@@ -47,6 +80,7 @@ table
     border-spacing: 0;
     margin-bottom: 50px;
     min-width:100%;
+	background-color:inherit;
 }
 	td, th
 	{
@@ -58,7 +92,7 @@ table
 	thead.float{
 		top:0;
 		position:fixed;
-		-webkit-transition:0.5s;
+		-webkit-transition:box-shadow 0.5s;
 		width:1056px;
 	}
 	thead.float.show{
@@ -268,6 +302,7 @@ header{
     display: block;
     background: transparent url('images/main_logo.png') no-repeat;
 	padding-left:190px;
+	text-align:center;
 }
 	header a.git{
 		position:absolute;
@@ -279,13 +314,16 @@ header{
 		height:99px;
 		display:block;
 		background:url(images/github_fork.png) no-repeat;
+		-webkit-box-shadow:-3px 3px 3px rgba(0,0,0,0.2);
+		-moz-box-shadow:-3px 3px 3px rgba(0,0,0,0.2);
+		-ms-box-shadow:-3px 3px 3px rgba(0,0,0,0.2);
 		box-shadow:-3px 3px 3px rgba(0,0,0,0.2);
 	}
 
 	header a{
 		font-size:1.3em;
 		font-family:"Arial Bold",Arial;
-		margin-left:50px;
+		margin:0 2%;
 		text-transform:uppercase;
 		text-decoration:none;
 		color:#4E5160;
@@ -293,6 +331,12 @@ header{
 		letter-spacing:-1px;
 		border:1px solid transparent;
 		padding:5px;
+	}
+	header nav a:first-child {
+		margin-left:0;
+	}
+	header nav a:last-child {
+		margin-right:0;
 	}
 	header a:hover{
 		color:#6E7180;
@@ -304,18 +348,16 @@ header{
 
 	header input{
 		font-size:18px;
-		margin-left:210px;
-		margin-top:30px;
-		width:300px;
+		margin-top:20px;
+		max-width:300px;
+		width:30%;
 	}
 
 	header h1, 
 	header .legend{
 	    border-left: 1px solid #CCCCCC;
 	    padding-left: 11px;
-	    position:absolute;
-	    top:0;
-	    right:0;
+	    float:right;
 	    width: 155px;
 	    margin: 0;
 	}
@@ -539,13 +581,21 @@ article.show{
 	border:none;
 }
 
+
+
+
 section{
 }
 	section figure{
 		display:inline-block;
+		max-width:444px;
+		width:40%;
+		margin:10px 4.5%;
+		vertical-align:top;
 	}
 		section figure img{
 			border:1px solid #ccc;
+			width:100%;
 		}
 
 		section figure figcaption span{

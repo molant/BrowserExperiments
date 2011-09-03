@@ -5,7 +5,12 @@
 			color:white;
 			padding:10px;
 		}
-   		@media all and (max-width: 650px){
+   		@media all and (max-width: 800px){
+			#test{
+				background-color:red;
+			}
+		}
+   		@media all and (orientation: portrait){
 			#test{
 				background-color:red;
 			}
