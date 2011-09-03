@@ -41,9 +41,12 @@ body
 		background-size:30%;
 		padding-left:30%;
 	}
-	body header h1, body header .legend{
+	body header h1{
 		font-size:1em;
 		max-width:100%;
+	}
+	body header .legend{
+		display:none;
 	}
 	body header nav{
 		font-size:0.8em;
@@ -590,6 +593,7 @@ section{
 		display:inline-block;
 		max-width:444px;
 		width:40%;
+		min-width:250px;
 		margin:10px 4.5%;
 		vertical-align:top;
 	}
@@ -634,6 +638,47 @@ section{
 		 span.semantics{
 			background-image:url(images/semantics.png);
 		}
+
+		/**
+		 * Widgets Page
+		 */
+    	section figure div{
+    		position:relative;
+		}
+	    	section figure div .menu{
+	    		position:absolute;
+	    		bottom:0;
+	    		width:100%;
+	    		padding:0;
+	    		margin:0;
+	    	}
+		    	section figure div .menu a{
+		    		vertical-align:bottom;
+		    		width:33.4%;
+		    		display:inline-block;
+		    		text-align:center;
+		    		text-transform:uppercase;
+		    		text-decoration:none;
+		    		background-color:rgb(78,81,96);
+		    		background-color:rgba(78,81,96,0.5);
+		    		color:white;
+		    		padding:5px 0;
+		    		margin:0;
+		    		border:0;
+		    		font-size:20px;
+		    		font-weight:bold;
+				}
+		    	section figure div .menu a:hover{
+		    		-webkit-transition:padding-bottom 0.5s,background-color 0.5s;
+		    		padding-bottom:15px;
+		    		background-color:rgba(78,81,96,1);
+		    	}
+		    	section figure div .menu a[disabled]:hover{
+		    		padding-bottom:0;
+		    		background-color:rgba(255,0,0,0.8);
+		    		text-decoration:line-through;
+				}
+
 
 section{
 }
