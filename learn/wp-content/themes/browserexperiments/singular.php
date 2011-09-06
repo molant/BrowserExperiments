@@ -16,7 +16,7 @@ get_header(); // Loads the header.php template. ?>
 
 	<div id="content" class="hfeed content">
 
-		<?php do_atomic( 'before_content' ); // hybrid_before_content ?>
+		<?php //do_atomic( 'before_content' ); // hybrid_before_content ?>
 
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
@@ -29,13 +29,13 @@ get_header(); // Loads the header.php template. ?>
 					<?php wp_link_pages( array( 'before' => '<p class="page-links pages">' . __( 'Pages:', hybrid_get_textdomain() ), 'after' => '</p>' ) ); ?>
 				</div><!-- .entry-content -->
 
-				<?php do_atomic( 'after_entry' ); // hybrid_after_entry ?>
+				<?php //do_atomic( 'after_entry' ); // hybrid_after_entry ?>
 
 			</div><!-- .hentry -->
 
-			<?php do_atomic( 'after_singular' ); // hybrid_after_singular ?>
+			<?php //do_atomic( 'after_singular' ); // hybrid_after_singular ?>
 
-			<?php comments_template( '/comments.php', true ); // Loads the comments.php template ?>
+			<?php //comments_template( '/comments.php', true ); // Loads the comments.php template ?>
 
 			<?php endwhile; ?>
 
@@ -45,7 +45,7 @@ get_header(); // Loads the header.php template. ?>
 
 		<?php endif; ?>
 
-		<?php do_atomic( 'after_content' ); // hybrid_after_content ?>
+		<?php //do_atomic( 'after_content' ); // hybrid_after_content ?>
 
 	</div><!-- .content .hfeed -->
 

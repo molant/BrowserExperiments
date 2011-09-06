@@ -17,9 +17,16 @@ a {
 {
     border: 1px solid #CCCCCC;
     background-color: #F5F7F6;
-    width:inherit;
-    height:400px;
+    width:inherit;   
     padding:18px 24px 19px 18px;
+}
+
+.summary-container:after
+{
+    content:".";
+    display:block;
+    clear:both;
+    visibility:hidden;
 }
 
 .summary-left
