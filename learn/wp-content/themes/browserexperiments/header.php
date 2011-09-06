@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="../browserexperiments.css" type="text/css" media="all" />
 <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" media="all" />
 <script src="../Common/modernizr-2.0.js"></script>
+<script src="../browserexperiments.js"></script>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
@@ -32,13 +33,8 @@
 <?php do_atomic( 'before_html' ); // hybrid_before_html ?>
 
 <?php do_atomic( 'before_header' ); // hybrid_before_header ?>
-<header>
-	
-		<a href="shims/">Shims &amp; Polyfills</a>
-		<a href="widgets/">Widgets &amp; UI</a>
-		<a href="sites/">Complete Experiences</a>
-		<a href="http://github.com/molant/BrowserExperiments" class="git" title="Fork me on GitHub" target="_blank"></a>
-		<?php //do_atomic( 'header' ); // hybrid_header ?>
+<header>	
+		
 </header>
 <?php do_atomic( 'after_header' ); // hybrid_after_header ?>
 

@@ -19,11 +19,10 @@
 
 		<?php do_atomic( 'before_footer' ); // hybrid_before_footer ?>
 
-<footer>
-    <div class="h5-logo"></div>
-    <div class="h5-logos"></div>
-	<?php do_atomic( 'footer' ); // hybrid_footer ?>
-</footer>
+<!--<footer>
+   
+	<?php //do_atomic( 'footer' ); // hybrid_footer ?>
+</footer>-->
 
 <?php do_atomic( 'after_footer' ); // hybrid_after_footer ?>
 

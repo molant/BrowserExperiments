@@ -24,6 +24,10 @@ get_header(); // Loads the header.php template. ?>
 				<?php //do_atomic( 'before_entry' ); // hybrid_before_entry ?>
 
 				<div class="entry-content">
+                    <?php
+                        echo "<h1>".get_the_title()."</h1>";
+                        echo "<p>".get_the_title()."</p>";
+                    ?>
 
 					<div class="big-container">
                         <div class="posts-container">
@@ -31,11 +35,17 @@ get_header(); // Loads the header.php template. ?>
                                 $post_array = get_posts(); 
                                 
                                 foreach($post_array as $post){
-                                    $tags = wp_get_post_tags($post->ID, array( 'fields' => 'names' ));                                    
+                                    $tags = wp_get_post_tags($post->ID, array( 'fields' => 'names' ));
+                                    $url = get_permalink($post->ID);
                                     //echo "<div class=\"post-container\"><img src=\"".get_the_post_thumbnail($post->ID)."\"/>";
-                                    echo "<div class=\"post-container\"><img src=\"http://localhost:39746/learn/wp-content/uploads/2011/09/blank-placeholder.png\"/>";                                    
-                                    echo "<h2>".$post->post_title."</h2>";
-                                    echo "Tags: ".implode(", ",$tags)."</div>";
+                                    echo "<div class=\"post-container\">";
+                                    echo "<a href=\"".$url."\">";
+                                    echo "<img src=\"".get_the_post_thumbnail($post->ID)."\" onerror=\"this.src='../images/blank-placeholder.png';\"/>";
+                                    echo "</a>";
+                                    echo "<h2><a href=\"".$url."\">";
+                                    echo $post->post_title;
+                                    echo "</h2></a>";
+                                    echo "<p><b>Tags:</b> ".implode(", ",$tags)."</p></div>";
                                 }
                             ?>                            
                         </div>
@@ -43,9 +53,11 @@ get_header(); // Loads the header.php template. ?>
                             <h1>Categories</h1>
                             <?php 
                                 $tags = wp_tag_cloud(array('format'=>'array', 'taxonomy' => 'post_tag'));
+                                //http://localhost:39746/learn/?tag=deep-zoom
                                 foreach($tags as $tag){
-                                    echo $tag." (".$tag->count.")";
-                                    echo "<br/>";
+                                    $strippedTag = strip_tags($tag);
+                                    $query = new WP_Query( 'tag='.$strippedTag );                                    
+                                    echo "<p><a href=\"?tag=".$strippedTag."\">".$strippedTag." <span class=\"count\">(".$query->found_posts.")</span></a></p>";
                                 }
                             ?>
                         </div>
