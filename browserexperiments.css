@@ -34,6 +34,10 @@ body
 		width:100%;
 		text-align:left;
 	}
+	
+	body section figure div.menu a{
+		font-size:0.7em;
+	}
 }
 
 @media all and (max-width: 500px){
@@ -644,44 +648,31 @@ section{
 		/**
 		 * Widgets Page
 		 */
-    	section figure div{
-    		position:relative;
-		}
-	    	section figure div .menu{
-	    		position:absolute;
-	    		bottom:0;
-	    		width:100%;
-	    		padding:0;
-	    		margin:0;
-	    	}
-		    	section figure div .menu a{
-		    		vertical-align:bottom;
-		    		width:33.4%;
-		    		display:inline-block;
-		    		text-align:center;
-		    		text-transform:uppercase;
-		    		text-decoration:none;
-		    		background-color:white;
-		    		background-color:rgba(255,255,255,0.7);
-		    		color:#4E5160;
-		    		padding:5px 0;
-		    		margin:0;
-		    		border:0;
-		    		font-size:1.4em;
-		    		font-weight:bold;
-				}
-		    	section figure div .menu a:hover{
-		    		-webkit-transition:padding-bottom 0.5s,background-color 0.5s,font-size 0.3s;
-		    		padding-bottom:15px;
-		    		font-size:2em;
-		    		background-color:rgba(255,255,255,1);
-		    	}
-		    	section figure div .menu a[disabled]:hover{
-		    		padding-bottom:0;
-		    		background-color:rgba(255,0,0,0.8);
-		    		font-size:1.4em;
-		    		text-decoration:line-through;
-				}
+    	section figure div.menu{
+			margin:20px 0;
+			text-align:center;
+    	}
+    		section figure div.menu a{
+				text-transform:uppercase;
+				background:#4E5160 url(./widgets/images/btns.png) no-repeat left top ;
+				color:white;
+				padding:8px 10px 8px 35px;
+				text-decoration:none;
+				font-size:0.8em;
+				display:inline-block;
+			}
+    		section figure div.menu a:first-child{
+    			float:left;
+    		}
+    		section figure div.menu a:last-child{
+    			float:right;
+    		}
+    		section figure div.menu a.video{
+    			background-position:0 -30px;
+    		}
+    		section figure div.menu a.doc{
+    			background-position:0 -60px;
+    		}
 
 
 section{
