@@ -143,9 +143,12 @@
 					clearTimeout(int);
 					vid.setAttribute("controls","auto");
 					int = setTimeout(function(){
-						console.log("Fire");
 						vid.removeAttribute("controls");
 					},1e3);
+				});
+				addEvent(vid, "click", function(){
+					// toggle play/pause;
+					vid[vid.paused||vid.ended?"play":"pause"]();
 				});
 			})(vids[i]);
 		}
