@@ -649,8 +649,8 @@ section{
 		 * Widgets Page
 		 */
     	section figure div.menu{
-			margin:20px 0;
-			text-align:center;
+			margin:15px 0;
+			text-align:left;
     	}
     		section figure div.menu a{
 				text-transform:uppercase;
@@ -660,12 +660,10 @@ section{
 				text-decoration:none;
 				font-size:0.8em;
 				display:inline-block;
+				margin:5px 10px 5px 0;
 			}
-    		section figure div.menu a:first-child{
-    			float:left;
-    		}
     		section figure div.menu a:last-child{
-    			float:right;
+    			margin-right:0;
     		}
     		section figure div.menu a.video{
     			background-position:0 -30px;
