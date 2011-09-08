@@ -1,6 +1,6 @@
 <?php 
 
-$NODE_DOMAIN = "peppy.browserexperiments.com"; //client access to the node server
+$NODE_DOMAIN = "browserexperiments.com"; //client access to the node server
 
 $MONGO_HOST = "localhost"; //web server access to the mongo server and the MongoDB database
 $GA_ANALYTICS = false; //Turn on/off Google Analytics - also add your analytics id to _foot.php
