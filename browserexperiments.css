@@ -63,6 +63,7 @@ body
 		}
 		body section figure{
 			min-width:250px;
+			width:100%;
 		}
 }
 
