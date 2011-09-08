@@ -2230,6 +2230,11 @@ DDE.TweetYvent.prototype.NavView.prototype = {
 			var img = new Image();
 			img.src = request;
 			
+			if(!data){
+				// this is an error
+				return;
+			};
+			
 			var tweetStr = data["text"];
 			
 			tweetStr = tweetStr.replace(/http:\/\/[a-zA-Z0-9-.\/]+/gi, ' ');
