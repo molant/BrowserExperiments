@@ -308,11 +308,11 @@ DDE.TweetYvent.prototype = {
 					activeUserInterval = null;
 					
 					//todo: create button and use this to reconnect user
-					/*
+					///*
 					setTimeout(function(){
 						tg.socket.connect();
 					}, 10000);
-					*/
+					/**/
 				} else {
 					check = !check;
 				}
