@@ -154,18 +154,22 @@
 						vid.removeAttribute("controls");
 					},1e3);
 				});
-				addEvent(vid, "click", function(e){
+				var func = function(e){
 					// toggle play/pause;
 					vid[vid.paused||vid.ended?"play":"pause"]();
+
+					// loop through and kill others
+					for(var i=0;i<vids.length;i++){
+						if( "paused" in vids[i] && !( vid.paused || vid.ended ) && vid !== vids[i] ){
+							vids[i].pause();
+						}
+					}
+
 					e.stopPropagation();
 					e.preventDefault();
-				});
-				addEvent(vid, "touchup", function(e){
-					// toggle play/pause;
-					vid[vid.paused||vid.ended?"play":"pause"]();
-					e.stopPropagation();
-					e.preventDefault();
-				});
+				};
+				addEvent(vid, "touchup", func);
+				addEvent(vid, "click", func);
 			})(vids[i]);
 		}
 	</script>
