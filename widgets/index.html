@@ -146,7 +146,7 @@
 		for(var i =0; i<vids.length; i++){
 			(function(vid){ 
 				var int;
-				addEvent(vid, "mousemove", function(){
+				addEvent(vid, "mousemove", function(e){
 					clearTimeout(int);
 					vid.controls = "controls";
 					vid.setAttribute("controls","auto");
@@ -154,9 +154,17 @@
 						vid.removeAttribute("controls");
 					},1e3);
 				});
-				addEvent(vid, "click", function(){
+				addEvent(vid, "click", function(e){
 					// toggle play/pause;
 					vid[vid.paused||vid.ended?"play":"pause"]();
+					e.stopPropagation();
+					e.preventDefault();
+				});
+				addEvent(vid, "touchup", function(e){
+					// toggle play/pause;
+					vid[vid.paused||vid.ended?"play":"pause"]();
+					e.stopPropagation();
+					e.preventDefault();
 				});
 			})(vids[i]);
 		}
