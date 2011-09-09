@@ -1,22 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>History API</title>
+    <title>Drop Files into Browser</title>
     <script src="../../browserexperiments.js"></script>
-	<script>if ( typeof window.JSON === 'undefined' ) { document.write('<script src="js/json2.js"><\/script>'); }</script> 
-	<script src="js/jquery.js"></script> 
-	<script src="js/amplify.store.js"></script> 
-	<script src="js/history.adapter.jquery.js"></script> 
-	<script src="js/history.js"></script> 
-	<script src="js/history.html4.js"></script> 	
-	<script>
-		// Bind to State Change
-		History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
-			// Log the State
-			var State = History.getState(); // Note: We are using History.getState() instead of event.state
-			document.getElementById("page_title").innerHTML = "<b>Title</b>: "+ State.title + "<br /><b>URL</b>: "+State.url;
-		});
-	</script>
+	<script src="../../Common/jquery-1.6.1.js"></script> 
+	<script src="jquery-history.js"></script>
+
+<script>
+/**
+ * Listen to the click events of all the anchor links in our demo
+ */
+$.history(".demo a:not([href^=http])", function(url){
+
+    // Add the page
+    $('#page_title').html(url);
+
+    // Just load test* pages
+    if(!url.match(/test/)){
+        $('#page_content').html("");
+        return;
+    }
+
+    // Make a call to grab the new page
+    $.ajax({
+        url: url,
+        type: "get",
+        dataType: "html",
+        success: function (html) {
+            // Insert the content into the page
+            var $div = $('<div></div>');
+            $div.get(0).innerHTML = html;
+            $('#page_content').html( $div.first().html() );
+        },
+        error: function () {
+            
+        }
+    });
+	
+});
+</script>
 </head>
 <body>
     <header><h1>History</h1></header>
@@ -25,19 +47,19 @@
     	The <a href="http://www.w3.org/TR/html5/history.html">
 		(w3c) History API </a> allows sites to change the url in the clients browser and adds paths and titles to the browser history within the scope of the current domain. So with the History API we can enable the browsers forward and back buttons. And also 
 		make for a more page URL which can be shared.</p>
-		<p>
-    	The shim <a href="https://github.com/balupton/history.js">
-		history.js by balupton</a> shims IE 6/7/8/9, FF3.6, Opera 11 and fixes 
-		issues with Safari.</p>
+		<p>The jquery plugin by #mr_switch is very simple and lets us make things a little more dynamic</p>
     	
     </blockquote>
     <div class="demo">
     	<div id="page_title"></div>
-        <a href="one" onclick="javascript: History.pushState({state:1,rand:Math.random()},this.innerHTML, this.href ); return false;">One</a>
-        <a href="two" onclick="javascript: History.pushState({state:2,rand:Math.random()},this.innerHTML, this.href ); return false;">Two</a>
-        <a href="three" onclick="javascript: History.pushState({state:3,rand:Math.random()},this.innerHTML, this.href ); return false;">Three</a>
-        <a href="#" onclick="javascript: History.back(); return false;">Back</a>
-        <a href="#" onclick="javascript: History.go(1); return false;">Next</a>
+    	<div id="page_content"></div>
+        <a href="test_one.htm">One</a>
+        <a href="test_two.htm">Two</a>
+        <a href="test_three.htm">Three</a>
+		<br />
+		<br />
+		<button onclick="history.go(-1);">Back</button>
+		<button onclick="history.go(1);">Forward</button>
     </div>
 </body>
 </html>
