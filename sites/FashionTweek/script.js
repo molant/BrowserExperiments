@@ -58,7 +58,7 @@ $(function(){
 					// Has an image + is unique
 					if(m && m[0]&& ( a.indexOf(m[0])> -1 ? false : a.push(m[0]) || true ) ){
 						var $img = $("<figure><div class='img'></div><figcaption>"+r.results[i].text+"</figcaption></figure>").appendTo($div).find(".img");
-						$img.load("http://sandbox.knarly.com/proxy.php?path="+ m[0] + " #photo-display");
+						$img.load("proxy.php?path="+ m[0] + " #photo-display");
 					}
 				}
 				// 

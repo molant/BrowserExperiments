@@ -532,10 +532,10 @@ $(function(){
 		// Path
 		var path = 'https://api.foursquare.com/v2/venues/search?' + $.param(foursquare_api);
 
-		// This netowrks IP Security policy doesn't permit us to use foursquare... how rubbish is that?
+		// This networks IP Security policy doesn't permit us to use foursquare... how rubbish is that?
 		// $.getJSON(path+'&callback=?',function(r){
 		// Using my proxy instead.
-		$.getJSON('http://sandbox.knarly.com/proxy.php?path='+window.encodeURIComponent(path)+'&callback=?', function(r){
+		$.getJSON('proxy.php?path='+window.encodeURIComponent(path)+'&callback=?', function(r){
 
 			// Loop through the results
 			for(var i=0,a=r.response.groups[0].items;i<a.length;i++){
