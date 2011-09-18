@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html style="-ms-content-zooming: none; overflow:hidden;">
+<head>
+	<title>Touch Events</title>
+	<script src="../../browserexperiments.js"></script>
+	<script src="../../Common/jquery-1.6.1.js"></script>
+	
+	<style>
+		#demo{
+			width:100%;
+		}
+	</style>
+</head>
+<body>
+    <header><h1>Touch Events</h1></header>
+	<blockquote>
+		<p>This touch demo uses canvas tag to paint touch events to the box below... i dont know any device which support touch and not canvas, so this was a safe bet.</p>
+	</blockquote>
+
+	<div id="demo">
+		<canvas id="drawSurface" width="1000px" height="200px" style="border:1px solid black;width:100%;"></canvas>
+	</div>
+<script type='text/javascript'>
+
+var canvas = document.getElementById("drawSurface"),
+context = canvas.getContext("2d");
+
+var pallet = [], pallet_len = 0;
+function colorPicker(i){
+	var c = "rgb("+ parseInt(Math.random()*200)+","+parseInt(Math.random()*200)+"," + parseInt(Math.random()*200)+")";
+	c = pallet[i] || ( pallet[i] = c );
+	console.log(c);
+	return c;
+}
+
+function paint(e,v) {
+//	context.fillRect(e.offsetX, e.offsetY, 5, 5);
+	
+	context.beginPath();
+	context.moveTo(v.offsetX, v.offsetY);
+	context.strokeStyle = colorPicker(e.pointerId);
+	context.lineTo(e.offsetX, e.offsetY);
+	context.stroke();
+	context.save();
+	context.closePath();
+}
+
+function log(s){
+	$("body").append(s+",");
+}
+
+var mousedown = [];
+
+$("body").bind('mousedown MSPointerDown', function(e){
+	mousedown[e.originalEvent.pointerId||0] = e.originalEvent;
+});
+
+$("body").bind('mouseup MSPointerUp', function(e){
+	mousedown[e.originalEvent.pointerId||0] = null;
+});
+
+$("#demo canvas")
+	.bind("touchmove",function(e){
+		var touches = e.originalEvent.touches || [e];
+		for(var i=0; i<touches.length; i++){
+			touches[0].pointerId = i;
+			paint(touches[0]);
+		}
+		e.preventDefault();
+	})
+	.bind("mousemove MSPointerMove",function(e){
+	
+		if(e.type==='mousemove'&&"msPointerEnabled" in window.navigator){
+			return;
+		}
+
+		if(!e.originalEvent.pointerId){
+			e.originalEvent.pointerId = 0;
+		}
+
+		if(( e.originalEvent.pointerId in mousedown ) && ( mousedown[e.originalEvent.pointerId] !== null )){
+			paint(e.originalEvent, mousedown[e.originalEvent.pointerId]);
+			mousedown[e.originalEvent.pointerId] = e.originalEvent;
+		}
+		e.preventDefault();
+		e.stopPropagation();
+	});
+
+
+</script>
+<script>
+/*
+	// fix for IE10
+	
+	
+	.css("msContentZooming","none")
+	.bind("MSPointerMove", function(e){
+		e.touch
+		$(this).trigger('touchmove', [e]);
+	})
+*/
+</script>
+
+</body>
+</html>
