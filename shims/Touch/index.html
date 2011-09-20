@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html style="-ms-content-zooming: none; overflow:hidden;">
+<!-- IE10 disable default zooming -->
+<html style="-ms-content-zooming: none;overflow:hidden;">
 <head>
 	<title>Touch Events</title>
+	
+	<!-- iOS devices -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/> 
+	<meta name="apple-mobile-web-app-capable" content="yes">
+
 	<script src="../../browserexperiments.js"></script>
 	<script src="../../Common/jquery-1.6.1.js"></script>
-	
-	<style>
-		#demo{
-			width:100%;
-		}
-	</style>
+
 </head>
 <body>
     <header><h1>Touch Events</h1></header>
@@ -18,24 +19,49 @@
 	</blockquote>
 
 	<div id="demo">
-		<canvas id="drawSurface" width="1000px" height="200px" style="border:1px solid black;width:100%;"></canvas>
+		<canvas id="drawSurface" width="1050px" height="300px" style="border:1px solid black;max-width:100%;">
+			<p>Sorry this demo wont work in your browser, try latest Chrome, Firefox or IE</p>
+		</canvas>
 	</div>
+	
 <script type='text/javascript'>
 
+/**
+ * The canvas pixel positioning must be defined explicitly
+ * Else the coordinates will be relative and affects our drawing surface pixel placement
+ */
+window.onresize = (function resize(){
+	try{
+		document.getElementById("drawSurface").setAttribute("width", window.getComputedStyle(document.getElementById("demo")).getPropertyValue('width'));
+	}catch(e){};
+	return resize;
+})();
+
+/**
+ * iOS - fixing the viewport
+ */
+document.body.addEventListener('touchmove',function(event){
+  event.preventDefault();
+},false);
+
+
+/**
+ * Build out canvas
+ */
 var canvas = document.getElementById("drawSurface"),
 context = canvas.getContext("2d");
 
-var pallet = [], pallet_len = 0;
-function colorPicker(i){
-	var c = "rgb("+ parseInt(Math.random()*200)+","+parseInt(Math.random()*200)+"," + parseInt(Math.random()*200)+")";
-	c = pallet[i] || ( pallet[i] = c );
-	console.log(c);
-	return c;
-}
+// write a little message on the canvas
+context.font = "bold 100px sans-serif";
+context.fillStyle = "#ddd";
+context.fillText("draw surface", 20, canvas.height/2);
+
+
+/**
+ * Paint tools
+ */
 
 function paint(e,v) {
-//	context.fillRect(e.offsetX, e.offsetY, 5, 5);
-	
 	context.beginPath();
 	context.moveTo(v.offsetX, v.offsetY);
 	context.strokeStyle = colorPicker(e.pointerId);
@@ -45,12 +71,18 @@ function paint(e,v) {
 	context.closePath();
 }
 
-function log(s){
-	$("body").append(s+",");
+// randomly choose a colour for a given identifying pointer
+var pallet = [], pallet_len = 0;
+function colorPicker(i){
+	return pallet[i] || ( pallet[i] = ("rgb("+ parseInt(Math.random()*200)+","+parseInt(Math.random()*200)+"," + parseInt(Math.random()*200)+")") );
 }
 
-var mousedown = [];
 
+
+/**
+ * Binding Events
+ */
+var mousedown = {};
 $("body").bind('mousedown MSPointerDown', function(e){
 	mousedown[e.originalEvent.pointerId||0] = e.originalEvent;
 });
@@ -60,13 +92,28 @@ $("body").bind('mouseup MSPointerUp', function(e){
 });
 
 $("#demo canvas")
-	.bind("touchmove",function(e){
-		var touches = e.originalEvent.touches || [e];
+	.bind("touchstart touchmove",function(e){
+		var touches = e.originalEvent.touches || e.originalEvent.changedTouches || [e];
 		for(var i=0; i<touches.length; i++){
-			touches[0].pointerId = i;
-			paint(touches[0]);
+			touches[i].pointerId = touches[i].identifier;
+			touches[i].offsetX = touches[i].clientX - $(this).offset().left;
+			touches[i].offsetY = touches[i].clientY - $(this).offset().top;
+			
+			// do not paint on the touchstart
+			if(e.type==='touchmove'){
+				paint(touches[i],mousedown[touches[i].identifier]);
+			}
+			// save last event in a object literal
+			// to overcome event overwriting which means we can't just store the last event.
+			mousedown[touches[i].identifier] = {
+				offsetX : touches[i].offsetX,
+				offsetY : touches[i].offsetY,
+				pointerId : touches[i].pointerId
+			};
 		}
+		e.stopPropagation();
 		e.preventDefault();
+		return false;
 	})
 	.bind("mousemove MSPointerMove",function(e){
 	
@@ -74,10 +121,10 @@ $("#demo canvas")
 			return;
 		}
 
-		if(!e.originalEvent.pointerId){
-			e.originalEvent.pointerId = 0;
-		}
+		// default pointer ID
+		e.originalEvent.pointerId = e.originalEvent.pointerId || 0;
 
+		// only trigger if we have mousedown/pointerdown
 		if(( e.originalEvent.pointerId in mousedown ) && ( mousedown[e.originalEvent.pointerId] !== null )){
 			paint(e.originalEvent, mousedown[e.originalEvent.pointerId]);
 			mousedown[e.originalEvent.pointerId] = e.originalEvent;
@@ -88,18 +135,8 @@ $("#demo canvas")
 
 
 </script>
-<script>
-/*
-	// fix for IE10
-	
-	
-	.css("msContentZooming","none")
-	.bind("MSPointerMove", function(e){
-		e.touch
-		$(this).trigger('touchmove', [e]);
-	})
-*/
-</script>
-
+<!--
+<pre id="dump" style="position:absolute;bottom:0;left:0;width:100%;max-height:200px;overflow:auto;background-color:white;"></pre>
+-->
 </body>
 </html>
