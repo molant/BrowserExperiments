@@ -12,6 +12,7 @@
 
 	<script src="../../browserexperiments.js"></script>
 	<script src="../../Common/jquery-1.6.1.js"></script>
+	
 
 </head>
 <body>
@@ -21,7 +22,7 @@
 	</blockquote>
 
 	<div id="demo">
-		<canvas id="drawSurface" width="1050px" height="300px" style="border:1px solid black;max-width:100%;">
+		<canvas id="drawSurface" width="1050px" height="300px" style="border:1px solid black;max-width:100%;cursor:pointer;-moz-user-select:none;-webkit-user-select:none;">
 			<p>Sorry this demo wont work in your browser, try latest Chrome, Firefox or IE</p>
 		</canvas>
 	</div>
@@ -98,6 +99,7 @@ $("body").bind('mouseup MSPointerUp', function(e){
 });
 
 $("#demo canvas")
+	.bind("selectstart",function(e){return false;})
 	.bind("touchstart touchmove",function(e){
 		var touches = e.originalEvent.touches || e.originalEvent.changedTouches || [e];
 		for(var i=0; i<touches.length; i++){
