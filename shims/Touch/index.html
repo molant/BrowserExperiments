@@ -26,16 +26,6 @@
 	
 <script type='text/javascript'>
 
-/**
- * The canvas pixel positioning must be defined explicitly
- * Else the coordinates will be relative and affects our drawing surface pixel placement
- */
-window.onresize = (function resize(){
-	try{
-		document.getElementById("drawSurface").setAttribute("width", window.getComputedStyle(document.getElementById("demo")).getPropertyValue('width'));
-	}catch(e){};
-	return resize;
-})();
 
 /**
  * iOS - fixing the viewport
@@ -51,10 +41,24 @@ document.body.addEventListener('touchmove',function(event){
 var canvas = document.getElementById("drawSurface"),
 context = canvas.getContext("2d");
 
-// write a little message on the canvas
-context.font = "bold 100px sans-serif";
-context.fillStyle = "#ddd";
-context.fillText("draw surface", 20, canvas.height/2);
+
+/**
+ * The canvas pixel positioning must be defined explicitly
+ * Else the coordinates will be relative and affects our drawing surface pixel placement
+ */
+window.onresize = (function resize(){
+	try{
+		document.getElementById("drawSurface").setAttribute("width", window.getComputedStyle(document.getElementById("demo")).getPropertyValue('width'));
+	}catch(e){};
+
+	// write a little message on the canvas
+	context.font = "bold 100px sans-serif";
+	context.fillStyle = "#ddd";
+	context.fillText("draw surface", 20, canvas.height/2);
+
+	return resize;
+})();
+
 
 
 /**
