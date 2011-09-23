@@ -76,9 +76,9 @@
 		}
 		section header{
 			-webkit-transition:font-size 0.3s, -webkit-transform 0.5s;
-			-moz-transition:font-size 0.3s, -webkit-transform 0.5s;
-			-ms-transition:font-size 0.3s, -webkit-transform 0.5s;
-			transition:font-size 0.3s, -webkit-transform 0.5s;
+			-moz-transition:font-size 0.3s, -moz-transform 0.5s;
+			-ms-transition:font-size 0.3s, -ms-transform 0.5s;
+			transition:font-size 0.3s, transform 0.5s;
 			-webkit-transform-origin: 0 0;
 			-moz-transform-origin: 0 0;
 			-ms-transform-origin: 0 0;
