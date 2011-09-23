@@ -72,6 +72,9 @@ window.onresize = (function resize(){
 function paint(e,v) {
 	context.beginPath();
 	context.moveTo(v.offsetX, v.offsetY);
+	if("pressure" in e && e.pressure>0.1){
+		context.lineWidth = e.pressure*10;
+	}
 	context.strokeStyle = colorPicker(e.pointerId);
 	context.lineTo(e.offsetX, e.offsetY);
 	context.stroke();
