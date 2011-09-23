@@ -21,6 +21,14 @@
         transition-property : opacity, width, left;
         transition-duration : 1s;
         
+        /* The IE10 syntax */
+        -ms-transition-property : opacity, width, left;
+        -ms-transition-duration : 1s;
+
+        /* The Opera syntax */
+        -o-transition-property : opacity, width, left;
+        -o-transition-duration : 1s;
+
         /* The Firefox syntax */
         -moz-transition-property : opacity, width, left;
         -moz-transition-duration : 1s;
@@ -52,26 +60,36 @@
     /* Timing Functions */
     .ease {
         transition-timing-function : ease;
+        -ms-transition-timing-function : ease;
+        -o-transition-timing-function : ease;
         -moz-transition-timing-function : ease;
         -webkit-transition-timing-function : ease;
     }
     .linear {
         transition-timing-function : linear;
+        -ms-transition-timing-function : linear;
+        -o-transition-timing-function : linear;
         -moz-transition-timing-function : linear;
         -webkit-transition-timing-function : linear;
     }
     .ease-in {
         transition-timing-function : ease-in;
+        -ms-transition-timing-function : ease-in;
+        -o-transition-timing-function : ease-in;
         -moz-transition-timing-function : ease-in;
         -webkit-transition-timing-function : ease-in;
     }
     .ease-out {
         transition-timing-function : ease-out;
+        -ms-transition-timing-function : ease-out;
+        -o-transition-timing-function : ease-out;
         -moz-transition-timing-function : ease-out;
         -webkit-transition-timing-function : ease-out;
     }
     .ease-in-out {
         transition-timing-function : ease-in-out;
+        -ms-transition-timing-function : ease-in-out;
+        -o-transition-timing-function : ease-in-out;
         -moz-transition-timing-function : ease-in-out;
         -webkit-transition-timing-function : ease-in-out;
     }
@@ -79,16 +97,22 @@
     /* Delays */
     .delay-500ms {
         transition-delay: 0.5s;
+        -ms-transition-delay: 0.5s;
+        -o-transition-delay: 0.5s;
         -moz-transition-delay: 0.5s;
         -webkit-transition-delay: 0.5s;
     }
     .delay-1s {
         transition-delay: 1s;
+        -ms-transition-delay: 1s;
+        -o-transition-delay: 1s;
         -moz-transition-delay: 1s;
         -webkit-transition-delay: 1s;
     }
     .delay-2s {
         transition-delay: 2s;
+        -ms-transition-delay: 2s;
+        -o-transition-delay: 2s;
         -moz-transition-delay: 2s;
         -webkit-transition-delay: 2s;
     }
