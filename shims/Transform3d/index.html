@@ -4,41 +4,94 @@
     <title>CSS Transform 3D</title>
     <script src="../../browserexperiments.js"></script>
     
-    <style>
-    	#demo{
-	      -webkit-perspective: 800; /* For compatibility with iPhone 3.0, we leave off the units here */
-	      -webkit-perspective-origin: 50% 50%;
-	      height:150px;			
+<style>
+
+#demo{
+	-webkit-perspective: 800;
+	-webkit-perspective-origin: 50% 100px;
+	   -moz-perspective: 800;
+	   -moz-perspective-origin: 50% 100px;
+	    -ms-perspective: 800;
+	    -ms-perspective-origin: 50% 100px;
+	        perspective: 800;
+	        perspective-origin: 50% 100px;
+}
+
+	#cube {
+		position: relative;
+		height: 200px;
+		width: 200px;
+		margin:20px auto;
+		-webkit-transition: -webkit-transform 2s linear;
+		-webkit-transform-style: preserve-3d;
+		   -moz-transition: -moz-transform 2s linear;
+		   -moz-transform-style: preserve-3d;
+		    -ms-transition: -moz-transform 2s linear;
+		    -ms-transform-style: preserve-3d;
+	}
+		#cube .face {
+			position: absolute;
+			height: 180px;
+			width: 180px;
+			padding: 10px;
+			background-color: rgba(50, 50, 50, 0.7);
 		}
-    	.box{
-    		position:absolute;
-    		width:100px;
-    		height:100px;
-    		background-color:rgba(255,0,0,0.5);
-    		text-align:center;
-    		color:white;
-    		font-size:2em;
-    		display:inline-block;
-			-webkit-transform-style: preserve-3d;
-			-webkit-transition:1s;
+		#cube .one  {
+			-webkit-transform: rotateX(90deg) translateZ(100px);
+			   -moz-transform: rotateX(90deg) translateZ(100px);
+			    -ms-transform: rotateX(90deg) translateZ(100px);
+			        transform: rotateX(90deg) translateZ(100px);
 		}
 		
-		.box.left{
-			-webkit-transform: perspective(800) rotateY(-40deg) scale3d(1,1,1);
+		#cube .two {
+			-webkit-transform: translateZ(200px);
+			   -moz-transform: translateZ(200px);
+			    -ms-transform: translateZ(200px);
+			        transform: translateZ(200px);
 		}
-		.box.right{
-			-webkit-transform: perspective(800) rotateY(10deg) scale3d(1.2, 1.2, 1.2) translate3d(80px,0,0);
+		
+		#cube .three {
+			-webkit-transform: rotateY(90deg) translateZ(100px);
+			   -moz-transform: rotateY(90deg) translateZ(100px);
+			    -ms-transform: rotateY(90deg) translateZ(100px);
+			        transform: rotateY(90deg) translateZ(100px);
 		}
-		#demo:hover .box.left{
-			-webkit-transform: perspective(800) rotateY(-10deg) scale3d(1.2, 1.2, 1.2);
+		
+		#cube .four {
+			-webkit-transform: rotateY(180deg) translateZ(100px);
+			   -moz-transform: rotateY(180deg) translateZ(100px);
+			    -ms-transform: rotateY(180deg) translateZ(100px);
+			        transform: rotateY(180deg) translateZ(100px);
 		}
-		#demo:hover .box.right{
-			-webkit-transform: perspective(800) rotateY(80deg) scale3d(1,1,1) translate3d(0,0,8px);
+		
+		#cube .five {
+			-webkit-transform: rotateY(-90deg) translateZ(100px);
+			   -moz-transform: rotateY(-90deg) translateZ(100px);
+			    -ms-transform: rotateY(-90deg) translateZ(100px);
+			        transform: rotateY(-90deg) translateZ(100px);
+		}
+		
+		#cube .six {
+			-webkit-transform: rotateX(-90deg) translateZ(100px) rotate(180deg);
+			   -moz-transform: rotateX(-90deg) translateZ(100px) rotate(180deg);
+			    -ms-transform: rotateX(-90deg) translateZ(100px) rotate(180deg);
+			        transform: rotateX(-90deg) translateZ(100px) rotate(180deg);
 		}
 
-    </style>
-    
+</style>    
+<script>
+(function(){
+	var x = 0, 
+		y = 0;
+	document.addEventListener('keydown', function(e){
+	
+		x += ({38:1,40:-1}[e.keyCode]*90)||0;
+		y += ({37:-1,39:1}[e.keyCode]*90)||0;
 
+		document.getElementById('cube').style.webkitTransform = "rotateX("+x+"deg) rotateY("+y+"deg)";
+	}, false);
+})();
+</script>
 </head>
 <body>
     <header><h1>CSS3 Transform 3D</h1></header>
@@ -48,11 +101,25 @@
 	</blockquote>
     
 	<div id="demo">
-		<div class="box left">
-			Left
-		</div>
-		<div class="box right">
-			Right
+		<div id="cube">
+			<div class="face one">
+				One face
+			</div>
+			<div class="face two">
+				Up, down, left, right
+			</div>
+			<div class="face three">
+				Lorem ipsum.
+			</div>
+			<div class="face four">
+				New forms of navigation are fun.
+			</div>
+			<div class="face five">
+				Rotating 3D cube
+			</div>
+			<div class="face six">
+				More content
+			</div>
 		</div>
 	</div>
 </body>
