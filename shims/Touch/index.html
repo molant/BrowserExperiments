@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!-- IE10 disable default zooming -->
+<html style="-ms-content-zooming: none;overflow:hidden;">
+<head>
+	<title>Touch Events</title>
+	
+	<!-- iOS devices -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/> 
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	
+	<meta content='True' name='HandheldFriendly' />
+
+	<script src="../../browserexperiments.js"></script>
+	<script src="../../Common/jquery-1.6.1.js"></script>
+	
+
+</head>
+<body>
+    <header><h1>Touch Events</h1></header>
+	<blockquote>
+		<p>The <a href="http://www.w3.org/TR/touch-events/">(w3c) Touch Events</a> provide a standard of supporting multi-touch screens. And as more and more devices provide this feature it becomes more important to develop apps with this interaction in mind.</p>
+		<p>The demo below uses canvas tag to paint touch events to the box below... i dont know any device which support touch and not canvas, so this was a safe bet.</p>
+	</blockquote>
+
+	<div id="demo">
+		<canvas id="drawSurface" width="1050px" height="300px" style="outline:1px solid black;max-width:100%;cursor:pointer;-moz-user-select:none;-webkit-user-select:none;">
+			<p>Sorry this demo wont work in your browser, try latest Chrome, Firefox or IE</p>
+		</canvas>
+	</div>
+	
+<script>
+
+
+/**
+ * iOS - fixing the viewport
+ */
+document.body.addEventListener('touchmove',function(event){
+  event.preventDefault();
+},false);
+
+
+/**
+ * Build out canvas
+ */
+var canvas = document.getElementById("drawSurface"),
+context = canvas.getContext("2d");
+
+
+/**
+ * The canvas pixel positioning must be defined explicitly
+ * Else the coordinates will be relative and affects our drawing surface pixel placement
+ */
+window.onresize = (function resize(){
+	try{
+		document.getElementById("drawSurface").setAttribute("width", window.getComputedStyle(document.getElementById("demo")).getPropertyValue('width'));
+	}catch(e){};
+
+	// write a little message on the canvas
+	context.font = "bold 100px sans-serif";
+	context.fillStyle = "#ddd";
+	context.fillText("draw surface", 20, canvas.height/2);
+
+	return resize;
+})();
+
+
+
+/**
+ * Paint tools
+ */
+
+function paint(e,v) {
+	context.beginPath();
+	context.moveTo(v.offsetX, v.offsetY);
+	if("force" in e && e.force>0.1){
+		console.log("force " + e.force);
+		context.lineWidth = e.force*10;
+	}
+	context.strokeStyle = colorPicker(e.pointerId);
+	context.lineTo(e.offsetX, e.offsetY);
+	context.stroke();
+	context.save();
+	context.closePath();
+}
+
+// randomly choose a colour for a given identifying pointer
+var pallet = [], pallet_len = 0;
+function colorPicker(i){
+	return pallet[i] || ( pallet[i] = ("rgb("+ parseInt(Math.random()*200)+","+parseInt(Math.random()*200)+"," + parseInt(Math.random()*200)+")") );
+}
+
+
+
+/**
+ * Binding Events
+ */
+var mousedown = {};
+$("body").bind('mousedown MSPointerDown', function(e){
+	mousedown[e.originalEvent.pointerId||0] = e.originalEvent;
+});
+
+$("body").bind('mouseup MSPointerUp', function(e){
+	mousedown[e.originalEvent.pointerId||0] = null;
+});
+
+$("#demo canvas")
+	.bind("selectstart",function(e){return false;})
+	.bind("touchstart touchmove",function(e){
+		var touches = e.originalEvent.touches || e.originalEvent.changedTouches || [e];
+		for(var i=0; i<touches.length; i++){
+			touches[i].pointerId = touches[i].identifier;
+			touches[i].offsetX = touches[i].clientX - $(this).offset().left;
+			touches[i].offsetY = touches[i].clientY - $(this).offset().top;
+			
+			// do not paint on the touchstart
+			if(e.type==='touchmove'){
+				paint(touches[i],mousedown[touches[i].identifier]);
+			}
+			// save last event in a object literal
+			// to overcome event overwriting which means we can't just store the last event.
+			mousedown[touches[i].identifier] = {
+				offsetX : touches[i].offsetX,
+				offsetY : touches[i].offsetY,
+				pointerId : touches[i].pointerId
+			};
+		}
+		e.stopPropagation();
+		e.preventDefault();
+		return false;
+	})
+	.bind("mousemove MSPointerMove",function(e){
+	
+		if(e.type==='mousemove'&&"msPointerEnabled" in window.navigator){
+			return;
+		}
+
+		// default pointer ID
+		e.originalEvent.pointerId = e.originalEvent.pointerId || 0;
+
+		// only trigger if we have mousedown/pointerdown
+		if(( e.originalEvent.pointerId in mousedown ) && ( mousedown[e.originalEvent.pointerId] !== null )){
+			paint(e.originalEvent, mousedown[e.originalEvent.pointerId]);
+			mousedown[e.originalEvent.pointerId] = e.originalEvent;
+		}
+		e.preventDefault();
+		e.stopPropagation();
+	});
+
+
+</script>
+</body>
+</html>

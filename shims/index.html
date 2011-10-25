@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Browser Experiments</title>
     <script src="../browserexperiments.js"></script>
 
-	<script src="../Common/modernizr-2.0.js"></script>
-    <script src="../Common/jquery-1.6.1.min.js"></script>
+	<script src="../../Common/modernizr-2.0.js"></script>
+    <script src="../../Common/jquery-1.6.1.min.js"></script>
 <script>
 var _bTestResults;
 
@@ -125,7 +125,7 @@ function testSubmitted(p){
         <input type="search" placeholder="e.g. Box Shadow, Canvas, SVG">
     </header>
 
-	<table>
+	<table class="compat">
 	    <thead>
 	    	<tr>
 	            <th rowspan="2">
@@ -2152,7 +2152,7 @@ function testSubmitted(p){
 	            <td></td>
 	            <td></td>
 	            <td></td>
-	            <td></td>
+	            <td class="supported"></td>
 	            <td></td>
 	            <td></td>
 	            <td></td>
@@ -2167,6 +2167,58 @@ function testSubmitted(p){
                 <td class="disabled"></td>
                 <td class="disabled"></td>
                 <td class="disabled"></td>
+	        </tr>
+	        <tr class="shim-row">
+	            <td>
+	                <a href="Touch/">demo</a>
+	            </td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+				<td></td>
+				<td></td>
+	            <td></td>
+	            <td class="supported"></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td class="supported"></td>
+	            <td class="supported"></td>
+	            <td class="supported"></td>
+	            <td></td>
+                <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	        </tr>
+	        <tr class="shim-row feature-description">
+	            <td>
+	                Multi touch events
+	            </td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+                <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
 	        </tr>
 	        <tr class="feature-row" id="websockets">
 	            <th>
@@ -2666,7 +2718,7 @@ function testSubmitted(p){
 	        </tr>
 	        <tr class="shim-row">
 	            <td>
-	                <a href="History/">History.js</a> by balupton
+	                <a href="History/">jquery-history.js</a> by Andrew Dodson
 	            </td>
 	            <td class="supported"></td>
 	            <td class="supported"></td>

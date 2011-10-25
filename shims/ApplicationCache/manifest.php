@@ -6,10 +6,11 @@ header("Pragma: no-cache");
 
 ?>
 CACHE MANIFEST
-# 15
+# 18
 CACHE:
 style.css
 html5_offline.js
+balloon.jpg
 
 NETWORK:
 *

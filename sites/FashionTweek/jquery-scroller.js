@@ -42,7 +42,7 @@
     })
 
     // Initiate a touch start, and set the initial position. we shall use this to appoximate speed.
-    .live('mousedown touchstart',function(e){
+    .live('mousedown MSPointerDown touchstart',function(e){
 
         // prevent any further events getting fired
 	    e.preventDefault();
@@ -57,8 +57,9 @@
 	    // stop any previous scrolling
 	    clearInterval($(this).data('scrollInt'));
     })
+
     // Listen out for mouse move events to store the new mouse position
-    .live('mousemove touchmove', function (e) {
+    .live('mousemove MSPointerMove touchmove', function (e) {
     
     	var p = $(this).data();
 
@@ -82,7 +83,7 @@
 		
     })
     // Listen out for the release, the end of the swipe
-    .live('mouseup touchend', function (e) {
+    .live('mouseup MSPointerUp touchend', function (e) {
     	var p = $(this).data();
         // dont do anything if we dont have a startX in this scope
         if (!p.startX) return;

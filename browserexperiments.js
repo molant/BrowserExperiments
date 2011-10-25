@@ -1,6 +1,7 @@
-﻿/**
- * Supports HTML5 tags? No then go and create them
- */
+﻿/***********************************************
+ * HTML5 semantics fix
+ ***********************************************/
+
 (function(){
 	var t = document.createElement("div"),
 		a = 'abbr|article|aside|audio|canvas|datalist|details|figcaption|figure|footer|header|hgroup|mark|meter|nav|output|progress|section|summary|time|video'.split("|");
@@ -24,6 +25,7 @@
 	meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
 	document.getElementsByTagName('head')[0].appendChild(meta);
 })();
+
 
 
 
@@ -343,3 +345,52 @@ var addEvent = (function () {
 	});
 })();
 
+
+
+
+/***********************************************
+ * DUMP
+ * Javascript Console
+ ***********************************************/
+
+function dump(s){
+	(function self(name, json, target){
+		var div = document.createElement('li');
+		var a = document.createElement('a');
+		a.innerHTML = name+": ";
+
+		div.appendChild(a);
+	
+		if(typeof(json)!=='object'){
+			a.innerHTML += "<span class='"+ typeof(json) +"'>"+(typeof(json)==='string'?json.replace('<',"&lt;").replace('>',"&gt;"):json)+"</span>";
+		}
+		else{
+			var ul = document.createElement("ul");
+			a.addEventListener('click', function(e){
+
+				if(ul.innerHTML.length){
+					ul.style.display = (ul.style.display==='block'?'none':'block');
+					return;
+				}
+				
+				for(var x in json){
+					self(x, json[x], ul);
+				}
+				e.stopPropagation();
+				e.preventDefault();
+
+			}, false);
+			div.appendChild(ul);
+		}
+		target.appendChild(div);
+	})(typeof(s), s, document.getElementById("dump"));
+}
+
+
+/***********************************************
+ * Console log
+ ***********************************************/
+
+if( !( "console" in window ) || typeof(console) !== 'object' || !("log" in console) ){
+	window.console = {log:function(){}};
+}

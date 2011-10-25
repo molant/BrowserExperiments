@@ -13,9 +13,9 @@
     (function(){
         // Ensure CSS Transitions are not supported natively.
         var elm = document.createElement("div");
-        var support = ["transition", "MozTransition", "OTransition", "WebkitTransition"];
+        var support = ["transition", "MozTransition", "OTransition", "WebkitTransition", "MsTransition"];
         for(var name in support) {
-            if(undefined !== elm.style[name + "Property"]) {
+            if(undefined !== elm.style[name]) {
                 log("transitions.js: CSS Transitions are supported natively. Exiting.");
                 return; 
             }
