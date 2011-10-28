@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Magazinify</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- CSS: implied media="all" -->
+	<link rel="stylesheet" href="css/style.css?v=2">		
+	<link rel="stylesheet" href="css/magazinify.css">	
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="js/libs/google-code-prettify/prettify.css">
+
+	<!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
+	<script src="js/libs/modernizr-1.7.min.js"></script>	
+</head>
+<body>	
+	
+	<div id="container">
+	<header class="hero-unit">
+		<h1>Magazinify Plugin</h1>
+	</header>
+	<div id="main" role="main">
+		<ul class="tabs" data-tabs="tabs">			
+			<li class="active"><a href="#config" id="config_link">Config</a></li>
+			<li><a href="#book" id="book_link">Magazine</a></li>
+		</ul>
+		<div class="tab-content">			
+			<section id="config" class="active">
+				<form action="#" method="get">
+					<div class="clearfix">
+						<label for="duration">Duration</label>
+						<div class="input">
+							<div class="input-append">
+								<input type="number" name="duration" id="duration" value="1000" class="span2" />
+								<span class="add-on">ms</span>
+							</div>
+							<span class="help-block">Total time to flip the page.<br/>The remaining time is proportional to the % of page remaining.</span>
+						</div>
+					</div>
+					<div class="clearfix">
+						<label for="duration">Width</label>
+						<div class="input">
+							<div class="input-append">
+								<input type="number" name="width" value="350" class="span2" />
+								<span class="add-on">px</span>
+							</div>
+							<span class="help-block">Page width, magazine width will be double.</span>
+						</div>
+					</div>
+					<div class="clearfix">
+						<label for="duration">Height</label>
+						<div class="input">
+							<div class="input-append">
+								<input type="number" name="height" value="400" class="span2" />
+								<span class="add-on">px</span>
+							</div>
+							<span class="help-block">Page height.</span>
+						</div>
+					</div>
+					<div class="clearfix">
+						<label for="duration">Spacing</label>
+						<div class="input">
+							<div class="input-append">
+								<input type="number" name="pagePdding" value="20" class="span2" />
+								<span class="add-on">px</span>
+							</div>
+							<span class="help-block">Distance to the page border</span>
+						</div>
+					</div>
+					<div class="clearfix">
+						<label for="duration">Outter shadow</label>
+						<div class="input">
+							<div class="input-append">
+								<input type="number" name="pageShadowWidth" value="10" class="span2" />
+								<span class="add-on">px</span>
+							</div>
+							<span class="help-block">Size of the magazine's outter shadow.</span>
+						</div>
+					</div>
+					<div class="clearfix">
+						<label for="duration">Inner shadow</label>
+						<div class="input">
+							<div class="input-append">
+								<input type="number" name="contentShadowWidth" value="15" class="span2" />
+								<span class="add-on">px</span>
+							</div>
+							<span class="help-block">Size of the magazine's inner shadow during the plage flip.</span>
+						</div>
+					</div>
+					<div class="actions">
+						<input type="submit" value="Magazinify" class="btn primary" /> <input type="button" value="Unmagazinify" class="btn danger reset" />
+					</div>
+				</form>
+			</section>
+			<section id="book">
+				<div id="magazine" class="magazine">
+					<div>
+						<h1>Flip page</h1>
+					</div>
+					<div>
+						<h2>Lorem Ipsum</h2>
+						<figure>
+							<img src="./img/lorem_ipsum.png" alt="Lorem Ipsum" />
+							<figcaption>Lorem Ipsum</figcaption>
+						</figure>
+						<p><strong>Lorem Ipsum</strong> dolor sit amet, consectetur adipiscing elit. Integer facilisis scelerisque arcu non ullamcorper. Ut vehicula feugiat elit a imperdiet. Maecenas mauris nunc, egestas non ultrices at, semper vitae velit. Cras erat erat, feugiat sit amet pretium quis, pellentesque a velit. Sed tempus hendrerit elit. Donec bibendum, nisi vitae rhoncus tincidunt, velit libero elementum metus, ac feugiat orci leo et nisi. Integer elementum, elit malesuada scelerisque venenatis, orci neque pellentesque elit.</p>
+					</div>
+					<div>
+						<p>Morbi pellentesque tortor ut tellus tristique ut aliquam mauris aliquam. Nulla a lacus sapien. Sed in nisl et nulla egestas condimentum sed vel quam. Donec vulputate facilisis eros, ac convallis sapien vehicula nec. Proin vulputate neque eros. Nam blandit quam eu urna consectetur auctor aliquet sed lacus. Sed et mauris non nisl dapibus viverra.</p>
+						<div class="columns">
+							<p>Maecenas vel velit dictum lorem euismod sollicitudin. Nulla dictum massa ut nisl semper elementum. Nullam nec mauris at nibh iaculis blandit.</p>
+							<p>Aenean elementum arcu eu arcu venenatis quis accumsan est mollis. Vestibulum mattis, est a faucibus elementum, enim velit scelerisque felis, nec mattis turpis lorem sed nulla. Ut ut nulla magna.</p>
+						</div>
+						<p>Nam posuere dignissim sodales. Aliquam erat volutpat.</p>
+					</div>
+					<div>
+						<p>Ut rhoncus sollicitudin leo in sodales. Pellentesque arcu nunc, molestie a accumsan eu, placerat ut purus.</p>
+
+						<p>Duis sem orci, elementum a pellentesque eu, fringilla eu metus. In viverra dictum pellentesque. Maecenas sit amet elementum orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vestibulum mattis diam, ut gravida diam feugiat sed. Integer a neque magna. Duis et accumsan libero.</p>
+				
+						 <p>Nam consectetur nibh et urna dictum fringilla. Fusce ultrices auctor urna, a adipiscing nulla placerat luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id urna neque, quis pharetra mauris. In hac habitasse platea dictumst. Praesent a sem risus.</p>
+						<p>Aenean pharetra lacus at lorem volutpat sed dignissim elit sodales. Quisque luctus, eros at faucibus congue, purus mi pretium augue, quis tempus odio dui ut ligula.</p>
+					</div>
+				</div>
+			</section>
+		</div>
+    </div>
+    <footer>
+
+    </footer>
+  </div> <!--! end of #2 -->
+
+  <!-- JavaScript at the bottom for fast page loading -->
+
+  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
+  <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script> -->
+  <script>window.jQuery || document.write("<script src='js/libs/jquery-1.5.1.min.js'>\x3C/script>")</script>
+
+	<script src="js/libs/jquery.mobile.js"></script>  
+	<script src="js/mylibs/jquery.magazinify.js"></script>
+	<script src="js/libs/google-code-prettify/prettify.js"></script>
+	<script src="js/libs/google-code-prettify/lang-css.js"></script>
+	
+
+  <!-- scripts concatenated and minified via ant build script-->
+  <script src="js/plugins.js"></script>
+  <script src="js/script.js"></script>
+  <!-- end scripts-->
+  <!--[if lt IE 7 ]>
+    <script src="js/libs/dd_belatedpng.js"></script>
+    <script>DD_belatedPNG.fix("img, .png_bg"); // Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb </script>
+  <![endif]-->
+
+</body>
+</html>
