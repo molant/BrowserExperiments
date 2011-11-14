@@ -1,0 +1,97 @@
+﻿#imageBackground
+{
+	background: url('../Images/backgrounds/cap01_jef01_lalengua.jpg');
+	background-size: auto;
+	background-repeat: no-repeat;
+	top: 0;
+	left: 0;
+	width: 760px;
+	height: 460px;
+	position: absolute;
+}
+
+
+.transitionDemo:hover
+{
+	opacity: 0;
+}
+
+#imageBackgroundNext
+{
+	background: url('../Images/backgrounds/cap01_jef01_lalengua.jpg');
+	background-size: auto;
+	background-repeat: no-repeat;
+	top: 0;
+	left: 0;
+	width: 760px;
+	height: 460px;
+	position: absolute;
+}
+
+#imageBackgroundNext:hover
+{
+	opacity: 0;
+}
+
+.opacity0
+{
+	opacity: 0;
+}
+
+.transition
+{
+	-webkit-transition: opacity 1s ease-in-out;
+	-ms-transition: opacity 1s ease-in-out;
+	-moz-transition: opacity 1s ease-in-out;
+	transition-property: opacity;
+	transition-duration: 1s;
+	transition-timing-function: ease-in-out;
+}
+
+.clipping
+{
+	clip: rect(0px, 760px, 460px, 0px);
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 860px;
+	height: 560px;
+	position: absolute;
+	overflow: hidden;
+}
+
+.characterBase
+{
+	background: url('../Images/characters/cientifica_joven_a.png');
+	background-repeat: no-repeat;
+	background-size: auto;
+	top: -50;
+	left: -800;
+	right: 0;
+	bottom: 0;
+	width: 860px;
+	height: 560px;
+	position: absolute;
+}
+
+.characterTransition
+{
+	-webkit-transition: all 1s ease-in-out;
+	-ms-transition: all 1s ease-in-out;
+	-moz-transition: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
+	-webkit-transform: all 1s scale(1.4);
+	-ms-transform: all 1s scale(1.4);
+	-moz-transform: all 1s scale(1.4);
+	transform: all 1s scale(1.4);
+}
+
+.loadingProgress
+{
+	background-color: #FF0000;
+	border: thin solid #000000;
+	width: 100px;
+	height: 10px;
+	position: absolute;
+}
