@@ -16,13 +16,13 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'wp_browserexperiments');
+define('DB_NAME', 'wpbe');
 
 /** MySQL database username */
-define('DB_USER', 'root');
+define('DB_USER', 'wordpressuser');
 
 /** MySQL database password */
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'iepartners');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
@@ -42,10 +42,10 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         'put your unique phrase here');
-define('SECURE_AUTH_KEY',  'put your unique phrase here');
-define('LOGGED_IN_KEY',    'put your unique phrase here');
-define('NONCE_KEY',        'put your unique phrase here');
+define('AUTH_KEY',         'browserexperiments');
+define('SECURE_AUTH_KEY',  'browserexperiments');
+define('LOGGED_IN_KEY',    'browserexperiments');
+define('NONCE_KEY',        'browserexperiments');
 define('AUTH_SALT',        'put your unique phrase here');
 define('SECURE_AUTH_SALT', 'put your unique phrase here');
 define('LOGGED_IN_SALT',   'put your unique phrase here');
