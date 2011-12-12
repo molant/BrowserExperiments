@@ -1,0 +1,93 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+	
+	<title>Nurse Webber</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="js/libs/modernizr-2.0.6.min.js"></script>
+</head>
+<body>
+
+<div id="container">
+	<header>
+		<h1>Nurse<span lang="en-gb"> Webber</span></h1>
+		<p><span lang="en-gb">Ahh you poor thing, tell me how frequently and for 
+		how long you need to take your medication and i&#39;ll remind you.</span></p>
+	</header>
+	<div id="main" role="main">
+		
+		<h1 class="countdown"></h1>
+
+		<form>
+			<label>How many times a day?</label> <input type="number" placeholder="1" min="1" name="freq" />
+			<datalist><option value="1"/><option value="2"/><option value="3"/><option value="4"/></datalist>
+			<br />
+			
+			<label>When do you want to start</label> <input type="time" placeholder="1" name="start_time" />
+			<br />
+
+			<label>For how long?</label> <input type="number" placeholder="Days" min="1" name="nod"  />
+			<datalist><option value="1"/><option value="2"/><option value="3"/><option value="4"/> <option value="5"/><option value="6"/><option value="7"/><option value="8"/><option value="9"/><option value="10"/><option value="11"/><option value="12"/><option value="13"/><option value="14"/> <option value="15"/><option value="16"/><option value="17"/><option value="18"/><option value="19"/><option value="20"/></datalist>
+			
+			Or 
+			<input type="date" placeholder="End date" name="end_date"/>
+			<br />
+			<br />
+
+			<button type="submit">Save</button> <button type="reset">Cancel</button>
+
+		</form>
+	</div>
+	<footer>
+
+	</footer>
+</div> <!--! end of #container -->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
+
+<!-- scripts concatenated and minified via ant build script-->
+<script src="js/plugins.js"></script>
+<script src="js/polyfiller.js"></script>
+<script>
+	$.webshims.setOptions('forms', { customMessages: true}); 
+	$.webshims.setOptions("json-storage", {
+		exceededMessage: "This application needs more space. Please move the slider to 5MB."
+	});	
+
+	//load all defined
+	//or load only a specific feature with $.webshims.polyfill('feature-name');
+	$.webshims.polyfill();
+</script>
+<script src="js/notification.js"></script>
+	
+<script src="js/script.js"></script>
+<!-- end scripts-->
+
+<script>
+	var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']]; // Change UA-XXXXX-X to be your site's ID
+	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+	s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<!--[if lt IE 7 ]>
+	<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
+	<script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
+<![endif]-->
+
+</body>
+</html>

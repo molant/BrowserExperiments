@@ -1,0 +1,25 @@
+/* FlipPage styles */
+.magazine_content { background:#FFF; }
+.magazinify, .magazine_sheet, .magazine_page, .magazine_content { overflow:hidden; }
+.magazinify { position:relative; }
+.magazine_sheet, .magazine_page, .magazine_content, .magazine_shadow  { position:absolute; }
+
+.magazinify .magazine_page:nth-child(2n+1) .magazine_content .magazine_shadow {
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#40000000', endColorstr='#00000000',GradientType=1 );
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0.25)), color-stop(100%,rgba(0,0,0,0)));
+	background: -webkit-linear-gradient(left, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 100%);
+	background:    -moz-linear-gradient(left, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 100%);
+	background:     -ms-linear-gradient(left, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 100%);
+	background:      -o-linear-gradient(left, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 100%);
+	background:         linear-gradient(left, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 100%);
+}
+.magazinify .magazine_page:nth-child(2n) .magazine_content .magazine_shadow {
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#40000000',GradientType=1 );
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.25)));
+	background: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 100%);
+	background:    -moz-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 100%);
+	background:     -ms-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 100%);
+	background:      -o-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 100%);
+	background:         linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 100%);
+}
+/* END FlipPage styles */

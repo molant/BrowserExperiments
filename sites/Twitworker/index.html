@@ -1,0 +1,225 @@
+﻿<!DOCTYPE>
+<html>
+<head>
+    <title>Web Worker Twitter demo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=10">
+    <!--<script src="Scripts/fakeworker-0.1.js" type="text/javascript"></script>-->
+    <script src="Scripts/jquery-1.4.1.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-1.4.1-vsdoc.js" type="text/javascript"></script>
+    <script src="Scripts/modernizr-latest.js" type="text/javascript"></script>
+    <script src="Scripts/WebWorkerManager.js" type="text/javascript"></script>
+    <script src="Scripts/Twitter/TwitterQuery.js" type="text/javascript"></script>
+    <script src="Scripts/Twitter/TwitterQueryWorker.js" type="text/javascript"></script>
+    <script src="Scripts/Twitter/WebRequest.js" type="text/javascript"></script>
+    <!-- charts script usage -->
+    <script src="charts/libraries/RGraph.common.core.js"></script>
+    <script src="charts/libraries/RGraph.common.context.js"></script>
+    <script src="charts/libraries/RGraph.common.annotate.js"></script>
+    <script src="charts/libraries/RGraph.common.tooltips.js"></script>
+    <script src="charts/libraries/RGraph.common.zoom.js"></script>
+    <script src="charts/libraries/RGraph.common.effects.js"></script>
+    <script src="charts/libraries/RGraph.line.js"></script>
+    <!-- ends charts script usage -->
+    <link href="Styles/Twitter.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <script type="text/javascript">
+
+        var twitter = new TwitterQuery();
+
+        twitter.startQuery = onStartQuery;
+        twitter.endQuery = onEndQuery;
+        twitter.statistics = onStatistics;
+
+        function onStartQuery(data) {
+            $('#loading' + data.query).css('display', 'block');
+        }
+
+        function onEndQuery(data) {
+            data = JSON.parse(data);
+            $('#loading' + data.query).css('display', 'none');
+        };
+
+        function onStatistics(data) {
+            var values = data.data;
+            if (values.type === 'local') {
+                var queryItem = $('#' + values.query);
+                queryItem = $('.query-item-right', queryItem);
+                if (values.items.length > 0) {
+                    var axisY = new Array();
+                    var axisX = new Array();
+                    queryItem.children('li').remove();
+
+                    $('<li>' + values.time + ' ms</li>').appendTo(queryItem);
+                    $('<li>' + values.query + ' appears ' + values.queryCount + ' times</li>').appendTo(queryItem);
+
+                    for (var i = 0; i < (values.items.length < 20 ? values.items.length : 20); i++) {
+                        $('<li>word: ' + values.items[i].key + ' - count: ' + values.items[i].value + '</li>').appendTo(queryItem);
+                        axisX.push(values.items[i].key);
+                        axisY.push(values.items[i].value);
+                    }
+                    clearCanvas('canvas' + values.query);
+                    canvas = new RGraph.Line('canvas' + values.query, axisY);
+                    canvas.Set('chart.yaxispos', 'right');
+                    canvas.Set('chart.hmargin', 15);
+                    canvas.Set('chart.tickmarks', 'endcircle');
+                    canvas.Set('chart.labels', axisX);
+                    canvas.Set('chart.linewidth', 3);
+                    canvas.Set('chart.shadow', true);
+                    canvas.Set('chart.text.angle', 45);
+                    canvas.Set('chart.gutter.top', 5);
+                    canvas.Set('chart.gutter.bottom', 100);
+                    canvas.Draw();
+                }
+
+            }
+            else if (values.type === 'global') {
+                var queryItem = $('#global');
+                var axisY = new Array();
+                var axisX = new Array();
+                if (values.items.length > 0) {
+                    queryItem.children('li').remove();
+                    for (var i = 0; i < (values.items.length < 10 ? values.items.length : 10); i++) {
+                        $('<li>word: ' + values.items[i].key + ' - count: ' + values.items[i].value + '</li>').appendTo(queryItem);
+                        axisX.push(values.items[i].key);
+                        axisY.push(values.items[i].value);
+                    }
+                }
+                clearCanvas('statisticsGlobal');
+                canvas = new RGraph.Line('statisticsGlobal', axisY);
+                canvas.Set('chart.yaxispos', 'right');
+                canvas.Set('chart.hmargin', 15);
+                canvas.Set('chart.tickmarks', 'endcircle');
+                canvas.Set('chart.labels', axisX);
+                canvas.Set('chart.linewidth', 3);
+                canvas.Set('chart.shadow', true);
+                canvas.Set('chart.text.angle', 45);
+                canvas.Set('chart.gutter.top', 5);
+                canvas.Set('chart.gutter.bottom', 100);
+                canvas.Draw();
+            }
+            $('#time').html(values.time + ' ms');
+        };
+
+        function clearCanvas(id) {
+            var canvas = document.getElementById(id);
+            var context = canvas.getContext('2d');
+            context.save();
+
+            // Use the identity matrix while clearing the canvas
+            context.setTransform(1, 0, 0, 1, 0, 0);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Restore the transform
+            context.restore();
+        }
+
+        function result(data) {
+            var value = JSON.parse(data.data);
+            var section = $('#' + value.query);
+            var addToDOM = section.length > 0 ? false : true;
+            var previousItems = undefined;
+            if (addToDOM) {
+                section = $('<section id="' + value.query + '"><header><h1>' + value.query + '</h1></header><li id="' + value.query + '" class="query-item"><section class="query-item-left"><ul class="query-item-results"></ul></section><section class="query-item-right"><div id="loading' + value.query + '"><img src="Images/loading-gif-animation.gif" width="25x" height="25px" /></div></section></li> <canvas id="canvas' + value.query + '" width="875" height="250">[Please wait...]</canvas></section>');
+                $('.query-item-results', section).data('items', value.results);
+            }
+            else {
+                previousItems = $('.query-item-results', section).data('items');
+            }
+            var list = $('.query-item-results', section);
+
+            for (var i = 0; i < value.results.length; i++) {
+                var item = value.results[i];
+                if (!FindId(item.id, previousItems)) {
+                    var twitterList = $('#twitterList');
+                    var htmlItem = $('<li class="item-result"><div class="image-wrapper"><img class="item-image" src="' + item.profile_image_url + '" alt="Result Image" /></div><div class="item-result-description"><p>' + item.text + '</p></div></li>');
+                    htmlItem.appendTo(list);
+                }
+            }
+            if (addToDOM) {
+                section.appendTo($('.query-list'));
+            }
+        }
+
+        function FindId(id, items) {
+            var result = false;
+            if (items !== undefined) {
+                for (var i = 0; i < items.length; i++) {
+                    if (items[i].id === id) {
+                        result = true;
+                        break;
+                    }
+                }
+            }
+            return result;
+        }
+
+        if (!Modernizr.webworkers) {
+            
+            $('#errorOutput').html('No WebWorker sorry');
+        }
+        else {
+            twitter.Search('Windows8', result);
+
+        }
+
+        function search() {
+            var searchTerm = $('#search-button').attr('value');
+            twitter.Search(searchTerm, result);
+        }
+
+        function onChange(event) {
+            var value = $('#updateTimeout').attr('value');
+            twitter.nextPageTimeout = value;
+            twitter.updataePageTimeout = value;
+            $('#updateTimeoutValue').html(value);
+        }
+
+        function onDisable(event) {
+            var value = $('#enable').html().trim();
+            if (value === "disabled") {
+                $('#enable').html('enabled');
+                twitter.isEnabled = false;
+            }
+            else {
+                $('#enable').html('disabled');
+                twitter.isEnabled = true;
+            }
+        }
+
+    </script>
+    <div>
+        <h1>
+            Real time Twitter search and statisitics</h1>
+        <section class="search-section">
+            Twitter search term
+            <input id="search-button" class="text-to-search" type="text" />
+            <input type="button" value="search" onclick="javascript:search();" />
+        </section>
+        <section>
+        Configuration
+        <input id="updateTimeout" onchange="javascript:onChange();" type="range" min="1"
+            value="1" max="10" />
+            <label id="updateTimeoutValue">1</label>
+        <button id="enable" onclick="javascript:onDisable();">
+            disabled</button>
+        </section>
+        <span id="errorOutput" />
+        <section class="results-section">
+            <ul class="query-list">
+            </ul>
+            <section class="total-counter">
+                <img id="loadingGlobal" src="Images/loading-gif-animation.gif" width="25x" height="25px" />
+                <p>
+                </p>
+                Time to compute:
+                <label id="time">
+                </label>
+                <canvas id="statisticsGlobal" width="340" height="250">[Please wait...]</canvas>
+                <ul id="global">
+                </ul>
+            </section>
+        </section>
+    </div>
+</body>
+</html>
