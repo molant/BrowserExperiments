@@ -1,0 +1,78 @@
+﻿body
+{
+}
+
+ul
+{
+	list-style: none;
+}
+li
+{
+	list-style: none;
+}
+
+.query-list
+{
+	float: left;
+}
+
+.query-item-results
+{
+	width: 500px;
+	height: 290px;
+	overflow: auto;
+}
+
+.search-section
+{
+	width: 100%;
+	background-color: #B3B3FF;
+}
+
+.total-counter
+{
+	width: 400px;
+	background-color: #7BAAD9;
+	position: absolute;
+	right: 0px;
+}
+
+.image-wrapper, .item-image
+{
+	width: 48px;
+	height: 48px;
+	float: left;
+}
+
+.item-result-description
+{
+	margin-left: 75px;
+	margin-right: 20px;
+}
+
+.item-result
+{
+	height: 70px;
+}
+
+.query-item-left
+{
+	float: left;
+}
+
+.query-item
+{
+	height: 300px;
+	overflow: auto;
+	background-color: #E6E6E6;
+	margin-top: 10px;
+}
+
+.query-item-right
+{
+	margin-left: 20px;
+	float: right;
+	width: 300px;
+	height: 290px;
+	overflow: auto;
+}
